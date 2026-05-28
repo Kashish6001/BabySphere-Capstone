@@ -1,37 +1,77 @@
 ﻿<div class="hero-section text-center">
-    <h1>Welcome to BabySphere</h1>
-    <p>Your all-in-one baby care support platform for parents and caregivers.</p>
-    <a class="btn btn-primary btn-lg mt-3" href="#">Get Started</a>
+    <div class="container">
+        <h1 class="display-4 fw-bold">Welcome to BabySphere</h1>
+        <p class="lead mt-3">
+            Your trusted platform for baby care, parenting support and child wellness.
+        </p>
+
+        <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-primary btn-lg mt-3 px-4">
+            Get Started
+        </a>
+    </div>
 </div>
 
-<div class="row mt-5">
+<div class="container mt-5">
 
-    <div class="col-md-3">
-        <div class="card feature-card p-3 shadow-sm">
-            <h3>Babysitting</h3>
-            <p>Find trusted babysitters for your child.</p>
-        </div>
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">About BabySphere</h2>
+        <p class="text-muted mt-3">
+            BabySphere is designed to support parents and caregivers by bringing
+            babysitting services, baby products, parenting resources and child
+            wellness support together in one easy-to-use platform.
+        </p>
     </div>
 
-    <div class="col-md-3">
-        <div class="card feature-card p-3 shadow-sm">
-            <h3>Baby Products</h3>
-            <p>Explore baby care products and essentials.</p>
-        </div>
-    </div>
+    <div class="row g-4">
 
-    <div class="col-md-3">
-        <div class="card feature-card p-3 shadow-sm">
-            <h3>Parent Support</h3>
-            <p>Access parenting resources and guidance.</p>
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="Babysitters" class="text-decoration-none text-dark">
+                <div class="card feature-card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <h3>👶</h3>
+                        <h5 class="card-title mt-2">Babysitting</h5>
+                        <p class="card-text">Find trusted babysitters and childcare support.</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card feature-card p-3 shadow-sm">
-            <h3>Child Health</h3>
-            <p>Track child wellness and development.</p>
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="Products" class="text-decoration-none text-dark">
+                <div class="card feature-card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <h3>🍼</h3>
+                        <h5 class="card-title mt-2">Baby Products</h5>
+                        <p class="card-text">Explore baby care products and essentials.</p>
+                    </div>
+                </div>
+            </a>
         </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
+                <div class="card feature-card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <h3>❤️</h3>
+                        <h5 class="card-title mt-2">Parent Support</h5>
+                        <p class="card-text">Access parenting guidance and resources.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
+                <div class="card feature-card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <h3>🌱</h3>
+                        <h5 class="card-title mt-2">Child Health</h5>
+                        <p class="card-text">Support healthy growth and child wellness.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
     </div>
 
 </div>
