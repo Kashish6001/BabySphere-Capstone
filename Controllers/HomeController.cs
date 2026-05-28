@@ -23,6 +23,17 @@ namespace BabySphere.Controllers
             return View();
         }
 
+        public IActionResult BabysitterDetails()
+        {
+            return View();
+        }
+
+        public IActionResult Booking(string name)
+        {
+            ViewBag.BabysitterName = name;
+            return View();
+        }
+
         public IActionResult Products()
         {
             return View();
