@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<BabySphere.Models.Babysitter>
+
+@{
     ViewData["Title"] = "Babysitters";
 }
 
@@ -7,13 +9,28 @@
 
 <div class="row mt-4">
 
-    <div class="col-md-4">
-        <div class="card p-3 shadow-sm">
-            <h4>Emily Carter</h4>
-            <p>Experience: 3 years</p>
-            <p>Rating: ⭐4.5</p>
-            <p>$15/hour</p>
-            <a class="btn btn-primary" href="/Home/BabysitterDetails">View Profile</a>
+    @foreach (var babysitter in Model)
+    {
+        <div class="col-md-4 mb-3">
+
+            <div class="card p-3 shadow-sm">
+
+                <h4>@babysitter.Name</h4>
+
+                <p>Experience: @babysitter.Experience years</p>
+
+                <p>Rating: ⭐@babysitter.Rating</p>
+
+                <p>$@babysitter.HourlyRate/hour</p>
+
+                <a class="btn btn-primary"
+                   href="/Home/BabysitterDetails/@babysitter.Id">
+                    View Profile
+                </a>
+
+            </div>
+
         </div>
-    </div>
+    }
+
 </div>
