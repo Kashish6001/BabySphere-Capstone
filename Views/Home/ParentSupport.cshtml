@@ -1,8 +1,42 @@
-﻿
-@{
-    ViewData["Title"] = "ParentSupport";
-}
+﻿@model BabySphere.Models.ParentProfile
 
-<h1>ParentSupport</h1>
-<p>Access parenting resources and guidance.</p>
+<h1>Parent Support</h1>
+<p>Create a parent profile so BabySphere can understand your child care needs.</p>
 
+<form asp-action="ParentSupport" method="post" class="card p-4 shadow-sm">
+
+    <div class="mb-3">
+        <label asp-for="ParentName" class="form-label">Parent Name</label>
+        <input asp-for="ParentName" class="form-control" placeholder="Enter your name" />
+        <span asp-validation-for="ParentName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Enter phone number" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ChildName" class="form-label">Child Name</label>
+        <input asp-for="ChildName" class="form-control" placeholder="Enter child name" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ChildAge" class="form-label">Child Age</label>
+        <input asp-for="ChildAge" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CareNeeds" class="form-label">Care Needs</label>
+        <textarea asp-for="CareNeeds" class="form-control" rows="4"
+                  placeholder="Example: feeding, nap time, allergies, special care"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Save Parent Profile</button>
+</form>

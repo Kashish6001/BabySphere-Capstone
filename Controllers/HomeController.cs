@@ -39,14 +39,31 @@ namespace BabySphere.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ParentSupport()
         {
-            return View();
+            return View(new ParentProfile());
+        }
+
+        [HttpPost]
+        public IActionResult ParentSupport(ParentProfile profile)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("ParentDashboard", profile);
+            }
+
+            return View(profile);
         }
 
         public IActionResult Contact()
         {
             return View();
         }
+
+       
+       
+
+        
     }
 }
