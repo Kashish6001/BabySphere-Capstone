@@ -5,15 +5,17 @@
 
 <form asp-action="ParentSupport" method="post" class="card p-4 shadow-sm">
 
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <div class="mb-3">
         <label asp-for="ParentName" class="form-label">Parent Name</label>
-        <input asp-for="ParentName" class="form-control" placeholder="Enter your name" />
+        <input asp-for="ParentName" class="form-control" placeholder="Enter parent name" />
         <span asp-validation-for="ParentName" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+        <input asp-for="Email" class="form-control" placeholder="Enter email address" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
@@ -30,13 +32,35 @@
     <div class="mb-3">
         <label asp-for="ChildAge" class="form-label">Child Age</label>
         <input asp-for="ChildAge" type="number" class="form-control" />
+        <span asp-validation-for="ChildAge" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SupportCategory" class="form-label">Support Category</label>
+        <select asp-for="SupportCategory" class="form-control">
+            <option value="">Select support type</option>
+            <option>Babysitting Help</option>
+            <option>Feeding Support</option>
+            <option>Sleep Routine</option>
+            <option>Product Guidance</option>
+            <option>General Parenting Question</option>
+        </select>
+        <span asp-validation-for="SupportCategory" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="CareNeeds" class="form-label">Care Needs</label>
         <textarea asp-for="CareNeeds" class="form-control" rows="4"
-                  placeholder="Example: feeding, nap time, allergies, special care"></textarea>
+                  placeholder="Example: feeding routine, nap time, allergies, special care, etc."></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">Save Parent Profile</button>
+    <button type="submit" class="btn btn-primary w-100">
+        Save Parent Profile
+    </button>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
