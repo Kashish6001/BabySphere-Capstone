@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Booking Confirmed";
+}
+
+<h1 class="text-success">Booking Confirmed 🎉</h1>
+
+<div class="card p-4 shadow-sm">
+
+    <h4>Thank you, @ViewBag.ParentName!</h4>
+
+    <p>
+        Your booking with
+        <strong>@ViewBag.BabysitterName</strong>
+        has been confirmed.
+    </p>
+
+    <p>
+        Date: <strong>@ViewBag.Date</strong>
+    </p>
+
+    <a href="/Home/Babysitters" class="btn btn-primary">
+        Back to Babysitters
+    </a>
+
+</div>
