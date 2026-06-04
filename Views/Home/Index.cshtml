@@ -1,77 +1,64 @@
-﻿<div class="hero-section text-center">
-    <div class="container">
-        <h1 class="display-4 fw-bold">Welcome to BabySphere</h1>
-        <p class="lead mt-3">
-            Your trusted platform for baby care, parenting support and child wellness.
-        </p>
+﻿@{
+    ViewData["Title"] = "Home";
+}
 
-        <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-primary btn-lg mt-3 px-4">
-            Get Started
-        </a>
-    </div>
+<div class="text-center p-5 rounded shadow-sm" style="background: linear-gradient(to right, #e8f1ff, #ffeef5);">
+    <h1 class="display-5 fw-bold">Welcome to BabySphere</h1>
+    <p class="text-muted">Your trusted platform for baby care, parenting support and child wellness.</p>
+
+    <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-primary mt-3">
+        Get Started
+    </a>
 </div>
 
-<div class="container mt-5">
+<section class="text-center mt-5">
+    <h2>About BabySphere</h2>
+    <p class="text-muted">
+        BabySphere is designed to support parents and caregivers by bringing babysitting services,
+        baby products, parenting resources and child wellness support together in one easy-to-use platform.
+    </p>
+</section>
 
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">About BabySphere</h2>
-        <p class="text-muted mt-3">
-            BabySphere is designed to support parents and caregivers by bringing
-            babysitting services, baby products, parenting resources and child
-            wellness support together in one easy-to-use platform.
-        </p>
+<div class="row mt-4">
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Home" asp-action="Babysitters" class="text-decoration-none text-dark">
+            <div class="card h-100 p-4 shadow-sm text-center">
+                <h3>👶</h3>
+                <h5>Babysitting</h5>
+                <p>Find trusted babysitters and childcare support.</p>
+            </div>
+        </a>
     </div>
 
-    <div class="row g-4">
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Home" asp-action="Products" class="text-decoration-none text-dark">
+            <div class="card h-100 p-4 shadow-sm text-center">
+                <h3>🍼</h3>
+                <h5>Baby Products</h5>
+                <p>Explore baby care products and essentials.</p>
+            </div>
+        </a>
+    </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Babysitters" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>👶</h3>
-                        <h5 class="card-title mt-2">Babysitting</h5>
-                        <p class="card-text">Find trusted babysitters and childcare support.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
+            <div class="card h-100 p-4 shadow-sm text-center">
+                <h3>💗</h3>
+                <h5>Parent Support</h5>
+                <p>Access parenting guidance and resources.</p>
+            </div>
+        </a>
+    </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Products" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>🍼</h3>
-                        <h5 class="card-title mt-2">Baby Products</h5>
-                        <p class="card-text">Explore baby care products and essentials.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>❤️</h3>
-                        <h5 class="card-title mt-2">Parent Support</h5>
-                        <p class="card-text">Access parenting guidance and resources.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>🌱</h3>
-                        <h5 class="card-title mt-2">Child Health</h5>
-                        <p class="card-text">Support healthy growth and child wellness.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Home" asp-action="ChildHealth" class="text-decoration-none text-dark">
+            <div class="card h-100 p-4 shadow-sm text-center">
+                <h3>🌱</h3>
+                <h5>Child Health</h5>
+                <p>Support healthy growth and child wellness.</p>
+            </div>
+        </a>
     </div>
 
 </div>

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using BabySphere.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -84,9 +83,59 @@ namespace BabySphere.Controllers
             return View(profile);
         }
 
+        public IActionResult ParentDashboard()
+        {
+            return View();
+        }
+
         public IActionResult SupportHistory()
         {
             return View(supportRequests);
+        }
+
+        public IActionResult AdminDashboard()
+        {
+            var dashboard = new AdminDashboardViewModel
+            {
+                TotalBabysitters = 3,
+                TotalProducts = 4,
+                TotalBookings = 2,
+                TotalParentProfiles = supportRequests.Count,
+                PendingSupportRequests = supportRequests.Count(r => r.Status == "Pending")
+            };
+
+            
+
+            if (supportRequests.Count > 0)
+            {
+                dashboard.RecentActivities.Add("New parent support profile submitted.");
+                dashboard.RecentActivities.Add("Support ticket created and saved in temporary history.");
+            }
+
+            return View(dashboard);
+        }
+
+        public IActionResult ChildHealth()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.Email = login.Email;
+                return View("LoginSuccess");
+            }
+
+            return View(login);
         }
 
         public IActionResult Contact()
