@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Login Success";
+}
+
+<h1>Login Successful</h1>
+
+<div class="card p-4 shadow-sm">
+    <h3>Welcome to BabySphere!</h3>
+    <p>You have successfully logged in.</p>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+        Back to Home
+    </a>
+
+    <a asp-controller="Home" asp-action="AdminDashboard" class="btn btn-success">
+        Go to Admin Dashboard
+    </a>
+</div>

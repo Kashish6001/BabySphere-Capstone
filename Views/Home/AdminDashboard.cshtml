@@ -1,0 +1,67 @@
+﻿@model BabySphere.Models.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+<p>View BabySphere project statistics and activity summary.</p>
+
+<div class="row">
+
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 shadow-sm text-center">
+            <h3>@Model.TotalBabysitters</h3>
+            <p>Total Babysitters</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 shadow-sm text-center">
+            <h3>@Model.TotalProducts</h3>
+            <p>Total Products</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 shadow-sm text-center">
+            <h3>@Model.TotalBookings</h3>
+            <p>Total Bookings</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 shadow-sm text-center">
+            <h3>@Model.TotalParentProfiles</h3>
+            <p>Total Parent Profiles</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 shadow-sm text-center">
+            <h3>@Model.PendingSupportRequests</h3>
+            <p>Pending Support Requests</p>
+        </div>
+    </div>
+
+</div>
+
+<h3 class="mt-4">Quick Actions</h3>
+
+<div class="mb-4">
+    <a asp-controller="Home" asp-action="SupportHistory" class="btn btn-primary me-2">View Support History</a>
+    <a asp-controller="Home" asp-action="Babysitters" class="btn btn-outline-primary me-2">View Babysitters</a>
+    <a asp-controller="Home" asp-action="Products" class="btn btn-outline-primary me-2">View Products</a>
+    <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-outline-primary me-2">Parent Support</a>
+</div>
+
+<h3>Recent Activity</h3>
+
+<div class="card p-3 shadow-sm">
+    <ul class="mb-0">
+        @foreach (var activity in Model.RecentActivities)
+        {
+            <li>@activity</li>
+        }
+    </ul>
+</div>
