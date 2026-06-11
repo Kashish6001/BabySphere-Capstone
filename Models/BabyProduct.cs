@@ -13,5 +13,9 @@
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public int Quantity { get; set; }
+
+        public double Rating { get; set; }
     }
 }

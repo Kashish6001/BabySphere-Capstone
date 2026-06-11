@@ -191,6 +191,8 @@ namespace BabySphere.Controllers
             Name = "Baby Stroller",
             Category = "Travel",
             Price = 149.99m,
+            Quantity = 15,
+            Rating =4.7,
             Description = "Comfortable stroller for outdoor travel.",
             ImageUrl = "/images/stroller.jpg"
         },
@@ -200,6 +202,8 @@ namespace BabySphere.Controllers
             Name = "Baby Car Seat",
             Category = "Travel",
             Price = 199.99m,
+            Quantity = 10,
+            Rating =4.5,
             Description = "Safe and secure car seat for babies.",
             ImageUrl = "/images/carseat.jpg"
         },
@@ -209,6 +213,8 @@ namespace BabySphere.Controllers
             Name = "Diaper Bag",
             Category = "Travel",
             Price = 39.99m,
+            Quantity = 19,
+            Rating =4.9,
             Description = "Spacious diaper bag for parents.",
             ImageUrl = "/images/diaperbag.jpg"
         },
@@ -219,6 +225,8 @@ namespace BabySphere.Controllers
             Name = "Baby Bottle",
             Category = "Feeding",
             Price = 12.99m,
+            Quantity = 15,
+            Rating =4.3,
             Description = "BPA-free feeding bottle.",
             ImageUrl = "/images/bottle.jpg"
         },
@@ -228,6 +236,8 @@ namespace BabySphere.Controllers
             Name = "High Chair",
             Category = "Feeding",
             Price = 89.99m,
+            Quantity = 8,
+            Rating =4.3,
             Description = "Comfortable feeding chair for babies.",
             ImageUrl = "/images/highchair.jpg"
         },
@@ -237,6 +247,8 @@ namespace BabySphere.Controllers
             Name = "Baby Bibs",
             Category = "Feeding",
             Price = 9.99m,
+            Quantity = 23,
+            Rating =3.8,
             Description = "Soft bibs to keep clothes clean.",
             ImageUrl = "/images/bibs.jpg"
         },
@@ -247,6 +259,8 @@ namespace BabySphere.Controllers
             Name = "Baby Lotion",
             Category = "Care",
             Price = 8.99m,
+            Quantity = 12,
+            Rating =4.8,
             Description = "Gentle lotion for baby skin.",
             ImageUrl = "/images/lotion.jpg"
         },
@@ -256,6 +270,8 @@ namespace BabySphere.Controllers
             Name = "Baby Shampoo",
             Category = "Care",
             Price = 7.99m,
+            Quantity = 17,
+            Rating =4.8,
             Description = "Tear-free shampoo for babies.",
             ImageUrl = "/images/shampoo.jpg"
         },
@@ -265,6 +281,8 @@ namespace BabySphere.Controllers
             Name = "Diapers Pack",
             Category = "Care",
             Price = 24.99m,
+            Quantity = 20,
+            Rating =4.6,
             Description = "Soft and comfortable diapers.",
             ImageUrl = "/images/diapers.jpg"
         },
@@ -275,6 +293,8 @@ namespace BabySphere.Controllers
             Name = "Building Blocks",
             Category = "Toys",
             Price = 19.99m,
+            Quantity = 23,
+            Rating =3.7,
             Description = "Educational blocks for learning.",
             ImageUrl = "/images/blocks.jpg"
         },
@@ -284,6 +304,8 @@ namespace BabySphere.Controllers
             Name = "Teddy Bear",
             Category = "Toys",
             Price = 14.99m,
+            Quantity = 27,
+            Rating =3.6,
             Description = "Soft plush teddy bear.",
             ImageUrl = "/images/teddy.jpg"
         },
@@ -293,6 +315,8 @@ namespace BabySphere.Controllers
             Name = "Baby Rattle",
             Category = "Toys",
             Price = 6.99m,
+            Quantity = 16,
+            Rating =4.0,
             Description = "Colorful rattle toy for babies.",
             ImageUrl = "/images/rattle.jpg"
         }
@@ -310,6 +334,7 @@ namespace BabySphere.Controllers
             var product = GetBabyProducts().FirstOrDefault(x => x.Id == id);
 
             return View(product);
+        }
 
         public IActionResult SupportHistory()
         {
