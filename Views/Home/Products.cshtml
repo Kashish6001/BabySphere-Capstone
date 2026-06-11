@@ -59,6 +59,14 @@
                         <strong>$@product.Price</strong>
                     </p>
 
+                    <p>
+                        ⭐ @product.Rating / 5
+                    </p>
+
+                    <p>
+                        Stock: @product.Quantity
+                    </p>
+
                     <a asp-controller="Home"
                        asp-action="ProductDetails"
                        asp-route-id="@product.Id"

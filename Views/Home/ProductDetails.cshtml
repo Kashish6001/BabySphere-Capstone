@@ -24,6 +24,15 @@
             </p>
 
             <p>
+                <strong>Rating:</strong> &#9733; @Model.Rating / 5
+            </p>
+
+            <p>
+                <strong>Available Stock:</strong> @Model.Quantity
+            </p>
+
+
+            <p>
                 <strong>Description:</strong> @Model.Description
             </p>
 
@@ -33,7 +42,8 @@
                 Back to Products
             </a>
 
-            <button class="btn btn-success">
+            <button class="btn btn-success"
+                    onclick="alert('Product added to cart!')">
                 Add to Cart
             </button>
         </div>
