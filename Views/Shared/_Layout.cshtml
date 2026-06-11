@@ -34,39 +34,33 @@
                     <ul class="navbar-nav me-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="Index">Home</a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="Babysitters">Babysitters</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="Products">Products</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Babysitters">Babysitters</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="ParentSupport">Parent Support</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Products">Products</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="Contact">Contact</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="ParentSupport">Parent Support</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="AdminDashboard">Admin Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
 
                     </ul>
+
                     <div>
-                        <a class="btn btn-light" href="#">Login</a>
+                        <a class="btn btn-light" asp-controller="Home" asp-action="Login">Login</a>
                     </div>
 
                 </div>

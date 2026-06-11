@@ -1,26 +1,117 @@
-.hero-section {
-    background: linear-gradient(135deg, #dbeafe, #fde2e4);
-    padding: 90px 20px;
-    border-radius: 25px;
-    margin-top: 30px;
+.baby-hero {
+    background: linear-gradient(135deg, #e0f7fa, #fff1f2);
+    padding: 90px 25px;
+    border-radius: 0 0 40px 40px;
+}
+
+.baby-hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.baby-hero p {
+    font-size: 20px;
+    color: #4b5563;
+    margin-top: 15px;
+}
+
+.main-btn {
+    background-color: #008c95;
+    color: white;
+    border-radius: 30px;
+    padding: 12px 30px;
+    margin-top: 20px;
+}
+
+.main-btn:hover {
+    background-color: #006d75;
+    color: white;
+}
+
+.hero-circle {
+    width: 230px;
+    height: 230px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 90px;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.tools-section {
+    margin-top: 60px;
     text-align: center;
 }
 
-.hero-section h1 {
+.tools-section h2,
+.topics-section h2 {
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+.tool-link {
+    text-decoration: none;
+    color: #1f2937;
+}
+
+.tool-icon {
     font-size: 55px;
-    font-weight: bold;
+    background-color: #f0fdfa;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 12px;
 }
 
-.hero-section p {
-    color: #555;
-    font-size: 20px;
+.topics-section {
+    margin-top: 70px;
+    margin-bottom: 50px;
 }
 
-.feature-card {
+.topic-card {
+    background-color: white;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-bottom: 5px solid #7dd3fc;
+    min-height: 330px;
+}
+
+.topic-img {
+    font-size: 50px;
+    background-color: #ecfeff;
     border-radius: 18px;
-    transition: 0.3s;
-    min-height: 220px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 15px;
 }
+
+.topic-card h4 {
+    font-weight: 700;
+}
+
+.topic-card ul {
+    margin-top: 15px;
+    color: #0f766e;
+}
+
+.topic-card li {
+    margin-bottom: 10px;
+}
+
+.see-btn {
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid #0f766e;
+    border-radius: 25px;
+    padding: 8px 22px;
+    text-decoration: none;
+    color: #0f766e;
+}
+
 
 .feature-card:hover {
     transform: translateY(-8px);
@@ -37,4 +128,8 @@
     max-width: 70%;
     max-height: 70%;
     object-fit: contain;
+}
+.see-btn:hover {
+    background-color: #0f766e;
+    color: white;
 }

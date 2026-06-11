@@ -1,77 +1,104 @@
-﻿<div class="hero-section text-center">
+<section class="baby-hero">
     <div class="container">
-        <h1 class="display-4 fw-bold">Welcome to BabySphere</h1>
-        <p class="lead mt-3">
-            Your trusted platform for baby care, parenting support and child wellness.
-        </p>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1>Baby Care Support, Made Simple</h1>
+                <p>
+                    BabySphere helps parents find babysitters, baby products,
+                    parenting support, and child wellness resources in one place.
+                </p>
 
-        <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-primary btn-lg mt-3 px-4">
-            Get Started
-        </a>
+                <a asp-controller="Home" asp-action="Babysitters" class="btn main-btn">
+                    Get Started
+                </a>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <div class="hero-circle">
+                    👶
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-<div class="container mt-5">
+<section class="container tools-section">
+    <h2>BabySphere Tools</h2>
 
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">About BabySphere</h2>
-        <p class="text-muted mt-3">
-            BabySphere is designed to support parents and caregivers by bringing
-            babysitting services, baby products, parenting resources and child
-            wellness support together in one easy-to-use platform.
-        </p>
+    <div class="row text-center g-4">
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="Babysitters" class="tool-link">
+                <div class="tool-icon">🧸</div>
+                <h5>Find Babysitters</h5>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="Products" class="tool-link">
+                <div class="tool-icon">🍼</div>
+                <h5>Baby Products</h5>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ParentSupport" class="tool-link">
+                <div class="tool-icon">📘</div>
+                <h5>Parent Support</h5>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ParentSupport" class="tool-link">
+                <div class="tool-icon">🌱</div>
+                <h5>Child Wellness</h5>
+            </a>
+        </div>
     </div>
+</section>
+
+<section class="container topics-section">
+    <h2>Baby Topics</h2>
 
     <div class="row g-4">
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Babysitters" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>👶</h3>
-                        <h5 class="card-title mt-2">Babysitting</h5>
-                        <p class="card-text">Find trusted babysitters and childcare support.</p>
-                    </div>
-                </div>
-            </a>
+        <div class="col-md-4">
+            <div class="topic-card">
+                <div class="topic-img">👶</div>
+                <h4>Newborn Care</h4>
+                <ul>
+                    <li>Feeding basics</li>
+                    <li>Sleep routines</li>
+                    <li>Early baby care</li>
+                </ul>
+                <a asp-controller="Home" asp-action="ParentSupport" class="see-btn">See all</a>
+            </div>
         </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Products" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>🍼</h3>
-                        <h5 class="card-title mt-2">Baby Products</h5>
-                        <p class="card-text">Explore baby care products and essentials.</p>
-                    </div>
-                </div>
-            </a>
+        <div class="col-md-4">
+            <div class="topic-card">
+                <div class="topic-img">🧸</div>
+                <h4>Babysitting</h4>
+                <ul>
+                    <li>Trusted babysitters</li>
+                    <li>Booking support</li>
+                    <li>Childcare options</li>
+                </ul>
+                <a asp-controller="Home" asp-action="Babysitters" class="see-btn">See all</a>
+            </div>
         </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>❤️</h3>
-                        <h5 class="card-title mt-2">Parent Support</h5>
-                        <p class="card-text">Access parenting guidance and resources.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="text-decoration-none text-dark">
-                <div class="card feature-card shadow border-0 h-100">
-                    <div class="card-body text-center">
-                        <h3>🌱</h3>
-                        <h5 class="card-title mt-2">Child Health</h5>
-                        <p class="card-text">Support healthy growth and child wellness.</p>
-                    </div>
-                </div>
-            </a>
+        <div class="col-md-4">
+            <div class="topic-card">
+                <div class="topic-img">🍼</div>
+                <h4>Baby Essentials</h4>
+                <ul>
+                    <li>Diapers and feeding</li>
+                    <li>Bath and body care</li>
+                    <li>Daily baby products</li>
+                </ul>
+                <a asp-controller="Home" asp-action="Products" class="see-btn">See all</a>
+            </div>
         </div>
 
     </div>
-
-</div>
+</section>
