@@ -130,10 +130,7 @@ namespace BabySphere.Controllers
             return View("BookingConfirmation");
         }
 
-        public IActionResult Products()
-        {
-            return View();
-        }
+        
 
         [HttpGet]
         public IActionResult ParentSupport()
@@ -163,7 +160,7 @@ namespace BabySphere.Controllers
                 }
                 else if (profile.SupportCategory == "Product Guidance")
                 {
-                    profile.Recommendation = "We recommend checking baby products based on your child’s age and daily needs.";
+                    profile.Recommendation = "We recommend checking baby products based on your childâ€™s age and daily needs.";
                 }
                 else
                 {
@@ -182,6 +179,137 @@ namespace BabySphere.Controllers
         {
             return View();
         }
+
+
+        private List<BabyProduct> GetBabyProducts()
+        {
+            return new List<BabyProduct>
+    {
+        new BabyProduct
+        {
+            Id = 1,
+            Name = "Baby Stroller",
+            Category = "Travel",
+            Price = 149.99m,
+            Description = "Comfortable stroller for outdoor travel.",
+            ImageUrl = "/images/stroller.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 2,
+            Name = "Baby Car Seat",
+            Category = "Travel",
+            Price = 199.99m,
+            Description = "Safe and secure car seat for babies.",
+            ImageUrl = "/images/carseat.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 3,
+            Name = "Diaper Bag",
+            Category = "Travel",
+            Price = 39.99m,
+            Description = "Spacious diaper bag for parents.",
+            ImageUrl = "/images/diaperbag.jpg"
+        },
+
+        new BabyProduct
+        {
+            Id = 4,
+            Name = "Baby Bottle",
+            Category = "Feeding",
+            Price = 12.99m,
+            Description = "BPA-free feeding bottle.",
+            ImageUrl = "/images/bottle.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 5,
+            Name = "High Chair",
+            Category = "Feeding",
+            Price = 89.99m,
+            Description = "Comfortable feeding chair for babies.",
+            ImageUrl = "/images/highchair.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 6,
+            Name = "Baby Bibs",
+            Category = "Feeding",
+            Price = 9.99m,
+            Description = "Soft bibs to keep clothes clean.",
+            ImageUrl = "/images/bibs.jpg"
+        },
+
+        new BabyProduct
+        {
+            Id = 7,
+            Name = "Baby Lotion",
+            Category = "Care",
+            Price = 8.99m,
+            Description = "Gentle lotion for baby skin.",
+            ImageUrl = "/images/lotion.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 8,
+            Name = "Baby Shampoo",
+            Category = "Care",
+            Price = 7.99m,
+            Description = "Tear-free shampoo for babies.",
+            ImageUrl = "/images/shampoo.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 9,
+            Name = "Diapers Pack",
+            Category = "Care",
+            Price = 24.99m,
+            Description = "Soft and comfortable diapers.",
+            ImageUrl = "/images/diapers.jpg"
+        },
+
+        new BabyProduct
+        {
+            Id = 10,
+            Name = "Building Blocks",
+            Category = "Toys",
+            Price = 19.99m,
+            Description = "Educational blocks for learning.",
+            ImageUrl = "/images/blocks.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 11,
+            Name = "Teddy Bear",
+            Category = "Toys",
+            Price = 14.99m,
+            Description = "Soft plush teddy bear.",
+            ImageUrl = "/images/teddy.jpg"
+        },
+        new BabyProduct
+        {
+            Id = 12,
+            Name = "Baby Rattle",
+            Category = "Toys",
+            Price = 6.99m,
+            Description = "Colorful rattle toy for babies.",
+            ImageUrl = "/images/rattle.jpg"
+        }
+    };
+        }
+
+
+        public IActionResult Products()
+        {
+            return View(GetBabyProducts());
+        }
+
+        public IActionResult ProductDetails(int id)
+        {
+            var product = GetBabyProducts().FirstOrDefault(x => x.Id == id);
+
+            return View(product);
 
         public IActionResult SupportHistory()
         {
@@ -236,6 +364,7 @@ namespace BabySphere.Controllers
         public IActionResult Contact()
         {
             return View();
+
         }
     }
 }
