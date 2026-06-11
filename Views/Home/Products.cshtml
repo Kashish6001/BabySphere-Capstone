@@ -1,8 +1,115 @@
-﻿
+﻿@model List<BabySphere.Models.BabyProduct>
+
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Baby Products";
+    var categories = Model.Select(p => p.Category).Distinct().ToList();
 }
 
-<h1>Baby Products</h1>
-<p>Explore baby care products and essentials.</p>
 
+
+<h1 class="text-center mb-3">Baby Products</h1>
+
+<p class="text-center text-muted">
+    Choose a category to explore baby care products.
+</p>
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        <input type="text"
+               id="searchInput"
+               class="form-control"
+               placeholder="🔍 Search baby products..." />
+    </div>
+</div>
+<div class="text-center mb-4">
+    <button class="btn btn-outline-primary mx-1 category-btn" data-category="All">
+        All
+    </button>
+
+    @foreach (var category in categories)
+    {
+        <button class="btn btn-outline-primary mx-1 category-btn" data-category="@category">
+            @category
+        </button>
+    }
+</div>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3 mb-4 product-card"
+             data-category="@product.Category.ToLower()"
+             data-name="@product.Name.ToLower()"
+             data-description="@product.Description.ToLower()">
+
+
+            <div class="card h-100 shadow-sm">
+                <div class="card-img-container">
+                    <img src="@product.ImageUrl"
+                         class="card-img-top"
+                         style="height:180px; object-fit:contain;" />
+                </div>
+               
+
+                <div class="card-body text-center">
+                    <h5>@product.Name</h5>
+
+                    <p class="text-muted">@product.Category</p>
+
+                    <p>
+                        <strong>$@product.Price</strong>
+                    </p>
+
+                    <a asp-controller="Home"
+                       asp-action="ProductDetails"
+                       asp-route-id="@product.Id"
+                       class="btn btn-primary">
+                        View Product
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    const buttons = document.querySelectorAll(".category-btn");
+    const products = document.querySelectorAll(".product-card");
+    const searchInput = document.getElementById("searchInput");
+
+    let selectedCategory = "All";
+
+    function filterProducts() {
+
+        const searchText = searchInput.value.toLowerCase();
+
+        products.forEach(product => {
+
+            const category = product.dataset.category;
+            const name = product.dataset.name;
+            const description = product.dataset.description;
+
+            const matchesCategory =
+                selectedCategory === "All" ||
+                category === selectedCategory.toLowerCase();
+
+            const matchesSearch =
+                name.includes(searchText) ||
+                category.includes(searchText) ||
+                description.includes(searchText);
+
+            product.style.display =
+                matchesCategory && matchesSearch
+                    ? "block"
+                    : "none";
+        });
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            selectedCategory = button.dataset.category;
+            filterProducts();
+        });
+    });
+
+    searchInput.addEventListener("input", filterProducts);
+</script>
