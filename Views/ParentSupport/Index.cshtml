@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Parent Support";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1>👨‍👩‍👧 Parent Support Center</h1>
+        <p class="lead">
+            Get trusted parenting guidance and childcare support.
+        </p>
+    </div>
+
+    <h2>📚 Parenting Resources</h2>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    <h5>👶 Infant Care</h5>
+                    <p>Learn newborn care techniques and safety practices.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    <h5>🥗 Nutrition</h5>
+                    <p>Healthy feeding guidance for growing children.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    <h5>📈 Development</h5>
+                    <p>Track developmental milestones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    <h5>😴 Sleep</h5>
+                    <p>Healthy sleep habits and routines.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="mt-5">🚨 Emergency Preparedness</h2>
+
+    <div class="card border-danger mb-3">
+        <div class="card-body">
+            <h5>First Aid Basics</h5>
+            <p>Basic first aid information every parent should know.</p>
+        </div>
+    </div>
+
+    <div class="card border-warning mb-3">
+        <div class="card-body">
+            <h5>Allergy Awareness</h5>
+            <p>Learn how to manage allergies safely.</p>
+        </div>
+    </div>
+
+    <div class="card border-success mb-4">
+        <div class="card-body">
+            <h5>Emergency Contacts</h5>
+            <p>Maintain important emergency contact information.</p>
+        </div>
+    </div>
+
+    <hr class="mt-5" />
+
+    <h2>📝 Request Parent Support</h2>
+
+    <form class="mt-4">
+
+        <div class="mb-3">
+            <label class="form-label">Parent Name</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Enter your name" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email"
+                   class="form-control"
+                   placeholder="Enter your email" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Support Type</label>
+
+            <select class="form-control">
+                <option>Parenting Advice</option>
+                <option>Child Development</option>
+                <option>Nutrition Guidance</option>
+                <option>Sleep Support</option>
+                <option>Emergency Guidance</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+
+            <textarea class="form-control"
+                      rows="5"
+                      placeholder="Describe your concern here"></textarea>
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Submit Request
+        </button>
+
+    </form>
+
+</div>
