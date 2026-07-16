@@ -1,0 +1,137 @@
+﻿@model BabySphere.Models.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Ultimate Dashboard";
+    var babysitters = ViewBag.Babysitters as List<BabySphere.Models.Babysitter> ?? new List<BabySphere.Models.Babysitter>();
+}
+
+<h1>Admin Dashboard Console</h1>
+<p>View BabySphere project statistics, database metrics, and activity summary.</p>
+<hr />
+
+<div class="row mb-4">
+    <div class="col-md-2 mb-3">
+        <div class="card p-3 shadow-sm text-center border-primary bg-light">
+            <h3>@Model.TotalBabysitters</h3>
+            <p class="mb-0 text-muted small">Total Babysitters</p>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card p-3 shadow-sm text-center border-success bg-light">
+            <h3>@Model.TotalProducts</h3>
+            <p class="mb-0 text-muted small">Total Products</p>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card p-3 shadow-sm text-center border-info bg-light">
+            <h3>@Model.TotalBookings</h3>
+            <p class="mb-0 text-muted small">Total Bookings</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-warning bg-light">
+            <h3>@Model.TotalParentProfiles</h3>
+            <p class="mb-0 text-muted small">Total Parent Profiles</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card p-3 shadow-sm text-center border-danger bg-danger bg-opacity-10">
+            <h3 class="text-danger">@Model.PendingSupportRequests</h3>
+            <p class="mb-0 text-danger small font-weight-bold">Pending Support Requests</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h4 class="mb-3">Quick Actions</h4>
+        <div class="card p-3 shadow-sm bg-white h-100 justify-content-center">
+            <div class="d-flex flex-wrap gap-2">
+                <a asp-controller="Home" asp-action="SupportHistory" class="btn btn-primary">View Support History</a>
+                <a asp-controller="Home" asp-action="Babysitters" class="btn btn-outline-primary">View Babysitters Link</a>
+                <a asp-controller="Home" asp-action="Products" class="btn btn-outline-primary">View Products</a>
+                <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-outline-primary">Parent Support Form</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4 class="mb-3">Recent System Trace Logs</h4>
+        <div class="card p-3 shadow-sm bg-white">
+            <ul class="mb-0 text-success small">
+                @foreach (var activity in Model.RecentActivities)
+                {
+                    <li>@activity</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h3 class="mt-5 mb-3 text-secondary">SQL Server Database Row Level Operations</h3>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card p-3 shadow-sm bg-light border">
+            <h5>Add New Babysitter Entry</h5>
+            <hr />
+            <form asp-controller="Admin" asp-action="AddBabysitter" method="post">
+                <div class="mb-2">
+                    <label class="form-label small">Full Name</label>
+                    <input name="Name" class="form-control form-control-sm" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small">Experience (Years)</label>
+                    <input name="Experience" type="number" class="form-control form-control-sm" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small">Hourly Rate ($)</label>
+                    <input name="HourlyRate" type="number" step="0.01" class="form-control form-control-sm" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small">Special Skills</label>
+                    <input name="Skills" class="form-control form-control-sm" placeholder="e.g. CPR, Infant care" required />
+                </div>
+                <button type="submit" class="btn btn-success btn-sm w-100">Insert Into DB</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-8 mb-4">
+        <div class="card p-3 shadow-sm border">
+            <h5>Active Database Logs (@babysitters.Count Records)</h5>
+            <hr />
+            <table class="table table-striped table-sm border align-middle mt-2">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Experience</th>
+                        <th>Rate</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sitter in babysitters)
+                    {
+                        <tr>
+                            <td><strong>@sitter.Name</strong></td>
+                            <td>@sitter.Experience Yrs</td>
+                            <td>$@sitter.HourlyRate/hr</td>
+                            <td class="text-center">
+                                <form asp-controller="Admin" asp-action="DeleteBabysitter" method="post" onsubmit="return confirm('Are you sure you want to completely drop this row from SQL Server?');" class="d-inline">
+                                    <input type="hidden" name="id" value="@sitter.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs py-0 px-2" style="font-size: 11px;">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    @if (babysitters.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted small">No dynamic records inside SQL database table.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

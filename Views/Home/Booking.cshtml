@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Booking";
+    ViewData["Title"] = "Book Babysitter";
 }
 
 <h1>Book Babysitter</h1>
@@ -8,28 +8,23 @@
     Booking for: <strong>@ViewBag.BabysitterName</strong>
 </div>
 
-<form asp-action="ConfirmBooking" method="post">
+<div asp-validation-summary="All" class="text-danger"></div>
 
-    <input type="hidden" name="babysitterName" value="@ViewBag.BabysitterName" />
+<form asp-action="ConfirmBooking" method="post">
+    <input type="hidden" name="BabysitterName" value="@ViewBag.BabysitterName" />
 
     <div class="card p-4 shadow-sm">
-
         <label>Date</label>
-        <input type="date" name="date" class="form-control mb-3" />
+        <input type="date" name="Date" class="form-control mb-3" required />
 
         <label>Time</label>
-        <input type="time" class="form-control mb-3" />
+        <input type="time" name="Time" class="form-control mb-3" required />
 
         <label>Your Name</label>
-        <input type="text"
-               name="parentName"
-               class="form-control mb-3"
-               placeholder="Enter your name" />
+        <input type="text" name="ParentName" class="form-control mb-3" placeholder="Enter your name" required />
 
         <button type="submit" class="btn btn-primary w-100">
             Confirm Booking
         </button>
-
     </div>
-
 </form>

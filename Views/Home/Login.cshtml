@@ -1,35 +1,27 @@
 ﻿@model BabySphere.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Admin Login";
 }
 
-<h1>Login</h1>
-<p>Login to access BabySphere services.</p>
+<h1>Admin Console Login</h1>
+<p>Enter SQL master admin credentials below.</p>
 
-<form asp-action="Login" method="post" class="card p-4 shadow-sm">
+<form asp-controller="Admin" asp-action="Login" method="post" class="card p-4 shadow-sm">
 
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="mb-3">
         <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" placeholder="Enter email" />
+        <input asp-for="Email" class="form-control" placeholder="admin@babysphere.com" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Password" class="form-label">Password</label>
-        <input asp-for="Password" class="form-control" placeholder="Enter password" />
+        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">
-        Login
-    </button>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
 </form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
