@@ -112,6 +112,23 @@
     color: #0f766e;
 }
 
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.card-img-container {
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+}
 .see-btn:hover {
     background-color: #0f766e;
     color: white;
