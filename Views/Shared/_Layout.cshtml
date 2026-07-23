@@ -1,22 +1,43 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    string? userRole = Context.Session.GetString("UserRole");
+    string? userName = Context.Session.GetString("UserName");
+}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - BabySphere</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BabySphere.styles.css" asp-append-version="true" />
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/BabySphere.styles.css"
+          asp-append-version="true" />
 </head>
 
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+
             <div class="container-fluid">
 
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand"
+                   asp-controller="Home"
+                   asp-action="Index">
                     BabySphere
                 </a>
 
@@ -27,6 +48,7 @@
                         aria-controls="navbarSupportedContent"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
+
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,47 +57,117 @@
                     <ul class="navbar-nav me-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Babysitters">Babysitters</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Products">Products</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="ParentSupport">Parent Support</a>
-                        </li>
-
-                        @if (Context.Session.GetString("IsAdmin") == "true")
+                        @* Hide this link from babysitters *@
+                        @if (userRole != "Babysitter")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark font-weight-bold text-decoration-underline" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                                <a class="nav-link text-white"
+                                   asp-controller="Home"
+                                   asp-action="Babysitters">
+                                    Babysitters
+                                </a>
                             </li>
                         }
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-white"
+                               asp-controller="Home"
+                               asp-action="Products">
+                                Products
+                            </a>
+                        </li>
+
+                        @* Parent Support is not needed for a babysitter *@
+                        @if (userRole != "Babysitter")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white"
+                                   asp-controller="Home"
+                                   asp-action="ParentSupport">
+                                    Parent Support
+                                </a>
+                            </li>
+                        }
+
+                        @if (userRole == "Admin")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white fw-bold text-decoration-underline"
+                                   asp-controller="Admin"
+                                   asp-action="Dashboard">
+                                    Admin Dashboard
+                                </a>
+                            </li>
+                        }
+
+                        @if (userRole == "Parent")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white fw-bold"
+                                   asp-controller="Home"
+                                   asp-action="ParentDashboard">
+                                    Parent Dashboard
+                                </a>
+                            </li>
+                        }
+
+                        @if (userRole == "Babysitter")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white fw-bold"
+                                   asp-controller="Home"
+                                   asp-action="BabysitterDashboard">
+                                    Babysitter Dashboard
+                                </a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white"
+                               asp-controller="Home"
+                               asp-action="Contact">
+                                Contact
+                            </a>
                         </li>
 
                     </ul>
 
-                    <ul class="navbar-nav ms-auto">
-                        @if (Context.Session.GetString("IsAdmin") == "true")
+                    <ul class="navbar-nav ms-auto align-items-center">
+
+                        @if (userRole != null)
                         {
+                            <li class="nav-item me-3">
+                                <span class="navbar-text text-white">
+                                    Welcome, @userName
+                                </span>
+                            </li>
+
                             <li class="nav-item">
-                                <a class="btn btn-danger text-white px-3" asp-controller="Admin" asp-action="Logout">Logout</a>
+                                <a class="btn btn-danger text-white px-3"
+                                   asp-controller="Admin"
+                                   asp-action="Logout">
+                                    Logout
+                                </a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn btn-primary text-white px-3" asp-controller="Admin" asp-action="Login">Login</a>
+                                <a class="btn btn-light text-primary px-3"
+                                   asp-controller="Admin"
+                                   asp-action="Login">
+                                    Login
+                                </a>
                             </li>
                         }
+
                     </ul>
 
                 </div>
@@ -96,9 +188,13 @@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

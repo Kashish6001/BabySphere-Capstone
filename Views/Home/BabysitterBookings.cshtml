@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<div class="container mt-4">
+
+    <h1>My Bookings</h1>
+
+    <div class="card shadow-sm p-4">
+
+        <div class="alert alert-info">
+            Booking information for @ViewBag.UserName
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Parent Name</th>
+                        <th>Booking Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td colspan="4"
+                            class="text-center text-muted">
+                            No assigned bookings are currently available.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="BabysitterDashboard"
+           class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>

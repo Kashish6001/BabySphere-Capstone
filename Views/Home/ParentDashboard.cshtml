@@ -1,32 +1,94 @@
 ﻿@model BabySphere.Models.ParentProfile
 
-<h1>Parent Dashboard</h1>
+@{
+    ViewData["Title"] = "Parent Dashboard";
 
-<div class="card p-4 shadow-sm">
-    <h3>Welcome, @Model.ParentName!</h3>
+    string displayName =
+        ViewBag.UserName as string ?? "Parent";
+}
 
-    <p><strong>Support Ticket:</strong> @Model.TicketNumber</p>
-    <p><strong>Status:</strong> @Model.Status</p>
+<div class="container mt-4">
 
-    <hr />
+    <h1>Parent Dashboard</h1>
 
-    <p><strong>Email:</strong> @Model.Email</p>
-    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
-    <p><strong>Child Name:</strong> @Model.ChildName</p>
-    <p><strong>Child Age:</strong> @Model.ChildAge</p>
-    <p><strong>Support Category:</strong> @Model.SupportCategory</p>
-    <p><strong>Care Needs:</strong> @Model.CareNeeds</p>
+    <div class="alert alert-success">
+        Welcome, @displayName!
+    </div>
 
-    <hr />
+    <p>
+        You are successfully logged in with the Parent role.
+    </p>
 
-    <h4>Recommended Next Step</h4>
-    <p>@Model.Recommendation</p>
+    <div class="card p-4 shadow-sm mb-4">
 
-    <a asp-controller="Home" asp-action="ParentSupport" class="btn btn-secondary">
-        Back to Parent Support
+        <h3>Parent Services</h3>
+
+        <p>
+            Use the options below to access BabySphere services.
+        </p>
+
+        <div class="d-flex gap-2 flex-wrap">
+
+            <a asp-controller="Home"
+               asp-action="ParentSupport"
+               class="btn btn-primary">
+                Submit Support Request
+            </a>
+
+            <a asp-controller="Home"
+               asp-action="SupportHistory"
+               class="btn btn-success">
+                View Support History
+            </a>
+
+            <a asp-controller="Home"
+               asp-action="Babysitters"
+               class="btn btn-outline-primary">
+                Browse Babysitters
+            </a>
+
+            <a asp-controller="Home"
+               asp-action="Products"
+               class="btn btn-outline-secondary">
+                View Products
+            </a>
+
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model?.TicketNumber))
+    {
+        <div class="card p-4 shadow-sm mb-4">
+
+            <h3>Support Request Submitted</h3>
+
+            <p>
+                <strong>Ticket Number:</strong>
+                @Model.TicketNumber
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                @Model.Status
+            </p>
+
+            <p>
+                <strong>Support Category:</strong>
+                @Model.SupportCategory
+            </p>
+
+            <p>
+                <strong>Recommendation:</strong>
+                @Model.Recommendation
+            </p>
+
+        </div>
+    }
+
+    <a asp-controller="Admin"
+       asp-action="Logout"
+       class="btn btn-danger">
+        Logout
     </a>
 
-    <a asp-controller="Home" asp-action="SupportHistory" class="btn btn-success">
-        View Support History
-    </a>
 </div>

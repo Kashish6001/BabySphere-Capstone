@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "My Availability";
+}
+
+<div class="container mt-4">
+
+    <h1>My Availability</h1>
+
+    <div class="card shadow-sm p-4">
+
+        <div class="alert alert-info">
+            Manage availability for @ViewBag.UserName
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Available Date
+            </label>
+
+            <input type="date"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Start Time
+            </label>
+
+            <input type="time"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                End Time
+            </label>
+
+            <input type="time"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Availability Notes
+            </label>
+
+            <textarea class="form-control"
+                      rows="3"
+                      placeholder="Enter any availability notes"></textarea>
+
+        </div>
+
+        <button type="button"
+                class="btn btn-success">
+            Save Availability
+        </button>
+
+        <a asp-controller="Home"
+           asp-action="BabysitterDashboard"
+           class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+        <div class="alert alert-warning mt-3">
+            This page is currently a prototype. Saving to SQL Server
+            can be added later.
+        </div>
+
+    </div>
+
+</div>

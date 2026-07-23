@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Babysitter Dashboard";
+}
+
+<div class="container mt-4">
+
+    <h1>Babysitter Dashboard</h1>
+
+    <div class="alert alert-success">
+        Welcome, @ViewBag.UserName!
+    </div>
+
+    <p>
+        You are successfully logged in with the Babysitter role.
+    </p>
+
+    <div class="card shadow-sm p-4 mb-4">
+
+        <h3>Babysitter Account</h3>
+
+        <p>
+            Manage your profile, availability and booking information.
+        </p>
+
+        <div class="d-flex gap-2 flex-wrap">
+
+            <a asp-controller="Home"
+               asp-action="BabysitterProfile"
+               class="btn btn-primary">
+                My Profile
+            </a>
+
+            <a asp-controller="Home"
+               asp-action="BabysitterAvailability"
+               class="btn btn-success">
+                My Availability
+            </a>
+
+            <a asp-controller="Home"
+               asp-action="BabysitterBookings"
+               class="btn btn-outline-primary">
+                My Bookings
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

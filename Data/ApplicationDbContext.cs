@@ -15,6 +15,8 @@ namespace BabySphere.Data
 
         public DbSet<Admin> Admins { get; set; }
 
+        public DbSet<UserAccount> UserAccounts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -27,6 +29,33 @@ namespace BabySphere.Data
                     Password = "admin123"
                 }
             );
+
+            modelBuilder.Entity<UserAccount>().HasData(
+    new UserAccount
+    {
+        Id = 1,
+        FullName = "BabySphere Administrator",
+        Email = "admin@babysphere.com",
+        Password = "admin123",
+        Role = "Admin"
+    },
+    new UserAccount
+    {
+        Id = 2,
+        FullName = "Test Parent",
+        Email = "parent@babysphere.com",
+        Password = "parent123",
+        Role = "Parent"
+    },
+    new UserAccount
+    {
+        Id = 3,
+        FullName = "Test Babysitter",
+        Email = "babysitter@babysphere.com",
+        Password = "babysitter123",
+        Role = "Babysitter"
+    }
+);
         }
     }
 }
