@@ -1,102 +1,154 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
 <section class="baby-hero">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-6 text-center text-lg-start">
                 <h1>Baby Care Support, Made Simple</h1>
+
                 <p>
                     BabySphere helps parents find babysitters, baby products,
                     parenting support, and child wellness resources in one place.
                 </p>
 
-                <a asp-controller="Home" asp-action="Babysitters" class="btn main-btn">
+                <a asp-controller="Home"
+                   asp-action="Babysitters"
+                   class="btn main-btn">
                     Get Started
                 </a>
             </div>
 
-            <div class="col-md-6 text-center">
+            <div class="col-lg-6 text-center">
                 <div class="hero-circle">
                     👶
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
 <section class="container tools-section">
+
     <h2>BabySphere Tools</h2>
 
     <div class="row text-center g-4">
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Babysitters" class="tool-link">
+
+        <div class="col-sm-6 col-lg-3">
+            <a asp-controller="Home"
+               asp-action="Babysitters"
+               class="tool-link">
+
                 <div class="tool-icon">🧸</div>
                 <h5>Find Babysitters</h5>
             </a>
         </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="Products" class="tool-link">
+        <div class="col-sm-6 col-lg-3">
+            <a asp-controller="Home"
+               asp-action="Products"
+               class="tool-link">
+
                 <div class="tool-icon">🍼</div>
                 <h5>Baby Products</h5>
             </a>
         </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="tool-link">
+        <div class="col-sm-6 col-lg-3">
+            <a asp-controller="Home"
+               asp-action="ParentSupport"
+               class="tool-link">
+
                 <div class="tool-icon">📘</div>
                 <h5>Parent Support</h5>
             </a>
         </div>
 
-        <div class="col-md-3">
-            <a asp-controller="Home" asp-action="ParentSupport" class="tool-link">
+        <div class="col-sm-6 col-lg-3">
+            <a asp-controller="Home"
+               asp-action="ChildHealth"
+               class="tool-link">
+
                 <div class="tool-icon">🌱</div>
                 <h5>Child Wellness</h5>
             </a>
         </div>
+
     </div>
 </section>
 
 <section class="container topics-section">
-    <h2>Baby Topics</h2>
+
+    <h2 class="text-center">Baby Topics</h2>
 
     <div class="row g-4">
 
-        <div class="col-md-4">
-            <div class="topic-card">
+        <div class="col-md-6 col-lg-4">
+            <div class="topic-card h-100">
+
                 <div class="topic-img">👶</div>
+
                 <h4>Newborn Care</h4>
+
                 <ul>
                     <li>Feeding basics</li>
                     <li>Sleep routines</li>
                     <li>Early baby care</li>
                 </ul>
-                <a asp-controller="Home" asp-action="ParentSupport" class="see-btn">See all</a>
+
+                <a asp-controller="Home"
+                   asp-action="ParentSupport"
+                   class="see-btn">
+                    See all
+                </a>
+
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="topic-card">
+        <div class="col-md-6 col-lg-4">
+            <div class="topic-card h-100">
+
                 <div class="topic-img">🧸</div>
+
                 <h4>Babysitting</h4>
+
                 <ul>
                     <li>Trusted babysitters</li>
                     <li>Booking support</li>
                     <li>Childcare options</li>
                 </ul>
-                <a asp-controller="Home" asp-action="Babysitters" class="see-btn">See all</a>
+
+                <a asp-controller="Home"
+                   asp-action="Babysitters"
+                   class="see-btn">
+                    See all
+                </a>
+
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="topic-card">
+        <div class="col-md-6 col-lg-4">
+            <div class="topic-card h-100">
+
                 <div class="topic-img">🍼</div>
+
                 <h4>Baby Essentials</h4>
+
                 <ul>
                     <li>Diapers and feeding</li>
                     <li>Bath and body care</li>
                     <li>Daily baby products</li>
                 </ul>
-                <a asp-controller="Home" asp-action="Products" class="see-btn">See all</a>
+
+                <a asp-controller="Home"
+                   asp-action="Products"
+                   class="see-btn">
+                    See all
+                </a>
+
             </div>
         </div>
 

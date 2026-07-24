@@ -1,3 +1,25 @@
+/* Basic page layout */
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #1f2937;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/* Homepage hero section */
+
 .baby-hero {
     background: linear-gradient(135deg, #e0f7fa, #fff1f2);
     padding: 90px 25px;
@@ -5,42 +27,63 @@
 }
 
 .baby-hero h1 {
+    margin-bottom: 0;
     font-size: 52px;
     font-weight: 700;
+    line-height: 1.2;
     color: #1f2937;
 }
 
 .baby-hero p {
-    font-size: 20px;
-    color: #4b5563;
     margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #4b5563;
 }
 
+
+/* Main homepage button */
+
 .main-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
     background-color: #008c95;
     color: white;
-    border-radius: 30px;
-    padding: 12px 30px;
-    margin-top: 20px;
+    font-weight: 600;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .main-btn:hover {
     background-color: #006d75;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 140, 149, 0.25);
 }
+
+
+/* Hero baby circle */
 
 .hero-circle {
     width: 230px;
     height: 230px;
-    background-color: white;
-    border-radius: 50%;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    background-color: white;
     font-size: 90px;
-    margin: auto;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
+
+
+/* BabySphere tools section */
 
 .tools-section {
     margin-top: 60px;
@@ -49,48 +92,86 @@
 
 .tools-section h2,
 .topics-section h2 {
-    font-weight: 700;
     margin-bottom: 35px;
-}
-
-.tool-link {
-    text-decoration: none;
+    font-weight: 700;
     color: #1f2937;
 }
 
-.tool-icon {
-    font-size: 55px;
-    background-color: #f0fdfa;
+.tool-link {
+    display: block;
+    height: 100%;
+    padding: 15px;
     border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 12px;
+    color: #1f2937;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+.tool-link:hover {
+    color: #0f766e;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.tool-icon {
+    margin-bottom: 12px;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: #f0fdfa;
+    font-size: 55px;
+    transition: transform 0.2s ease;
+}
+
+.tool-link:hover .tool-icon {
+    transform: scale(1.05);
+}
+
+.tool-link h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+
+/* Baby topics section */
 
 .topics-section {
     margin-top: 70px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 
 .topic-card {
-    background-color: white;
-    border-radius: 22px;
-    padding: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    border-bottom: 5px solid #7dd3fc;
+    height: 100%;
     min-height: 330px;
+    padding: 25px;
+    border-radius: 22px;
+    border-bottom: 5px solid #7dd3fc;
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .topic-img {
-    font-size: 50px;
-    background-color: #ecfeff;
-    border-radius: 18px;
-    padding: 15px;
-    text-align: center;
     margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 18px;
+    background-color: #ecfeff;
+    font-size: 50px;
+    text-align: center;
 }
 
 .topic-card h4 {
     font-weight: 700;
+    color: #1f2937;
 }
 
 .topic-card ul {
@@ -105,13 +186,31 @@
 .see-btn {
     display: inline-block;
     margin-top: 10px;
+    padding: 8px 22px;
     border: 1px solid #0f766e;
     border-radius: 25px;
-    padding: 8px 22px;
-    text-decoration: none;
     color: #0f766e;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
+.see-btn:hover {
+    background-color: #0f766e;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* Product cards */
+
+.feature-card {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
 
 .feature-card:hover {
     transform: translateY(-8px);
@@ -120,8 +219,8 @@
 .card-img-container {
     height: 220px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .product-img {
@@ -129,7 +228,160 @@
     max-height: 70%;
     object-fit: contain;
 }
-.see-btn:hover {
-    background-color: #0f766e;
-    color: white;
+
+
+/* Footer fix */
+
+.footer {
+    position: static !important;
+    bottom: auto !important;
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: auto;
+    padding: 20px 0;
+    border-top: none !important;
+    line-height: normal !important;
+    white-space: normal !important;
+    background-color: #f8fafc;
+}
+
+.footer.border-top {
+    border-top: none !important;
+}
+
+
+/* Tablet layout */
+
+@media screen and (max-width: 991px) {
+    .baby-hero {
+        padding: 65px 20px;
+    }
+
+    .baby-hero h1 {
+        font-size: 42px;
+    }
+
+    .baby-hero p {
+        font-size: 18px;
+    }
+
+    .hero-circle {
+        width: 200px;
+        height: 200px;
+        margin-top: 30px;
+        font-size: 75px;
+    }
+
+    .tools-section {
+        margin-top: 45px;
+    }
+
+    .topics-section {
+        margin-top: 55px;
+        margin-bottom: 55px;
+    }
+}
+
+
+/* Mobile layout */
+
+@media screen and (max-width: 767px) {
+    .baby-hero {
+        padding: 45px 18px;
+        border-radius: 0 0 25px 25px;
+        text-align: center;
+    }
+
+    .baby-hero h1 {
+        font-size: 34px;
+        line-height: 1.2;
+    }
+
+    .baby-hero p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .main-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+    }
+
+    .hero-circle {
+        width: 175px;
+        height: 175px;
+        margin-top: 35px;
+        font-size: 65px;
+    }
+
+    .tools-section {
+        margin-top: 40px;
+    }
+
+    .tools-section h2,
+    .topics-section h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+    .tool-link {
+        max-width: 350px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .tool-icon {
+        padding: 20px;
+        font-size: 48px;
+    }
+
+    .topics-section {
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+
+    .topic-card {
+        max-width: 400px;
+        min-height: auto;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 22px;
+    }
+
+    .topic-img {
+        font-size: 45px;
+    }
+
+    .footer {
+        padding: 16px 15px;
+        text-align: center;
+    }
+}
+
+
+/* Very small mobile screens */
+
+@media screen and (max-width: 400px) {
+    .baby-hero {
+        padding: 35px 14px;
+    }
+
+    .baby-hero h1 {
+        font-size: 29px;
+    }
+
+    .baby-hero p {
+        font-size: 15px;
+    }
+
+    .hero-circle {
+        width: 150px;
+        height: 150px;
+        font-size: 55px;
+    }
+
+    .topic-card {
+        padding: 18px;
+    }
 }
