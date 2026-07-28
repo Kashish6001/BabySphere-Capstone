@@ -130,8 +130,10 @@ namespace BabySphere.Controllers
             }
 
             var babysittersList = _context.Babysitters.ToList();
+            var productsList = _context.BabyProducts.ToList();
 
             ViewBag.Babysitters = babysittersList;
+            ViewBag.Products = productsList;
             ViewBag.Authenticated = "true";
             ViewBag.UserName =
                 HttpContext.Session.GetString("UserName");
@@ -140,7 +142,7 @@ namespace BabySphere.Controllers
             {
                 TotalBabysitters = babysittersList.Count,
 
-                TotalProducts = 4,
+                TotalProducts = productsList.Count,
 
                 TotalBookings = _context.Bookings.Count(),
 
@@ -214,5 +216,128 @@ namespace BabySphere.Controllers
 
             return RedirectToAction("Dashboard");
         }
+
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddProduct(BabyProduct newProduct)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] =
+                    "Please enter valid product information.";
+
+                return Redirect("/Admin/Dashboard#product-management");
+            }
+
+            _context.BabyProducts.Add(newProduct);
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] =
+                "Product added successfully.";
+
+            return Redirect("/Admin/Dashboard#product-management");
+        }
+
+        [HttpGet]
+        public IActionResult EditProduct(int id)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login");
+            }
+
+            var product = _context.BabyProducts.Find(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(
+            "~/Views/Admin/EditProduct.cshtml",
+            product
+        );
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditProduct(BabyProduct product)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(
+            "~/Views/Admin/EditProduct.cshtml",
+            product
+        );
+            }
+
+            var existingProduct =
+                _context.BabyProducts.Find(product.Id);
+
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+
+            existingProduct.Name = product.Name;
+            existingProduct.Category = product.Category;
+            existingProduct.Price = product.Price;
+            existingProduct.Description = product.Description;
+            existingProduct.ImageUrl = product.ImageUrl;
+            existingProduct.Quantity = product.Quantity;
+            existingProduct.Rating = product.Rating;
+
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] =
+                "Product updated successfully.";
+
+            return Redirect("/Admin/Dashboard#product-management");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProduct(int id)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return RedirectToAction("Login");
+            }
+
+            var product = _context.BabyProducts.Find(id);
+
+            if (product == null)
+            {
+                TempData["ErrorMessage"] =
+                    "The selected product could not be found.";
+
+                return Redirect("/Admin/Dashboard#product-management");
+            }
+
+            _context.BabyProducts.Remove(product);
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] =
+                "Product deleted successfully.";
+
+            return Redirect("/Admin/Dashboard#product-management");
+        }
+
+
+
+
+
     }
 }

@@ -2,16 +2,21 @@
 
 @{
     ViewData["Title"] = "Baby Products";
-    var categories = Model.Select(p => p.Category).Distinct().ToList();
+
+    var categories = Model
+        .Where(p => !string.IsNullOrWhiteSpace(p.Category))
+        .Select(p => p.Category)
+        .Distinct()
+        .OrderBy(category => category)
+        .ToList();
 }
-
-
 
 <h1 class="text-center mb-3">Baby Products</h1>
 
 <p class="text-center text-muted">
     Choose a category to explore baby care products.
 </p>
+
 <div class="row justify-content-center mb-4">
     <div class="col-md-6">
         <input type="text"
@@ -20,104 +25,196 @@
                placeholder="🔍 Search baby products..." />
     </div>
 </div>
+
 <div class="text-center mb-4">
-    <button class="btn btn-outline-primary mx-1 category-btn" data-category="All">
+    <button type="button"
+            class="btn btn-primary mx-1 mb-2 category-btn active-category"
+            data-category="All">
         All
     </button>
 
     @foreach (var category in categories)
     {
-        <button class="btn btn-outline-primary mx-1 category-btn" data-category="@category">
+        <button type="button"
+                class="btn btn-outline-primary mx-1 mb-2 category-btn"
+                data-category="@category">
             @category
         </button>
     }
 </div>
 
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <div class="col-md-3 mb-4 product-card"
-             data-category="@product.Category.ToLower()"
-             data-name="@product.Name.ToLower()"
-             data-description="@product.Description.ToLower()">
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        No products are currently available.
+    </div>
+}
+else
+{
+    <div id="noProductsMessage"
+         class="alert alert-warning text-center"
+         style="display:none;">
+        No products match your search.
+    </div>
 
+    <div class="row" id="productGrid">
+        @foreach (var product in Model)
+        {
+            string productCategory =
+                product.Category?.ToLowerInvariant() ?? string.Empty;
 
-            <div class="card h-100 shadow-sm">
-                <div class="card-img-container">
-                    <img src="@product.ImageUrl"
-                         class="card-img-top"
-                         style="height:180px; object-fit:contain;" />
-                </div>
-               
+            string productName =
+                product.Name?.ToLowerInvariant() ?? string.Empty;
 
-                <div class="card-body text-center">
-                    <h5>@product.Name</h5>
+            string productDescription =
+                product.Description?.ToLowerInvariant() ?? string.Empty;
 
-                    <p class="text-muted">@product.Category</p>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 product-card"
+                 data-category="@productCategory"
+                 data-name="@productName"
+                 data-description="@productDescription">
 
-                    <p>
-                        <strong>$@product.Price</strong>
-                    </p>
+                <div class="card h-100 shadow-sm">
+                    <div class="card-img-container p-3">
+                        <img src="@(string.IsNullOrWhiteSpace(product.ImageUrl)
+                                                            ? "/images/product-placeholder.png"
+                                                            : product.ImageUrl)"
+                             class="card-img-top"
+                             alt="@product.Name"
+                             style="height:180px; object-fit:contain;" />
+                    </div>
 
-                    <p>
-                        ⭐ @product.Rating / 5
-                    </p>
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5>@product.Name</h5>
 
-                    <p>
-                        Stock: @product.Quantity
-                    </p>
+                        <p class="text-muted mb-2">
+                            @product.Category
+                        </p>
 
-                    <a asp-controller="Home"
-                       asp-action="ProductDetails"
-                       asp-route-id="@product.Id"
-                       class="btn btn-primary">
-                        View Product
-                    </a>
+                        <p class="mb-2">
+                            <strong>@product.Price.ToString("C")</strong>
+                        </p>
+
+                        <p class="mb-2">
+                            ⭐ @product.Rating.ToString("0.0") / 5
+                        </p>
+
+                        @if (product.Quantity > 0)
+                        {
+                            <p class="text-success mb-3">
+                                In stock: @product.Quantity
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-danger mb-3">
+                                Out of stock
+                            </p>
+                        }
+
+                        <a asp-controller="Home"
+                           asp-action="ProductDetails"
+                           asp-route-id="@product.Id"
+                           class="btn btn-primary mt-auto">
+                            View Product
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 <script>
-    const buttons = document.querySelectorAll(".category-btn");
-    const products = document.querySelectorAll(".product-card");
-    const searchInput = document.getElementById("searchInput");
+    document.addEventListener("DOMContentLoaded", function() {
+        const buttons = document.querySelectorAll(".category-btn");
+        const products = document.querySelectorAll(".product-card");
+        const searchInput = document.getElementById("searchInput");
+        const noProductsMessage =
+            document.getElementById("noProductsMessage");
 
-    let selectedCategory = "All";
+        let selectedCategory = "All";
 
-    function filterProducts() {
+        function filterProducts() {
+            const searchText =
+                searchInput.value.trim().toLowerCase();
 
-        const searchText = searchInput.value.toLowerCase();
+            let visibleProducts = 0;
 
-        products.forEach(product => {
+            products.forEach(product => {
+                const category = product.dataset.category || "";
+                const name = product.dataset.name || "";
+                const description =
+                    product.dataset.description || "";
 
-            const category = product.dataset.category;
-            const name = product.dataset.name;
-            const description = product.dataset.description;
+                const matchesCategory =
+                    selectedCategory === "All" ||
+                    category === selectedCategory.toLowerCase();
 
-            const matchesCategory =
-                selectedCategory === "All" ||
-                category === selectedCategory.toLowerCase();
+                const matchesSearch =
+                    name.includes(searchText) ||
+                    category.includes(searchText) ||
+                    description.includes(searchText);
 
-            const matchesSearch =
-                name.includes(searchText) ||
-                category.includes(searchText) ||
-                description.includes(searchText);
+                const shouldDisplay =
+                    matchesCategory && matchesSearch;
 
-            product.style.display =
-                matchesCategory && matchesSearch
-                    ? "block"
-                    : "none";
+                product.style.display =
+                    shouldDisplay ? "" : "none";
+
+                if (shouldDisplay) {
+                    visibleProducts++;
+                }
+            });
+
+            if (noProductsMessage) {
+                noProductsMessage.style.display =
+                    visibleProducts === 0 ? "block" : "none";
+            }
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                selectedCategory = button.dataset.category;
+
+                buttons.forEach(item => {
+                    item.classList.remove(
+                        "btn-primary",
+                        "active-category"
+                    );
+
+                    item.classList.add(
+                        "btn-outline-primary"
+                    );
+                });
+
+                button.classList.remove(
+                    "btn-outline-primary"
+                );
+
+                button.classList.add(
+                    "btn-primary",
+                    "active-category"
+                );
+
+                filterProducts();
+            });
         });
-    }
 
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            selectedCategory = button.dataset.category;
-            filterProducts();
-        });
+        searchInput.addEventListener(
+            "input",
+            filterProducts
+        );
     });
-
-    searchInput.addEventListener("input", filterProducts);
 </script>
+
+
+
+
+
+
+
+
+
+
+
