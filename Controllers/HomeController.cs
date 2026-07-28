@@ -21,9 +21,55 @@ namespace BabySphere.Controllers
             return View();
         }
 
-        public IActionResult Babysitters()
+        [HttpGet]
+        public IActionResult Babysitters(
+            string searchTerm,
+            int? minimumExperience,
+            decimal? maximumRate,
+            double? minimumRating)
         {
-            var sitters = _context.Babysitters.ToList();
+            var query = _context.Babysitters.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                searchTerm = searchTerm.Trim();
+
+                query = query.Where(b =>
+                    b.Name.Contains(searchTerm) ||
+                    b.Skills.Contains(searchTerm)
+                );
+            }
+
+            if (minimumExperience.HasValue)
+            {
+                query = query.Where(
+                    b => b.Experience >= minimumExperience.Value
+                );
+            }
+
+            if (maximumRate.HasValue)
+            {
+                query = query.Where(
+                    b => b.HourlyRate <= maximumRate.Value
+                );
+            }
+
+            if (minimumRating.HasValue)
+            {
+                query = query.Where(
+                    b => b.Rating >= minimumRating.Value
+                );
+            }
+
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.MinimumExperience = minimumExperience;
+            ViewBag.MaximumRate = maximumRate;
+            ViewBag.MinimumRating = minimumRating;
+
+            var sitters = query
+                .OrderByDescending(b => b.Rating)
+                .ThenBy(b => b.HourlyRate)
+                .ToList();
 
             return View(sitters);
         }
@@ -41,36 +87,54 @@ namespace BabySphere.Controllers
             return View(babysitter);
         }
 
+        [HttpGet]
         public IActionResult Booking(string name)
         {
-            ViewBag.BabysitterName = name;
+            var booking = new Booking
+            {
+                BabysitterName = name,
+                BookingDate = DateTime.Today.AddDays(1),
+                Status = "Pending"
+            };
 
-            return View();
+            return View(booking);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ConfirmBooking(Booking newBooking)
+        public IActionResult ConfirmBooking(BabySphere.Models.Booking newBooking)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Bookings.Add(newBooking);
-                _context.SaveChanges();
+            newBooking.Status = "Pending";
 
-                return View(
-                    "BookingConfirmation",
-                    newBooking
+            if (newBooking.BookingDate.Date < DateTime.Today)
+            {
+                ModelState.AddModelError(
+                    "BookingDate",
+                    "Booking date cannot be in the past."
                 );
             }
 
-            ViewBag.BabysitterName =
-                newBooking.BabysitterName;
+            if (newBooking.EndTime <= newBooking.StartTime)
+            {
+                ModelState.AddModelError(
+                    "EndTime",
+                    "End time must be later than start time."
+                );
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("Booking", newBooking);
+            }
+
+            _context.Bookings.Add(newBooking);
+            _context.SaveChanges();
 
             return View(
-                "Booking",
+                "BookingConfirmation",
                 newBooking
             );
         }
+
 
         [HttpGet]
         public IActionResult ParentSupport()
@@ -194,6 +258,7 @@ namespace BabySphere.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult BabysitterBookings()
         {
             if (HttpContext.Session.GetString("UserRole") != "Babysitter")
@@ -204,10 +269,81 @@ namespace BabySphere.Controllers
                 );
             }
 
-            ViewBag.UserName =
-                HttpContext.Session.GetString("UserName");
+            string babysitterName =
+                HttpContext.Session.GetString("UserName")
+                ?? string.Empty;
 
-            return View();
+            var bookings = _context.Bookings
+                .Where(b => b.BabysitterName == babysitterName)
+                .OrderByDescending(b => b.BookingDate)
+                .ThenBy(b => b.StartTime)
+                .ToList();
+
+            ViewBag.UserName = babysitterName;
+
+            return View(bookings);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AcceptBooking(int id)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
+            {
+                return RedirectToAction(
+                    "Login",
+                    "Admin"
+                );
+            }
+
+            string babysitterName =
+                HttpContext.Session.GetString("UserName")
+                ?? string.Empty;
+
+            var booking = _context.Bookings.FirstOrDefault(
+                b => b.Id == id &&
+                     b.BabysitterName == babysitterName
+            );
+
+            if (booking != null &&
+                booking.Status == "Pending")
+            {
+                booking.Status = "Accepted";
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("BabysitterBookings");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RejectBooking(int id)
+        {
+            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
+            {
+                return RedirectToAction(
+                    "Login",
+                    "Admin"
+                );
+            }
+
+            string babysitterName =
+                HttpContext.Session.GetString("UserName")
+                ?? string.Empty;
+
+            var booking = _context.Bookings.FirstOrDefault(
+                b => b.Id == id &&
+                     b.BabysitterName == babysitterName
+            );
+
+            if (booking != null &&
+                booking.Status == "Pending")
+            {
+                booking.Status = "Rejected";
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("BabysitterBookings");
         }
 
         private List<BabyProduct> GetBabyProducts()

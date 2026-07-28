@@ -4,22 +4,67 @@
     ViewData["Title"] = "Booking Confirmed";
 }
 
-<h1 class="text-success">Booking Confirmed 🎉</h1>
+<div class="container mt-4">
 
-<div class="card p-4 shadow-sm">
-    <h4>Thank you, @Model.ParentName!</h4>
+    <div class="alert alert-success">
+        <h2>Booking Submitted 🎉</h2>
 
-    <p>
-        Your booking with
-        <strong>@Model.BabysitterName</strong>
-        has been securely saved to our database system.
-    </p>
+        <p class="mb-0">
+            Your booking request was saved successfully.
+        </p>
+    </div>
 
-    <p>
-        Date: <strong>@Model.Date.ToShortDateString()</strong> | Time: <strong>@Model.Time</strong>
-    </p>
+    <div class="card p-4 shadow-sm">
 
-    <a href="/Home/Babysitters" class="btn btn-primary">
-        Back to Babysitters
-    </a>
+        <p>
+            <strong>Booking ID:</strong>
+            @Model.Id
+        </p>
+
+        <p>
+            <strong>Parent:</strong>
+            @Model.ParentName
+        </p>
+
+        <p>
+            <strong>Babysitter:</strong>
+            @Model.BabysitterName
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            @Model.BookingDate.ToString("MMMM dd, yyyy")
+        </p>
+
+        <p>
+            <strong>Time:</strong>
+            @Model.StartTime.ToString(@"hh\:mm")
+            -
+            @Model.EndTime.ToString(@"hh\:mm")
+        </p>
+
+        @if (!string.IsNullOrWhiteSpace(Model.Notes))
+        {
+            <p>
+                <strong>Notes:</strong>
+                @Model.Notes
+            </p>
+        }
+
+        <p>
+            <strong>Status:</strong>
+
+            <span class="badge bg-warning text-dark">
+                @Model.Status
+            </span>
+        </p>
+
+        <a asp-controller="Home"
+           asp-action="Babysitters"
+           class="btn btn-primary">
+            Back to Babysitters
+        </a>
+
+    </div>
+
 </div>

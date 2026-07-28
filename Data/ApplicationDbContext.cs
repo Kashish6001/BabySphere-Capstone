@@ -21,6 +21,10 @@ namespace BabySphere.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Babysitter>()
+            .Property(b => b.HourlyRate)
+            .HasPrecision(10, 2);
+
             modelBuilder.Entity<Admin>().HasData(
                 new Admin
                 {

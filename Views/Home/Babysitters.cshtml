@@ -4,31 +4,213 @@
     ViewData["Title"] = "Babysitters";
 }
 
-<h1>Babysitters</h1>
-<p>Find trusted babysitters and childcare services.</p>
+<div class="container mt-4">
 
-<div class="row mt-4">
+    <div class="mb-4">
+        <h1>Find a Babysitter</h1>
 
-    @foreach (var babysitter in Model)
-    {
-        <div class="col-md-4 mb-3">
+        <p class="text-muted">
+            Search and filter trusted babysitters based on
+            skills, experience, hourly rate and rating.
+        </p>
+    </div>
 
-            <div class="card p-3 shadow-sm">
+    <div class="card p-4 shadow-sm mb-4">
 
-                <h4>@babysitter.Name</h4>
+        <form asp-controller="Home"
+              asp-action="Babysitters"
+              method="get">
 
-                <p>Experience: @babysitter.Experience years</p>
+            <div class="row">
 
-                <p>Rating: ⭐@babysitter.Rating</p>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">
+                        Search name or skill
+                    </label>
 
-                <p>$@babysitter.HourlyRate/hour</p>
+                    <input type="text"
+                           name="searchTerm"
+                           value="@ViewBag.SearchTerm"
+                           class="form-control"
+                           placeholder="Example: CPR, cooking, Sarah" />
+                </div>
 
-                <a class="btn btn-primary"
-                   href="/Home/BabysitterDetails/@babysitter.Id">
-                    View Profile
-                </a>
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">
+                        Minimum experience
+                    </label>
+
+                    <input type="number"
+                           name="minimumExperience"
+                           value="@ViewBag.MinimumExperience"
+                           min="0"
+                           class="form-control"
+                           placeholder="Years" />
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">
+                        Maximum rate
+                    </label>
+
+                    <input type="number"
+                           name="maximumRate"
+                           value="@ViewBag.MaximumRate"
+                           min="0"
+                           step="0.01"
+                           class="form-control"
+                           placeholder="$ / hour" />
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">
+                        Minimum rating
+                    </label>
+
+                    <select name="minimumRating"
+                            class="form-select">
+
+                        <option value="">
+                            Any rating
+                        </option>
+
+                        <option value="1"
+                                selected="@(ViewBag.MinimumRating?.ToString() == "1")">
+                            1+ stars
+                        </option>
+
+                        <option value="2"
+                                selected="@(ViewBag.MinimumRating?.ToString() == "2")">
+                            2+ stars
+                        </option>
+
+                        <option value="3"
+                                selected="@(ViewBag.MinimumRating?.ToString() == "3")">
+                            3+ stars
+                        </option>
+
+                        <option value="4"
+                                selected="@(ViewBag.MinimumRating?.ToString() == "4")">
+                            4+ stars
+                        </option>
+
+                        <option value="4.5"
+                                selected="@(ViewBag.MinimumRating?.ToString() == "4.5")">
+                            4.5+ stars
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+
+                    <button type="submit"
+                            class="btn btn-primary me-2">
+                        Search
+                    </button>
+
+                    <a asp-controller="Home"
+                       asp-action="Babysitters"
+                       class="btn btn-outline-secondary">
+                        Clear
+                    </a>
+
+                </div>
 
             </div>
+
+        </form>
+
+    </div>
+
+    <div class="d-flex justify-content-between
+                align-items-center mb-3">
+
+        <h4 class="mb-0">
+            Available Babysitters
+        </h4>
+
+        <span class="badge bg-primary fs-6">
+            @Model.Count result(s)
+        </span>
+
+    </div>
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-warning">
+
+            <h5>No babysitters found</h5>
+
+            <p class="mb-0">
+                Try changing your search text or clearing
+                some filters.
+            </p>
+
+        </div>
+    }
+    else
+    {
+        <div class="row">
+
+            @foreach (var babysitter in Model)
+            {
+                <div class="col-md-4 mb-4">
+
+                    <div class="card h-100 shadow-sm">
+
+                        <div class="card-body
+                                            d-flex flex-column">
+
+                            <h4 class="card-title">
+                                @babysitter.Name
+                            </h4>
+
+                            <p class="mb-2">
+                                <strong>Experience:</strong>
+                                @babysitter.Experience year(s)
+                            </p>
+
+                            <p class="mb-2">
+                                <strong>Skills:</strong>
+
+                                @if (string.IsNullOrWhiteSpace(
+                                                        babysitter.Skills))
+                                {
+                                    <span class="text-muted">
+                                        Not provided
+                                    </span>
+                                }
+                                else
+                                {
+                                    @babysitter.Skills
+                                }
+                            </p>
+
+                            <p class="mb-2">
+                                <strong>Rating:</strong>
+                                ⭐ @babysitter.Rating.ToString("0.0")
+                            </p>
+
+                            <p class="mb-3">
+                                <strong>Rate:</strong>
+                                $@babysitter.HourlyRate.ToString("0.00")
+                                /hour
+                            </p>
+
+                            <a asp-controller="Home"
+                               asp-action="BabysitterDetails"
+                               asp-route-id="@babysitter.Id"
+                               class="btn btn-primary mt-auto">
+                                View Profile
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
 
         </div>
     }
