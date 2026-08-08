@@ -1,8 +1,1027 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Contact";
 }
 
-<h1>Contact Us</h1>
-<p>Reach BabySphere for questions and support.</p>
+<div class="contact-page">
 
+
+    <!-- ==========================================
+         HERO
+    =========================================== -->
+
+    <section class="contact-hero">
+
+        <div class="container">
+
+            <div class="contact-hero-layout">
+
+
+                <div class="contact-hero-content">
+
+                    <div class="contact-eyebrow">
+
+                        <span class="contact-eyebrow-dot"></span>
+
+                        WE'RE HERE TO HELP
+
+                    </div>
+
+
+                    <h1>
+                        Questions?
+                        <span>We're here for you.</span>
+                    </h1>
+
+
+                    <p>
+                        Whether you have a question about babysitting,
+                        parent support, baby products or your BabySphere
+                        account, send us a message and we'll help point
+                        you in the right direction.
+                    </p>
+
+
+                    <div class="contact-hero-actions">
+
+                        <a href="#contactForm"
+                           class="contact-primary-btn">
+
+                            Send a Message
+
+                            <span>↓</span>
+
+                        </a>
+
+
+                        <a asp-controller="Home"
+                           asp-action="ParentSupport"
+                           class="contact-secondary-btn">
+
+                            Parent Support
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-quick-points">
+
+                        <div>
+                            <span>✓</span>
+                            Family-focused support
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Simple communication
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Helpful guidance
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HERO CARD -->
+
+                <div class="contact-hero-card">
+
+                    <div class="contact-chat-icon">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.6">
+
+                            <path d="M4 4h16v12H8l-4 4V4Z"></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <span class="contact-card-label">
+                        BABYSPHERE SUPPORT
+                    </span>
+
+
+                    <h3>
+                        How can we help?
+                    </h3>
+
+
+                    <p>
+                        Choose the right place for your question
+                        or send our team a message below.
+                    </p>
+
+
+                    <div class="contact-mini-options">
+
+                        <div>
+
+                            <span class="contact-option-icon">
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Babysitting
+                                </strong>
+
+                                <small>
+                                    Booking and caregiver questions
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="contact-option-icon">
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Parent Support
+                                </strong>
+
+                                <small>
+                                    Family guidance and resources
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="contact-option-icon">
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    General Help
+                                </strong>
+
+                                <small>
+                                    Website and account questions
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CONTACT OPTIONS
+    =========================================== -->
+
+    <section class="contact-options-section">
+
+        <div class="container">
+
+
+            <div class="contact-section-heading">
+
+                <span class="contact-section-label">
+                    GET IN TOUCH
+                </span>
+
+                <h2>
+                    Find the right kind of support
+                </h2>
+
+                <p>
+                    BabySphere brings family services together,
+                    so you can quickly find where to go next.
+                </p>
+
+            </div>
+
+
+
+            <div class="row g-4">
+
+
+                <!-- PARENT SUPPORT -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <a asp-controller="Home"
+                       asp-action="ParentSupport"
+                       class="contact-option-card">
+
+                        <div class="contact-option-card-top">
+
+                            <div class="contact-main-icon parent-contact-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M4 4h16v13H8l-4 3V4Z"></path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                01
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Parent Support
+                        </h3>
+
+
+                        <p>
+                            Need guidance with feeding, sleep,
+                            babysitting or everyday parenting?
+                        </p>
+
+
+                        <div class="contact-card-link">
+                            Visit Parent Support
+                            <span>→</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- BABYSITTER -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <a asp-controller="Home"
+                       asp-action="Babysitters"
+                       class="contact-option-card">
+
+                        <div class="contact-option-card-top">
+
+                            <div class="contact-main-icon sitter-contact-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <circle cx="12"
+                                            cy="8"
+                                            r="4">
+                                    </circle>
+
+                                    <path d="M5 21c0-4 3.1-7 7-7s7 3 7 7">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                02
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Babysitter Help
+                        </h3>
+
+
+                        <p>
+                            Browse caregivers, review profiles
+                            or find help with babysitter bookings.
+                        </p>
+
+
+                        <div class="contact-card-link">
+                            Find Babysitters
+                            <span>→</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- PRODUCTS -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <a asp-controller="Home"
+                       asp-action="Products"
+                       class="contact-option-card">
+
+                        <div class="contact-option-card-top">
+
+                            <div class="contact-main-icon product-contact-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M6 8h12l-1 12H7L6 8Z">
+                                    </path>
+
+                                    <path d="M9 8V6a3 3 0 0 1 6 0v2">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                03
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Product Guidance
+                        </h3>
+
+
+                        <p>
+                            Explore BabySphere products and
+                            useful everyday baby essentials.
+                        </p>
+
+
+                        <div class="contact-card-link">
+                            Browse Products
+                            <span>→</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CONTACT FORM SECTION
+    =========================================== -->
+
+    <section class="contact-form-section"
+             id="contactForm">
+
+        <div class="container">
+
+
+            <div class="contact-form-layout">
+
+
+                <!-- LEFT INFORMATION -->
+
+                <div class="contact-form-information">
+
+                    <span class="contact-section-label">
+                        CONTACT BABYSPHERE
+                    </span>
+
+
+                    <h2>
+                        Send us a message.
+                    </h2>
+
+
+                    <p>
+                        Have a question that doesn't fit into one
+                        of our support areas? Send us a message
+                        and tell us how we can help.
+                    </p>
+
+
+
+                    <div class="contact-info-list">
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M4 5h16v14H4z"></path>
+
+                                    <path d="m4 7 8 6 8-6"></path>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    EMAIL SUPPORT
+                                </span>
+
+                                <strong>
+                                    support@babysphere.com
+                                </strong>
+
+                                <small>
+                                    For general BabySphere questions
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <circle cx="12"
+                                            cy="12"
+                                            r="9">
+                                    </circle>
+
+                                    <path d="M12 7v5l3 2"></path>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    SUPPORT HOURS
+                                </span>
+
+                                <strong>
+                                    Monday – Friday
+                                </strong>
+
+                                <small>
+                                    9:00 AM – 5:00 PM
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12Z">
+                                    </path>
+
+                                    <circle cx="12"
+                                            cy="9"
+                                            r="2.5">
+                                    </circle>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    SERVICE AREA
+                                </span>
+
+                                <strong>
+                                    Ontario, Canada
+                                </strong>
+
+                                <small>
+                                    Supporting BabySphere families
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="contact-support-note">
+
+                        <div>
+                            !
+                        </div>
+
+                        <p>
+                            For urgent medical or emergency situations,
+                            contact the appropriate emergency or healthcare
+                            service rather than using this contact form.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FORM -->
+
+                <div class="contact-form-card">
+
+
+                    <div class="contact-form-header">
+
+
+                        <div class="contact-form-header-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M4 4h16v13H8l-4 3V4Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                CONTACT FORM
+                            </span>
+
+                            <h3>
+                                How can we help?
+                            </h3>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div id="contactSuccess"
+                         class="contact-success-message">
+
+                        <div>
+                            ✓
+                        </div>
+
+                        <span>
+                            Thanks! Your message has been received.
+                        </span>
+
+                    </div>
+
+
+
+                    <form id="babySphereContactForm">
+
+
+                        <div class="contact-form-row">
+
+
+                            <div class="contact-field">
+
+                                <label for="ContactName">
+                                    Full Name
+                                </label>
+
+                                <input type="text"
+                                       id="ContactName"
+                                       class="contact-control"
+                                       placeholder="Enter your name"
+                                       required />
+
+                            </div>
+
+
+
+                            <div class="contact-field">
+
+                                <label for="ContactEmail">
+                                    Email Address
+                                </label>
+
+                                <input type="email"
+                                       id="ContactEmail"
+                                       class="contact-control"
+                                       placeholder="name@example.com"
+                                       required />
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="contact-field">
+
+                            <label for="ContactTopic">
+                                What can we help with?
+                            </label>
+
+
+                            <select id="ContactTopic"
+                                    class="contact-control"
+                                    required>
+
+                                <option value="">
+                                    Select a topic
+                                </option>
+
+                                <option>
+                                    General Question
+                                </option>
+
+                                <option>
+                                    Babysitter Question
+                                </option>
+
+                                <option>
+                                    Booking Support
+                                </option>
+
+                                <option>
+                                    Parent Support
+                                </option>
+
+                                <option>
+                                    Baby Products
+                                </option>
+
+                                <option>
+                                    Account Help
+                                </option>
+
+                                <option>
+                                    Website Feedback
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="contact-field">
+
+                            <label for="ContactMessage">
+                                Message
+                            </label>
+
+                            <textarea id="ContactMessage"
+                                      class="contact-control contact-textarea"
+                                      rows="6"
+                                      placeholder="Tell us how we can help..."
+                                      required></textarea>
+
+                        </div>
+
+
+
+                        <button type="submit"
+                                class="contact-submit-btn">
+
+                            <span>
+                                Send Message
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+
+                        <p class="contact-form-small">
+                            Please avoid including sensitive personal
+                            or medical information.
+                        </p>
+
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FAQ
+    =========================================== -->
+
+    <section class="contact-faq-section">
+
+        <div class="container">
+
+
+            <div class="contact-section-heading">
+
+                <span class="contact-section-label">
+                    QUICK ANSWERS
+                </span>
+
+                <h2>
+                    Frequently asked questions
+                </h2>
+
+                <p>
+                    You may find the answer you're looking for
+                    before sending us a message.
+                </p>
+
+            </div>
+
+
+
+            <div class="contact-faq-list">
+
+
+                <details class="contact-faq-item">
+
+                    <summary>
+                        How do I find a babysitter?
+                        <span>+</span>
+                    </summary>
+
+                    <p>
+                        Open the Babysitters page to browse available
+                        caregiver profiles. You can search and filter
+                        babysitters by experience, rate and rating.
+                    </p>
+
+                </details>
+
+
+
+                <details class="contact-faq-item">
+
+                    <summary>
+                        How do I request parent support?
+                        <span>+</span>
+                    </summary>
+
+                    <p>
+                        Visit Parent Support, choose the type of support
+                        you need and submit the form. BabySphere creates
+                        a support ticket and provides a recommended next step.
+                    </p>
+
+                </details>
+
+
+
+                <details class="contact-faq-item">
+
+                    <summary>
+                        Where can I find baby products?
+                        <span>+</span>
+                    </summary>
+
+                    <p>
+                        Visit the Baby Products page to browse products
+                        by category, search for specific items and view
+                        individual product details.
+                    </p>
+
+                </details>
+
+
+
+                <details class="contact-faq-item">
+
+                    <summary>
+                        Where can I find child wellness information?
+                        <span>+</span>
+                    </summary>
+
+                    <p>
+                        The Child Wellness area includes information
+                        about everyday sleep, feeding, safety and family
+                        routines.
+                    </p>
+
+                </details>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CTA
+    =========================================== -->
+
+    <section class="contact-cta-section">
+
+        <div class="container">
+
+
+            <div class="contact-cta">
+
+
+                <div>
+
+                    <span>
+                        EXPLORE BABYSPHERE
+                    </span>
+
+
+                    <h2>
+                        Everything your family needs,
+                        in one place.
+                    </h2>
+
+
+                    <p>
+                        Explore trusted childcare resources,
+                        family support and baby essentials.
+                    </p>
+
+                </div>
+
+
+
+                <div class="contact-cta-buttons">
+
+
+                    <a asp-controller="Home"
+                       asp-action="Babysitters"
+                       class="contact-cta-primary">
+
+                        Find Babysitters
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a asp-controller="Home"
+                       asp-action="ParentSupport"
+                       class="contact-cta-secondary">
+
+                        Parent Support
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+@section Scripts
+{
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const form =
+                    document.getElementById(
+                        "babySphereContactForm"
+                    );
+
+                const success =
+                    document.getElementById(
+                        "contactSuccess"
+                    );
+
+
+                if (form) {
+
+                    form.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            if (!form.checkValidity()) {
+
+                                form.reportValidity();
+
+                                return;
+                            }
+
+
+                            if (success) {
+
+                                success.style.display =
+                                    "flex";
+
+                            }
+
+
+                            form.reset();
+
+
+                            setTimeout(
+                                function () {
+
+                                    if (success) {
+
+                                        success.style.display =
+                                            "none";
+
+                                    }
+
+                                },
+                                5000
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+}

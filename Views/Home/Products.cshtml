@@ -1,220 +1,536 @@
-﻿@model List<BabySphere.Models.BabyProduct>
+﻿@model IEnumerable<BabySphere.Models.BabyProduct>
 
 @{
     ViewData["Title"] = "Baby Products";
 
-    var categories = Model
+    var productList = Model?.ToList()
+        ?? new List<BabySphere.Models.BabyProduct>();
+
+    var categories = productList
         .Where(p => !string.IsNullOrWhiteSpace(p.Category))
         .Select(p => p.Category)
         .Distinct()
-        .OrderBy(category => category)
+        .OrderBy(c => c)
         .ToList();
 }
 
-<h1 class="text-center mb-3">Baby Products</h1>
+<section class="products-page">
 
-<p class="text-center text-muted">
-    Choose a category to explore baby care products.
-</p>
+    <section class="products-hero">
+        <div class="container">
 
-<div class="row justify-content-center mb-4">
-    <div class="col-md-6">
-        <input type="text"
-               id="searchInput"
-               class="form-control"
-               placeholder="🔍 Search baby products..." />
-    </div>
-</div>
+            <div class="products-hero-content">
 
-<div class="text-center mb-4">
-    <button type="button"
-            class="btn btn-primary mx-1 mb-2 category-btn active-category"
-            data-category="All">
-        All
-    </button>
+                <div>
+                    <span class="products-label">
+                        BABY ESSENTIALS
+                    </span>
 
-    @foreach (var category in categories)
-    {
-        <button type="button"
-                class="btn btn-outline-primary mx-1 mb-2 category-btn"
-                data-category="@category">
-            @category
-        </button>
-    }
-</div>
+                    <h1>
+                        Products for every
+                        <span>little moment.</span>
+                    </h1>
 
-@if (!Model.Any())
-{
-    <div class="alert alert-info text-center">
-        No products are currently available.
-    </div>
-}
-else
-{
-    <div id="noProductsMessage"
-         class="alert alert-warning text-center"
-         style="display:none;">
-        No products match your search.
-    </div>
-
-    <div class="row" id="productGrid">
-        @foreach (var product in Model)
-        {
-            string productCategory =
-                product.Category?.ToLowerInvariant() ?? string.Empty;
-
-            string productName =
-                product.Name?.ToLowerInvariant() ?? string.Empty;
-
-            string productDescription =
-                product.Description?.ToLowerInvariant() ?? string.Empty;
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 product-card"
-                 data-category="@productCategory"
-                 data-name="@productName"
-                 data-description="@productDescription">
-
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-container p-3">
-                        <img src="@(string.IsNullOrWhiteSpace(product.ImageUrl)
-                                                            ? "/images/product-placeholder.png"
-                                                            : product.ImageUrl)"
-                             class="card-img-top"
-                             alt="@product.Name"
-                             style="height:180px; object-fit:contain;" />
-                    </div>
-
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5>@product.Name</h5>
-
-                        <p class="text-muted mb-2">
-                            @product.Category
-                        </p>
-
-                        <p class="mb-2">
-                            <strong>@product.Price.ToString("C")</strong>
-                        </p>
-
-                        <p class="mb-2">
-                            ⭐ @product.Rating.ToString("0.0") / 5
-                        </p>
-
-                        @if (product.Quantity > 0)
-                        {
-                            <p class="text-success mb-3">
-                                In stock: @product.Quantity
-                            </p>
-                        }
-                        else
-                        {
-                            <p class="text-danger mb-3">
-                                Out of stock
-                            </p>
-                        }
-
-                        <a asp-controller="Home"
-                           asp-action="ProductDetails"
-                           asp-route-id="@product.Id"
-                           class="btn btn-primary mt-auto">
-                            View Product
-                        </a>
-                    </div>
+                    <p>
+                        Explore useful baby essentials for feeding,
+                        travel, care and everyday family life.
+                    </p>
                 </div>
+
+                <div class="products-hero-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5">
+
+                        <path d="M6 8h12l-1 12H7L6 8Z"></path>
+
+                        <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+                    </svg>
+
+                </div>
+
             </div>
-        }
-    </div>
-}
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll(".category-btn");
-        const products = document.querySelectorAll(".product-card");
-        const searchInput = document.getElementById("searchInput");
-        const noProductsMessage =
-            document.getElementById("noProductsMessage");
+        </div>
+    </section>
 
-        let selectedCategory = "All";
 
-        function filterProducts() {
-            const searchText =
-                searchInput.value.trim().toLowerCase();
+    <section class="product-controls">
 
-            let visibleProducts = 0;
+        <div class="container">
 
-            products.forEach(product => {
-                const category = product.dataset.category || "";
-                const name = product.dataset.name || "";
-                const description =
-                    product.dataset.description || "";
+            <div class="product-control-box">
 
-                const matchesCategory =
-                    selectedCategory === "All" ||
-                    category === selectedCategory.toLowerCase();
+                <div class="product-search-wrapper">
 
-                const matchesSearch =
-                    name.includes(searchText) ||
-                    category.includes(searchText) ||
-                    description.includes(searchText);
+                    <span class="search-icon">
 
-                const shouldDisplay =
-                    matchesCategory && matchesSearch;
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2">
 
-                product.style.display =
-                    shouldDisplay ? "" : "none";
+                            <circle cx="11"
+                                    cy="11"
+                                    r="7">
+                            </circle>
 
-                if (shouldDisplay) {
-                    visibleProducts++;
-                }
-            });
+                            <path d="m20 20-3.5-3.5"></path>
 
-            if (noProductsMessage) {
-                noProductsMessage.style.display =
-                    visibleProducts === 0 ? "block" : "none";
+                        </svg>
+
+                    </span>
+
+                    <input type="text"
+                           id="productSearch"
+                           class="product-search-input"
+                           placeholder="Search baby products..." />
+
+                </div>
+
+
+                <div class="category-filters">
+
+                    <button type="button"
+                            class="category-btn active"
+                            data-category="all">
+
+                        All Products
+                    </button>
+
+
+                    @foreach (var category in categories)
+                    {
+                        <button type="button"
+                                class="category-btn"
+                                data-category="@category.ToLower()">
+
+                            @category
+                        </button>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="product-grid-section">
+
+        <div class="container">
+
+            <div class="product-result-heading">
+
+                <div>
+
+                    <span class="product-count">
+                        @productList.Count products
+                    </span>
+
+                    <h2>
+                        Shop Baby Essentials
+                    </h2>
+
+                </div>
+
+
+                <div class="product-secure-message">
+
+                    <span>✓</span>
+
+                    Carefully selected essentials
+
+                </div>
+
+            </div>
+
+
+            @if (productList.Any())
+            {
+                <div class="row g-4"
+                     id="productGrid">
+
+                    @foreach (var product in productList)
+                    {
+                        var productName =
+                            product.Name ?? "";
+
+                        var productCategory =
+                            product.Category ?? "";
+
+                        <div class="col-sm-6 col-lg-4 col-xl-3 product-item"
+                             data-name="@productName.ToLower()"
+                             data-category="@productCategory.ToLower()">
+
+                            <article class="modern-product-card">
+
+                                <div class="product-image-area">
+
+                                    @if (product.Quantity > 0)
+                                    {
+                                        <span class="stock-badge">
+                                            In Stock
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="stock-badge out-stock">
+                                            Out of Stock
+                                        </span>
+                                    }
+
+
+                                    <div class="product-category-pill">
+                                        @product.Category
+                                    </div>
+
+
+                                    @if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                                    {
+                                        <img src="@product.ImageUrl"
+                                             alt="@product.Name"
+                                             class="modern-product-image" />
+                                    }
+                                    else
+                                    {
+                                        <div style="
+                                            width:100%;
+                                            height:100%;
+                                            display:flex;
+                                            align-items:center;
+                                            justify-content:center;
+                                            color:#94a3b8;
+                                            font-size:14px;">
+
+                                            No image available
+
+                                        </div>
+                                    }
+
+                                </div>
+
+
+                                <div class="product-card-content">
+
+                                    <span class="product-category-text">
+                                        @product.Category
+                                    </span>
+
+
+                                    <h3>
+                                        @product.Name
+                                    </h3>
+
+
+                                    <div class="product-rating">
+
+                                        <span class="rating-star">
+                                            ★
+                                        </span>
+
+                                        <strong>
+                                            @product.Rating.ToString("0.0")
+                                        </strong>
+
+                                        <span>
+                                            / 5
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="product-price-row">
+
+                                        <div class="product-price">
+                                            $@product.Price.ToString("0.00")
+                                        </div>
+
+
+                                        @if (product.Quantity > 0)
+                                        {
+                                            <div class="product-stock-count">
+
+                                                @product.Quantity available
+
+                                            </div>
+                                        }
+
+                                    </div>
+
+
+                                    <a asp-controller="Home"
+                                       asp-action="ProductDetails"
+                                       asp-route-id="@product.Id"
+                                       class="view-product-btn">
+
+                                        <span>
+                                            View Product
+                                        </span>
+
+                                        <span class="product-arrow">
+                                            →
+                                        </span>
+
+                                    </a>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+                    }
+
+                </div>
+
+
+                <div id="noProducts"
+                     class="no-products">
+
+                    <div class="no-products-icon">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.5">
+
+                            <circle cx="11"
+                                    cy="11"
+                                    r="7">
+                            </circle>
+
+                            <path d="m20 20-3.5-3.5"></path>
+
+                        </svg>
+
+                    </div>
+
+                    <h3>
+                        No products found
+                    </h3>
+
+                    <p>
+                        Try another search or product category.
+                    </p>
+
+                </div>
             }
-        }
+            else
+            {
+                <div class="empty-products"
+                     style="display:block;">
 
-        buttons.forEach(button => {
-            button.addEventListener("click", function() {
-                selectedCategory = button.dataset.category;
+                    <h3>
+                        No products available
+                    </h3>
 
-                buttons.forEach(item => {
-                    item.classList.remove(
-                        "btn-primary",
-                        "active-category"
+                    <p>
+                        Products will appear here when they are added.
+                    </p>
+
+                </div>
+            }
+
+        </div>
+
+    </section>
+
+
+    <section class="product-help-section">
+
+        <div class="container">
+
+            <div class="product-help-box">
+
+                <div class="product-help-icon">
+                    ?
+                </div>
+
+
+                <div class="product-help-text">
+
+                    <span>
+                        NEED HELP CHOOSING?
+                    </span>
+
+                    <h2>
+                        Not sure what your baby needs?
+                    </h2>
+
+                    <p>
+                        Our Parent Support section can help you
+                        find useful resources based on your family's needs.
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="Home"
+                   asp-action="ParentSupport"
+                   class="product-help-btn">
+
+                    Get Parent Support
+
+                    <span>→</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+@section Scripts
+{
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const searchInput =
+                    document.getElementById("productSearch");
+
+                const categoryButtons =
+                    document.querySelectorAll(".category-btn");
+
+                const products =
+                    document.querySelectorAll(".product-item");
+
+                const noProducts =
+                    document.getElementById("noProducts");
+
+                let selectedCategory = "all";
+
+
+                function filterProducts() {
+
+                    const searchValue =
+                        searchInput.value
+                            .toLowerCase()
+                            .trim();
+
+                    let visibleCount = 0;
+
+
+                    products.forEach(
+                        function (product) {
+
+                            const productName =
+                                product.dataset.name || "";
+
+                            const productCategory =
+                                product.dataset.category || "";
+
+
+                            const matchesSearch =
+                                productName.includes(
+                                    searchValue
+                                );
+
+
+                            const matchesCategory =
+                                selectedCategory === "all" ||
+                                productCategory ===
+                                selectedCategory;
+
+
+                            if (
+                                matchesSearch &&
+                                matchesCategory
+                            ) {
+
+                                product.style.display = "";
+
+                                visibleCount++;
+
+                            }
+                            else {
+
+                                product.style.display = "none";
+
+                            }
+
+                        }
                     );
 
-                    item.classList.add(
-                        "btn-outline-primary"
+
+                    if (noProducts) {
+
+                        if (visibleCount === 0) {
+
+                            noProducts.style.display =
+                                "block";
+
+                        }
+                        else {
+
+                            noProducts.style.display =
+                                "none";
+
+                        }
+
+                    }
+
+                }
+
+
+                if (searchInput) {
+
+                    searchInput.addEventListener(
+                        "input",
+                        filterProducts
                     );
-                });
 
-                button.classList.remove(
-                    "btn-outline-primary"
+                }
+
+
+                categoryButtons.forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                categoryButtons.forEach(
+                                    function (item) {
+
+                                        item.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                                button.classList.add(
+                                    "active"
+                                );
+
+
+                                selectedCategory =
+                                    button.dataset.category;
+
+
+                                filterProducts();
+
+                            }
+                        );
+
+                    }
                 );
 
-                button.classList.add(
-                    "btn-primary",
-                    "active-category"
-                );
-
-                filterProducts();
-            });
-        });
-
-        searchInput.addEventListener(
-            "input",
-            filterProducts
+            }
         );
-    });
-</script>
 
-
-
-
-
-
-
-
-
-
-
+    </script>
+}

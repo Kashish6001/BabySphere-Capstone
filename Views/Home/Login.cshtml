@@ -1,27 +1,477 @@
 ﻿@model BabySphere.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "Admin Login";
+    ViewData["Title"] = "Sign In";
 }
 
-<h1>Admin Console Login</h1>
-<p>Enter SQL master admin credentials below.</p>
+<div class="login-page">
 
-<form asp-controller="Admin" asp-action="Login" method="post" class="card p-4 shadow-sm">
+    <section class="login-section">
 
-    <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="container">
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" placeholder="admin@babysphere.com" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+            <div class="login-layout">
 
-    <div class="mb-3">
-        <label asp-for="Password" class="form-label">Password</label>
-        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
+                <!-- LEFT SIDE -->
+                <div class="login-brand-panel">
 
-    <button type="submit" class="btn btn-primary w-100">Login</button>
-</form>
+                    <div class="login-brand-content">
+
+                        <div class="login-eyebrow">
+                            <span class="login-eyebrow-dot"></span>
+                            WELCOME TO BABYSPHERE
+                        </div>
+
+                        <h1>
+                            Care starts with
+                            <span>connection.</span>
+                        </h1>
+
+                        <p class="login-intro">
+                            Sign in to access your BabySphere account,
+                            manage family support, review bookings,
+                            or access your caregiver dashboard.
+                        </p>
+
+
+                        <div class="login-feature-list">
+
+                            <div class="login-feature-item">
+
+                                <div class="login-feature-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.7">
+
+                                        <path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z">
+                                        </path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Parent Support
+                                    </strong>
+
+                                    <span>
+                                        Access family resources and support tools.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="login-feature-item">
+
+                                <div class="login-feature-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.7">
+
+                                        <circle cx="12"
+                                                cy="8"
+                                                r="4">
+                                        </circle>
+
+                                        <path d="M5 21c0-4 3.1-7 7-7s7 3 7 7">
+                                        </path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Babysitter Portal
+                                    </strong>
+
+                                    <span>
+                                        Manage bookings and caregiver activity.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="login-feature-item">
+
+                                <div class="login-feature-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.7">
+
+                                        <rect x="4"
+                                              y="4"
+                                              width="16"
+                                              height="16"
+                                              rx="3">
+                                        </rect>
+
+                                        <path d="M8 9h8"></path>
+                                        <path d="M8 13h5"></path>
+                                        <path d="M8 17h7"></path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Account Dashboard
+                                    </strong>
+
+                                    <span>
+                                        Access the tools available for your account.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="login-trust-box">
+
+                            <div class="login-trust-icon">
+                                ✓
+                            </div>
+
+                            <div>
+                                <strong>
+                                    One secure account
+                                </strong>
+
+                                <span>
+                                    BabySphere automatically opens the correct
+                                    dashboard for your account role.
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="login-form-wrapper">
+
+                    <div class="login-card">
+
+                        <div class="login-card-header">
+
+                            <div class="login-card-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <circle cx="12"
+                                            cy="8"
+                                            r="4">
+                                    </circle>
+
+                                    <path d="M5 21c0-4 3.1-7 7-7s7 3 7 7">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <div>
+                                <span>
+                                    ACCOUNT ACCESS
+                                </span>
+
+                                <h2>
+                                    Welcome back
+                                </h2>
+                            </div>
+
+                        </div>
+
+
+                        <p class="login-card-description">
+                            Enter your BabySphere account details to continue.
+                        </p>
+
+
+                        <form method="post"
+                              asp-controller="Admin"
+                              asp-action="Login">
+
+                            @Html.AntiForgeryToken()
+
+
+                            <div asp-validation-summary="All"
+                                 class="login-validation-summary">
+                            </div>
+
+
+                            <!-- EMAIL -->
+                            <div class="login-field">
+
+                                <label asp-for="Email">
+                                    Email Address
+                                </label>
+
+                                <div class="login-input-wrapper">
+
+                                    <span class="login-input-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="1.7">
+
+                                            <path d="M4 5h16v14H4z">
+                                            </path>
+
+                                            <path d="m4 7 8 6 8-6">
+                                            </path>
+
+                                        </svg>
+
+                                    </span>
+
+                                    <input asp-for="Email"
+                                           type="email"
+                                           class="login-control"
+                                           placeholder="name@example.com"
+                                           autocomplete="email" />
+
+                                </div>
+
+                                <span asp-validation-for="Email"
+                                      class="login-validation">
+                                </span>
+
+                            </div>
+
+
+                            <!-- PASSWORD -->
+                            <div class="login-field">
+
+                                <div class="login-label-row">
+
+                                    <label asp-for="Password">
+                                        Password
+                                    </label>
+
+                                    <span class="login-secure-text">
+                                        Secure access
+                                    </span>
+
+                                </div>
+
+
+                                <div class="login-input-wrapper">
+
+                                    <span class="login-input-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="1.7">
+
+                                            <rect x="5"
+                                                  y="10"
+                                                  width="14"
+                                                  height="10"
+                                                  rx="2">
+                                            </rect>
+
+                                            <path d="M8 10V7a4 4 0 0 1 8 0v3">
+                                            </path>
+
+                                        </svg>
+
+                                    </span>
+
+
+                                    <input asp-for="Password"
+                                           type="password"
+                                           id="Password"
+                                           class="login-control login-password-control"
+                                           placeholder="Enter your password"
+                                           autocomplete="current-password" />
+
+
+                                    <button type="button"
+                                            class="password-toggle"
+                                            id="passwordToggle"
+                                            aria-label="Show password">
+
+                                        <svg id="showPasswordIcon"
+                                             viewBox="0 0 24 24"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="1.7">
+
+                                            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z">
+                                            </path>
+
+                                            <circle cx="12"
+                                                    cy="12"
+                                                    r="3">
+                                            </circle>
+
+                                        </svg>
+
+                                    </button>
+
+                                </div>
+
+                                <span asp-validation-for="Password"
+                                      class="login-validation">
+                                </span>
+
+                            </div>
+
+
+                            <button type="submit"
+                                    class="login-submit-btn">
+
+                                <span>
+                                    Sign In
+                                </span>
+
+                                <span class="login-submit-arrow">
+                                    →
+                                </span>
+
+                            </button>
+
+
+                            <div class="login-divider">
+
+                                <span>
+                                    BABYSPHERE ACCOUNT
+                                </span>
+
+                            </div>
+
+
+                            <div class="login-role-info">
+
+                                <div>
+                                    <span class="role-dot parent-dot"></span>
+                                    Parent
+                                </div>
+
+                                <div>
+                                    <span class="role-dot sitter-dot"></span>
+                                    Babysitter
+                                </div>
+
+                                <div>
+                                    <span class="role-dot admin-dot"></span>
+                                    Admin
+                                </div>
+
+                            </div>
+
+
+                            <p class="login-help-text">
+                                Your account role determines which dashboard
+                                opens after you sign in.
+                            </p>
+
+                        </form>
+
+                    </div>
+
+
+                    <div class="login-bottom-links">
+
+                        <a asp-controller="Home"
+                           asp-action="Index">
+
+                            ← Back to BabySphere
+
+                        </a>
+
+                        <a asp-controller="Home"
+                           asp-action="Contact">
+
+                            Need help?
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const passwordInput =
+                    document.getElementById("Password");
+
+                const passwordToggle =
+                    document.getElementById("passwordToggle");
+
+
+                if (passwordInput && passwordToggle) {
+
+                    passwordToggle.addEventListener(
+                        "click",
+                        function () {
+
+                            if (passwordInput.type === "password") {
+
+                                passwordInput.type = "text";
+
+                                passwordToggle.setAttribute(
+                                    "aria-label",
+                                    "Hide password"
+                                );
+
+                            }
+                            else {
+
+                                passwordInput.type = "password";
+
+                                passwordToggle.setAttribute(
+                                    "aria-label",
+                                    "Show password"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+}

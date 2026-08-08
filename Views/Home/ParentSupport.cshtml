@@ -1,126 +1,912 @@
-﻿@{
+﻿@model BabySphere.Models.ParentProfile
+
+@{
     ViewData["Title"] = "Parent Support";
 }
 
-<div class="container mt-5">
+<div class="parent-support-page">
 
-    <div class="text-center mb-5">
-        <h1>👨‍👩‍👧 Parent Support Center</h1>
-        <p class="lead">
-            Get trusted parenting guidance and childcare support.
-        </p>
-    </div>
 
-    <h2>📚 Parenting Resources</h2>
+    <!-- ======================================
+         HERO
+    ======================================= -->
 
-    <div class="row">
+    <section class="support-hero">
 
-        <div class="col-md-3">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <h5>👶 Infant Care</h5>
-                    <p>Learn newborn care techniques and safety practices.</p>
+        <div class="container">
+
+            <div class="support-hero-content">
+
+
+                <div class="support-hero-text">
+
+                    <div class="support-eyebrow">
+
+                        <span class="support-eyebrow-dot"></span>
+
+                        SUPPORT FOR EVERY STAGE
+
+                    </div>
+
+
+                    <h1>
+                        Parenting support,
+                        <span>when you need it.</span>
+                    </h1>
+
+
+                    <p>
+                        Explore helpful resources for infant care,
+                        nutrition, development and sleep. When you
+                        need additional guidance, BabySphere can
+                        help you find the next step.
+                    </p>
+
+
+                    <div class="support-hero-actions">
+
+                        <a href="#supportResources"
+                           class="support-primary-btn">
+
+                            Explore Resources
+
+                            <span>↓</span>
+
+                        </a>
+
+
+                        <a href="#requestSupport"
+                           class="support-secondary-btn">
+
+                            Request Support
+
+                        </a>
+
+                    </div>
+
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <h5>🥗 Nutrition</h5>
-                    <p>Healthy feeding guidance for growing children.</p>
+
+                <div class="support-hero-visual">
+
+                    <div class="support-visual-card">
+
+
+                        <div class="support-heart">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <h3>
+                            Family-focused support
+                        </h3>
+
+
+                        <p>
+                            Helpful resources organized around
+                            everyday parenting needs.
+                        </p>
+
+
+                        <div class="support-mini-list">
+
+                            <div>
+                                <span>✓</span>
+                                Infant care resources
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Feeding and sleep support
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Child development guidance
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
             </div>
+
         </div>
 
-        <div class="col-md-3">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <h5>📈 Development</h5>
-                    <p>Track developmental milestones.</p>
+    </section>
+
+
+
+    <!-- ======================================
+         RESOURCES
+    ======================================= -->
+
+    <section class="support-resources"
+             id="supportResources">
+
+        <div class="container">
+
+
+            <div class="support-section-heading">
+
+                <span class="support-section-label">
+                    PARENTING RESOURCES
+                </span>
+
+
+                <h2>
+                    Helpful information for everyday parenting
+                </h2>
+
+
+                <p>
+                    Explore common areas where parents may need
+                    extra information or support.
+                </p>
+
+            </div>
+
+
+
+            <div class="row g-4">
+
+
+                <!-- INFANT CARE -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="support-resource-card">
+
+
+                        <div class="support-resource-icon infant-resource">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <circle cx="12"
+                                        cy="8"
+                                        r="4">
+                                </circle>
+
+                                <path d="M6 21c0-4 2.7-7 6-7s6 3 6 7">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <span class="resource-number">
+                            01
+                        </span>
+
+
+                        <h3>
+                            Infant Care
+                        </h3>
+
+
+                        <p>
+                            Learn newborn care basics,
+                            everyday safety practices and
+                            healthy family routines.
+                        </p>
+
+
+                        <div class="resource-bottom">
+                            Baby & newborn care
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <h5>😴 Sleep</h5>
-                    <p>Healthy sleep habits and routines.</p>
+
+
+                <!-- NUTRITION -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="support-resource-card">
+
+
+                        <div class="support-resource-icon nutrition-resource">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M12 21V9"></path>
+
+                                <path d="M12 12C8 12 5 9 5 5c4 0 7 2 7 7Z">
+                                </path>
+
+                                <path d="M12 15c4 0 7-3 7-7-4 0-7 2-7 7Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <span class="resource-number">
+                            02
+                        </span>
+
+
+                        <h3>
+                            Nutrition
+                        </h3>
+
+
+                        <p>
+                            Explore feeding information and
+                            healthy nutrition guidance for
+                            growing children.
+                        </p>
+
+
+                        <div class="resource-bottom">
+                            Feeding & nutrition
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+
+                <!-- DEVELOPMENT -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="support-resource-card">
+
+
+                        <div class="support-resource-icon development-resource">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M4 19V10"></path>
+                                <path d="M10 19V5"></path>
+                                <path d="M16 19v-7"></path>
+                                <path d="M22 19H2"></path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <span class="resource-number">
+                            03
+                        </span>
+
+
+                        <h3>
+                            Development
+                        </h3>
+
+
+                        <p>
+                            Learn about developmental
+                            milestones and your child's
+                            growth over time.
+                        </p>
+
+
+                        <div class="resource-bottom">
+                            Growth & milestones
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SLEEP -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="support-resource-card">
+
+
+                        <div class="support-resource-icon sleep-resource">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M20 15.5A8 8 0 0 1 8.5 4 8 8 0 1 0 20 15.5Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <span class="resource-number">
+                            04
+                        </span>
+
+
+                        <h3>
+                            Sleep
+                        </h3>
+
+
+                        <p>
+                            Discover information about
+                            healthy sleep habits and
+                            consistent family routines.
+                        </p>
+
+
+                        <div class="resource-bottom">
+                            Sleep & routines
+                        </div>
+
+                    </div>
+
+                </div>
+
+
             </div>
+
         </div>
 
-    </div>
+    </section>
 
-    <h2 class="mt-5">🚨 Emergency Preparedness</h2>
 
-    <div class="card border-danger mb-3">
-        <div class="card-body">
-            <h5>First Aid Basics</h5>
-            <p>Basic first aid information every parent should know.</p>
+
+    <!-- ======================================
+         EMERGENCY PREPAREDNESS
+    ======================================= -->
+
+    <section class="emergency-section">
+
+        <div class="container">
+
+
+            <div class="emergency-layout">
+
+
+                <div class="emergency-intro">
+
+
+                    <span class="support-section-label">
+                        PREPARE AHEAD
+                    </span>
+
+
+                    <h2>
+                        Emergency preparedness
+                        for your family
+                    </h2>
+
+
+                    <p>
+                        Keeping important information organized
+                        can help families respond more confidently
+                        when unexpected situations happen.
+                    </p>
+
+
+                    <div class="emergency-note">
+
+                        <div class="emergency-note-icon">
+                            !
+                        </div>
+
+
+                        <p>
+                            These resources provide general information
+                            and are not a substitute for emergency
+                            or professional medical services.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="emergency-items">
+
+
+                    <!-- FIRST AID -->
+
+                    <div class="emergency-card">
+
+
+                        <div class="emergency-card-icon first-aid-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <rect x="4"
+                                      y="6"
+                                      width="16"
+                                      height="14"
+                                      rx="3">
+                                </rect>
+
+                                <path d="M9 6V4h6v2"></path>
+
+                                <path d="M12 10v6"></path>
+
+                                <path d="M9 13h6"></path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                First Aid Basics
+                            </h3>
+
+                            <p>
+                                Review basic first aid information
+                                every parent should know.
+                            </p>
+
+                        </div>
+
+
+                        <span class="emergency-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- ALLERGY -->
+
+                    <div class="emergency-card">
+
+
+                        <div class="emergency-card-icon allergy-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <circle cx="12"
+                                        cy="12"
+                                        r="8">
+                                </circle>
+
+                                <path d="M12 8v5"></path>
+
+                                <circle cx="12"
+                                        cy="16.5"
+                                        r=".7"
+                                        fill="currentColor">
+                                </circle>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Allergy Awareness
+                            </h3>
+
+                            <p>
+                                Learn how keeping allergy information
+                                organized can help protect your child.
+                            </p>
+
+                        </div>
+
+
+                        <span class="emergency-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CONTACTS -->
+
+                    <div class="emergency-card">
+
+
+                        <div class="emergency-card-icon contacts-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M6 3h12v18H6z"></path>
+
+                                <path d="M9 7h6"></path>
+
+                                <path d="M9 11h6"></path>
+
+                                <path d="M9 15h3"></path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Emergency Contacts
+                            </h3>
+
+                            <p>
+                                Keep important family and emergency
+                                contact information easy to access.
+                            </p>
+
+                        </div>
+
+
+                        <span class="emergency-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="card border-warning mb-3">
-        <div class="card-body">
-            <h5>Allergy Awareness</h5>
-            <p>Learn how to manage allergies safely.</p>
+    </section>
+
+
+
+    <!-- ======================================
+         SUPPORT REQUEST
+    ======================================= -->
+
+    <section class="request-support-section"
+             id="requestSupport">
+
+        <div class="container">
+
+
+            <div class="request-support-layout">
+
+
+                <!-- LEFT -->
+
+                <div class="request-support-info">
+
+
+                    <span class="support-section-label">
+                        CONTACT SUPPORT
+                    </span>
+
+
+                    <h2>
+                        Tell us how we can help.
+                    </h2>
+
+
+                    <p>
+                        Choose the type of support you need
+                        and BabySphere will create a support
+                        request with a personalized recommendation.
+                    </p>
+
+
+
+                    <div class="request-benefits">
+
+
+                        <div class="request-benefit">
+
+                            <div class="request-benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Support ticket
+                                </strong>
+
+                                <span>
+                                    Every request receives a unique
+                                    BabySphere ticket number.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="request-benefit">
+
+                            <div class="request-benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Personalized recommendation
+                                </strong>
+
+                                <span>
+                                    Receive a suggested next step
+                                    based on your selected category.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="request-benefit">
+
+                            <div class="request-benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Saved support history
+                                </strong>
+
+                                <span>
+                                    Submitted requests can be
+                                    tracked through BabySphere.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- FORM -->
+
+                <div class="support-form-card">
+
+
+                    <div class="support-form-header">
+
+
+                        <div class="support-form-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M4 4h16v13H8l-4 3V4Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                BABYSPHERE SUPPORT
+                            </span>
+
+                            <h3>
+                                Request Parent Support
+                            </h3>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <form method="post"
+                          asp-controller="Home"
+                          asp-action="ParentSupport">
+
+
+                        @Html.AntiForgeryToken()
+
+
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="support-validation-summary">
+                        </div>
+
+
+
+                        <!-- PARENT NAME -->
+
+                        <div class="support-form-group">
+
+                            <label for="ParentName">
+                                Parent Name
+                            </label>
+
+                            <input type="text"
+                                   id="ParentName"
+                                   name="ParentName"
+                                   class="support-form-control"
+                                   placeholder="Enter your full name"
+                                   required />
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="support-form-group">
+
+                            <label for="Email">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   id="Email"
+                                   name="Email"
+                                   class="support-form-control"
+                                   placeholder="name@example.com"
+                                   required />
+
+                        </div>
+
+
+
+                        <!-- SUPPORT CATEGORY -->
+
+                        <div class="support-form-group">
+
+                            <label for="SupportCategory">
+                                What do you need help with?
+                            </label>
+
+
+                            <select id="SupportCategory"
+                                    name="SupportCategory"
+                                    class="support-form-control"
+                                    required>
+
+
+                                <option value="">
+                                    Select a support topic
+                                </option>
+
+
+                                <option value="Babysitting Help">
+                                    Babysitting Help
+                                </option>
+
+
+                                <option value="Feeding Support">
+                                    Feeding Support
+                                </option>
+
+
+                                <option value="Sleep Routine">
+                                    Sleep Routine
+                                </option>
+
+
+                                <option value="Product Guidance">
+                                    Product Guidance
+                                </option>
+
+
+                                <option value="General Support">
+                                    General Parenting Support
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="support-form-group">
+
+                            <label for="Message">
+                                Tell us more
+                            </label>
+
+
+                            <textarea id="Message"
+                                      name="Message"
+                                      class="support-form-control support-message"
+                                      rows="5"
+                                      placeholder="Describe what you would like help with..."
+                                      required></textarea>
+
+                        </div>
+
+
+
+                        <button type="submit"
+                                class="support-submit-btn">
+
+                            <span>
+                                Submit Support Request
+                            </span>
+
+                            <span class="submit-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+
+                        <p class="support-form-note">
+                            Your request will be assigned a ticket number
+                            and a recommended next step.
+                        </p>
+
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="card border-success mb-4">
-        <div class="card-body">
-            <h5>Emergency Contacts</h5>
-            <p>Maintain important emergency contact information.</p>
-        </div>
-    </div>
+    </section>
 
-    <hr class="mt-5" />
-
-    <h2>📝 Request Parent Support</h2>
-
-    <form class="mt-4">
-
-        <div class="mb-3">
-            <label class="form-label">Parent Name</label>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Enter your name" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Email Address</label>
-            <input type="email"
-                   class="form-control"
-                   placeholder="Enter your email" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Support Type</label>
-
-            <select class="form-control">
-                <option>Parenting Advice</option>
-                <option>Child Development</option>
-                <option>Nutrition Guidance</option>
-                <option>Sleep Support</option>
-                <option>Emergency Guidance</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Message</label>
-
-            <textarea class="form-control"
-                      rows="5"
-                      placeholder="Describe your concern here"></textarea>
-        </div>
-
-        <button type="submit"
-                class="btn btn-primary">
-            Submit Request
-        </button>
-
-    </form>
 
 </div>

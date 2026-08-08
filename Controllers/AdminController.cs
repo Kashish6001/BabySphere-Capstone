@@ -15,24 +15,39 @@ namespace BabySphere.Controllers
             _context = context;
         }
 
+
+        // =========================================================
+        // LOGIN - GET
+        // =========================================================
+
         [HttpGet]
         public IActionResult Login()
         {
-            string? role = HttpContext.Session.GetString("UserRole");
+            string? role =
+                HttpContext.Session.GetString("UserRole");
 
             if (role == "Admin")
             {
-                return RedirectToAction("Dashboard", "Admin");
+                return RedirectToAction(
+                    "Dashboard",
+                    "Admin"
+                );
             }
 
             if (role == "Parent")
             {
-                return RedirectToAction("ParentDashboard", "Home");
+                return RedirectToAction(
+                    "ParentDashboard",
+                    "Home"
+                );
             }
 
             if (role == "Babysitter")
             {
-                return RedirectToAction("BabysitterDashboard", "Home");
+                return RedirectToAction(
+                    "BabysitterDashboard",
+                    "Home"
+                );
             }
 
             return View(
@@ -41,7 +56,13 @@ namespace BabySphere.Controllers
             );
         }
 
+
+        // =========================================================
+        // LOGIN - POST
+        // =========================================================
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel login)
         {
             if (!ModelState.IsValid)
@@ -52,10 +73,12 @@ namespace BabySphere.Controllers
                 );
             }
 
-            var user = _context.UserAccounts.FirstOrDefault(
-                u => u.Email == login.Email &&
-                     u.Password == login.Password
-            );
+            var user =
+                _context.UserAccounts.FirstOrDefault(
+                    u =>
+                        u.Email == login.Email &&
+                        u.Password == login.Password
+                );
 
             if (user == null)
             {
@@ -69,6 +92,9 @@ namespace BabySphere.Controllers
                     login
                 );
             }
+
+
+            // Save logged-in user information in session
 
             HttpContext.Session.SetInt32(
                 "UserId",
@@ -84,6 +110,9 @@ namespace BabySphere.Controllers
                 "UserRole",
                 user.Role
             );
+
+
+            // Redirect based on account role
 
             if (user.Role == "Admin")
             {
@@ -109,6 +138,9 @@ namespace BabySphere.Controllers
                 );
             }
 
+
+            // Invalid role
+
             HttpContext.Session.Clear();
 
             ModelState.AddModelError(
@@ -122,42 +154,68 @@ namespace BabySphere.Controllers
             );
         }
 
+
+        // =========================================================
+        // ADMIN DASHBOARD
+        // =========================================================
+
         public IActionResult Dashboard()
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
 
-            var babysittersList = _context.Babysitters.ToList();
-            var productsList = _context.BabyProducts.ToList();
 
-            ViewBag.Babysitters = babysittersList;
-            ViewBag.Products = productsList;
-            ViewBag.Authenticated = "true";
+            var babysittersList =
+                _context.Babysitters.ToList();
+
+            var productsList =
+                _context.BabyProducts.ToList();
+
+
+            ViewBag.Babysitters =
+                babysittersList;
+
+            ViewBag.Products =
+                productsList;
+
+            ViewBag.Authenticated =
+                "true";
+
             ViewBag.UserName =
                 HttpContext.Session.GetString("UserName");
 
-            var dashboardStats = new AdminDashboardViewModel
-            {
-                TotalBabysitters = babysittersList.Count,
 
-                TotalProducts = productsList.Count,
+            var dashboardStats =
+                new AdminDashboardViewModel
+                {
+                    TotalBabysitters =
+                        babysittersList.Count,
 
-                TotalBookings = _context.Bookings.Count(),
+                    TotalProducts =
+                        productsList.Count,
 
-                TotalParentProfiles =
-                    _context.ParentProfiles.Count(),
+                    TotalBookings =
+                        _context.Bookings.Count(),
 
-                PendingSupportRequests =
-                    _context.ParentProfiles.Count(
-                        r => r.Status == "Pending"
-                    )
-            };
+                    TotalParentProfiles =
+                        _context.ParentProfiles.Count(),
+
+                    PendingSupportRequests =
+                        _context.ParentProfiles.Count(
+                            r => r.Status == "Pending"
+                        )
+                };
+
 
             dashboardStats.RecentActivities.Add(
                 "Database connection verified successfully."
             );
+
 
             if (dashboardStats.TotalBabysitters > 0)
             {
@@ -167,11 +225,17 @@ namespace BabySphere.Controllers
                 );
             }
 
+
             return View(
                 "~/Views/Home/Dashboard.cshtml",
                 dashboardStats
             );
         }
+
+
+        // =========================================================
+        // LOGOUT
+        // =========================================================
 
         [HttpGet]
         public IActionResult Logout()
@@ -181,163 +245,280 @@ namespace BabySphere.Controllers
             return RedirectToAction("Login");
         }
 
+
+        // =========================================================
+        // ADD BABYSITTER
+        // =========================================================
+
         [HttpPost]
-        public IActionResult AddBabysitter(Babysitter newSitter)
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBabysitter(
+            Babysitter newSitter
+        )
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
+
 
             if (ModelState.IsValid)
             {
-                _context.Babysitters.Add(newSitter);
+                _context.Babysitters.Add(
+                    newSitter
+                );
+
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("Dashboard");
+
+            return RedirectToAction(
+                "Dashboard"
+            );
         }
 
+
+        // =========================================================
+        // DELETE BABYSITTER
+        // =========================================================
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteBabysitter(int id)
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
 
-            var sitter = _context.Babysitters.Find(id);
+
+            var sitter =
+                _context.Babysitters.Find(id);
+
 
             if (sitter != null)
             {
-                _context.Babysitters.Remove(sitter);
+                _context.Babysitters.Remove(
+                    sitter
+                );
+
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("Dashboard");
+
+            return RedirectToAction(
+                "Dashboard"
+            );
         }
 
 
-        
+        // =========================================================
+        // ADD PRODUCT
+        // =========================================================
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddProduct(BabyProduct newProduct)
+        public IActionResult AddProduct(
+            BabyProduct newProduct
+        )
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
+
 
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] =
                     "Please enter valid product information.";
 
-                return Redirect("/Admin/Dashboard#product-management");
+                return Redirect(
+                    "/Admin/Dashboard#product-management"
+                );
             }
 
-            _context.BabyProducts.Add(newProduct);
+
+            _context.BabyProducts.Add(
+                newProduct
+            );
+
             _context.SaveChanges();
+
 
             TempData["SuccessMessage"] =
                 "Product added successfully.";
 
-            return Redirect("/Admin/Dashboard#product-management");
+
+            return Redirect(
+                "/Admin/Dashboard#product-management"
+            );
         }
+
+
+        // =========================================================
+        // EDIT PRODUCT - GET
+        // =========================================================
 
         [HttpGet]
         public IActionResult EditProduct(int id)
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
 
-            var product = _context.BabyProducts.Find(id);
+
+            var product =
+                _context.BabyProducts.Find(id);
+
 
             if (product == null)
             {
                 return NotFound();
             }
 
+
             return View(
-            "~/Views/Admin/EditProduct.cshtml",
-            product
-        );
+                "~/Views/Admin/EditProduct.cshtml",
+                product
+            );
         }
+
+
+        // =========================================================
+        // EDIT PRODUCT - POST
+        // =========================================================
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProduct(BabyProduct product)
+        public IActionResult EditProduct(
+            BabyProduct product
+        )
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
 
+
             if (!ModelState.IsValid)
             {
                 return View(
-            "~/Views/Admin/EditProduct.cshtml",
-            product
-        );
+                    "~/Views/Admin/EditProduct.cshtml",
+                    product
+                );
             }
 
+
             var existingProduct =
-                _context.BabyProducts.Find(product.Id);
+                _context.BabyProducts.Find(
+                    product.Id
+                );
+
 
             if (existingProduct == null)
             {
                 return NotFound();
             }
 
-            existingProduct.Name = product.Name;
-            existingProduct.Category = product.Category;
-            existingProduct.Price = product.Price;
-            existingProduct.Description = product.Description;
-            existingProduct.ImageUrl = product.ImageUrl;
-            existingProduct.Quantity = product.Quantity;
-            existingProduct.Rating = product.Rating;
+
+            existingProduct.Name =
+                product.Name;
+
+            existingProduct.Category =
+                product.Category;
+
+            existingProduct.Price =
+                product.Price;
+
+            existingProduct.Description =
+                product.Description;
+
+            existingProduct.ImageUrl =
+                product.ImageUrl;
+
+            existingProduct.Quantity =
+                product.Quantity;
+
+            existingProduct.Rating =
+                product.Rating;
+
 
             _context.SaveChanges();
+
 
             TempData["SuccessMessage"] =
                 "Product updated successfully.";
 
-            return Redirect("/Admin/Dashboard#product-management");
+
+            return Redirect(
+                "/Admin/Dashboard#product-management"
+            );
         }
+
+
+        // =========================================================
+        // DELETE PRODUCT
+        // =========================================================
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteProduct(int id)
         {
-            if (HttpContext.Session.GetString("UserRole") != "Admin")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Admin"
+            )
             {
                 return RedirectToAction("Login");
             }
 
-            var product = _context.BabyProducts.Find(id);
+
+            var product =
+                _context.BabyProducts.Find(id);
+
 
             if (product == null)
             {
                 TempData["ErrorMessage"] =
                     "The selected product could not be found.";
 
-                return Redirect("/Admin/Dashboard#product-management");
+                return Redirect(
+                    "/Admin/Dashboard#product-management"
+                );
             }
 
-            _context.BabyProducts.Remove(product);
+
+            _context.BabyProducts.Remove(
+                product
+            );
+
             _context.SaveChanges();
+
 
             TempData["SuccessMessage"] =
                 "Product deleted successfully.";
 
-            return Redirect("/Admin/Dashboard#product-management");
+
+            return Redirect(
+                "/Admin/Dashboard#product-management"
+            );
         }
-
-
-
-
-
     }
 }

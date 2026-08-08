@@ -1,35 +1,858 @@
 ﻿@{
-    ViewData["Title"] = "Child Health";
+    ViewData["Title"] = "Child Wellness";
 }
 
-<h1>Child Health</h1>
-<p>Support healthy growth and child wellness with simple care guidance.</p>
+<div class="wellness-page">
 
-<div class="row">
+    <!-- ==========================================
+         HERO
+    =========================================== -->
 
-    <div class="col-md-4 mb-3">
-        <div class="card p-3 shadow-sm">
-            <h4>Sleep Routine</h4>
-            <p>Create a consistent sleep schedule to support healthy development.</p>
+    <section class="wellness-hero">
+
+        <div class="container">
+
+            <div class="wellness-hero-layout">
+
+                <div class="wellness-hero-content">
+
+                    <div class="wellness-eyebrow">
+                        <span class="wellness-eyebrow-dot"></span>
+                        CHILD WELLNESS
+                    </div>
+
+                    <h1>
+                        Healthy routines for
+                        <span>growing little ones.</span>
+                    </h1>
+
+                    <p>
+                        Explore simple guidance for sleep, feeding,
+                        development and everyday safety to help families
+                        build healthy routines with confidence.
+                    </p>
+
+
+                    <div class="wellness-hero-buttons">
+
+                        <a href="#wellnessTopics"
+                           class="wellness-main-btn">
+
+                            Explore Wellness Topics
+                            <span>↓</span>
+
+                        </a>
+
+                        <a asp-controller="Home"
+                           asp-action="ParentSupport"
+                           class="wellness-outline-btn">
+
+                            Get Parent Support
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="wellness-hero-points">
+
+                        <div>
+                            <span>✓</span>
+                            Daily routines
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Growth guidance
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Family safety
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO VISUAL -->
+
+                <div class="wellness-hero-visual">
+
+                    <div class="wellness-main-visual">
+
+                        <div class="wellness-visual-circle">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.5">
+
+                                <path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <span class="wellness-small-label">
+                            FAMILY WELLNESS
+                        </span>
+
+                        <h3>
+                            Everyday care starts
+                            with healthy habits.
+                        </h3>
+
+                        <p>
+                            Small routines can help families stay
+                            organized and support a child's everyday needs.
+                        </p>
+
+
+                        <div class="wellness-progress-list">
+
+                            <div class="wellness-progress-item">
+
+                                <div>
+                                    <span>Sleep Routine</span>
+                                    <small>Daily consistency</small>
+                                </div>
+
+                                <div class="wellness-check">
+                                    ✓
+                                </div>
+
+                            </div>
+
+
+                            <div class="wellness-progress-item">
+
+                                <div>
+                                    <span>Feeding Routine</span>
+                                    <small>Healthy habits</small>
+                                </div>
+
+                                <div class="wellness-check">
+                                    ✓
+                                </div>
+
+                            </div>
+
+
+                            <div class="wellness-progress-item">
+
+                                <div>
+                                    <span>Safety Planning</span>
+                                    <small>Prepared families</small>
+                                </div>
+
+                                <div class="wellness-check">
+                                    ✓
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="col-md-4 mb-3">
-        <div class="card p-3 shadow-sm">
-            <h4>Feeding Support</h4>
-            <p>Track feeding needs and maintain healthy daily routines.</p>
-        </div>
-    </div>
+    </section>
 
-    <div class="col-md-4 mb-3">
-        <div class="card p-3 shadow-sm">
-            <h4>Safety Tips</h4>
-            <p>Keep emergency contacts and care instructions ready for babysitters.</p>
+
+
+    <!-- ==========================================
+         WELLNESS TOPICS
+    =========================================== -->
+
+    <section class="wellness-topics"
+             id="wellnessTopics">
+
+        <div class="container">
+
+            <div class="wellness-section-heading">
+
+                <span class="wellness-section-label">
+                    EVERYDAY WELLNESS
+                </span>
+
+                <h2>
+                    Supporting your child's daily routine
+                </h2>
+
+                <p>
+                    Explore common areas that can help parents
+                    create a consistent and supportive home routine.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- SLEEP -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="wellness-topic-card">
+
+                        <div class="wellness-card-top">
+
+                            <div class="wellness-topic-icon sleep-topic">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M20 15.5A8 8 0 0 1 8.5 4 8 8 0 1 0 20 15.5Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span class="wellness-card-number">
+                                01
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Sleep Routine
+                        </h3>
+
+                        <p>
+                            Build a consistent bedtime and nap routine
+                            that helps create structure in your child's day.
+                        </p>
+
+
+                        <div class="wellness-card-list">
+
+                            <span>
+                                <b>✓</b>
+                                Consistent bedtime
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Calm bedtime routine
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Regular nap schedule
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FEEDING -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="wellness-topic-card">
+
+                        <div class="wellness-card-top">
+
+                            <div class="wellness-topic-icon feeding-topic">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M12 21V9"></path>
+
+                                    <path d="M12 12C8 12 5 9 5 5c4 0 7 2 7 7Z">
+                                    </path>
+
+                                    <path d="M12 15c4 0 7-3 7-7-4 0-7 2-7 7Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span class="wellness-card-number">
+                                02
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Feeding Support
+                        </h3>
+
+                        <p>
+                            Keep feeding times organized and build
+                            healthy routines around everyday meals.
+                        </p>
+
+
+                        <div class="wellness-card-list">
+
+                            <span>
+                                <b>✓</b>
+                                Regular feeding times
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Track daily routines
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Age-appropriate choices
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SAFETY -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="wellness-topic-card">
+
+                        <div class="wellness-card-top">
+
+                            <div class="wellness-topic-icon safety-topic">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M12 3 20 7v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7l8-4Z">
+                                    </path>
+
+                                    <path d="m9 12 2 2 4-4">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span class="wellness-card-number">
+                                03
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Everyday Safety
+                        </h3>
+
+                        <p>
+                            Keep important care instructions and
+                            emergency information easy to access.
+                        </p>
+
+
+                        <div class="wellness-card-list">
+
+                            <span>
+                                <b>✓</b>
+                                Emergency contacts
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Care instructions
+                            </span>
+
+                            <span>
+                                <b>✓</b>
+                                Safe home routines
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         HEALTHY ROUTINE SECTION
+    =========================================== -->
+
+    <section class="routine-section">
+
+        <div class="container">
+
+            <div class="routine-layout">
+
+
+                <div class="routine-content">
+
+                    <span class="wellness-section-label">
+                        SIMPLE DAILY CARE
+                    </span>
+
+                    <h2>
+                        A little consistency can make
+                        everyday care easier.
+                    </h2>
+
+                    <p>
+                        Creating simple routines can help parents
+                        organize daily care and make information
+                        easier to share with caregivers.
+                    </p>
+
+
+                    <div class="routine-items">
+
+
+                        <div class="routine-item">
+
+                            <div class="routine-item-number">
+                                1
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Create a routine
+                                </strong>
+
+                                <span>
+                                    Set regular times for meals,
+                                    naps and bedtime.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="routine-item">
+
+                            <div class="routine-item-number">
+                                2
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Keep important details organized
+                                </strong>
+
+                                <span>
+                                    Maintain useful contact and
+                                    care information in one place.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="routine-item">
+
+                            <div class="routine-item-number">
+                                3
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Adjust as your child grows
+                                </strong>
+
+                                <span>
+                                    Update routines as your family's
+                                    everyday needs change.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ROUTINE PANEL -->
+
+                <div class="routine-panel">
+
+
+                    <div class="routine-panel-header">
+
+                        <div>
+
+                            <span>
+                                DAILY ROUTINE
+                            </span>
+
+                            <h3>
+                                Example wellness checklist
+                            </h3>
+
+                        </div>
+
+
+                        <div class="routine-panel-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M7 3h10v4H7z"></path>
+
+                                <path d="M5 5h14v16H5z"></path>
+
+                                <path d="m8 12 2 2 4-4"></path>
+
+                                <path d="M8 17h8"></path>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-checklist">
+
+
+                        <div class="routine-check-row">
+
+                            <div class="routine-check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Morning routine
+                                </strong>
+
+                                <span>
+                                    Feeding and daily preparation
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="routine-check-row">
+
+                            <div class="routine-check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Daytime activity
+                                </strong>
+
+                                <span>
+                                    Play, rest and care routine
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="routine-check-row">
+
+                            <div class="routine-check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Evening routine
+                                </strong>
+
+                                <span>
+                                    Calm transition toward bedtime
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="routine-check-row">
+
+                            <div class="routine-check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Important contacts
+                                </strong>
+
+                                <span>
+                                    Family and caregiver information
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         DEVELOPMENT
+    =========================================== -->
+
+    <section class="development-section">
+
+        <div class="container">
+
+            <div class="wellness-section-heading">
+
+                <span class="wellness-section-label">
+                    GROWING TOGETHER
+                </span>
+
+                <h2>
+                    Every stage brings something new
+                </h2>
+
+                <p>
+                    Children's needs change as they grow.
+                    Keeping routines flexible can help families
+                    respond to new milestones.
+                </p>
+
+            </div>
+
+
+            <div class="development-grid">
+
+
+                <div class="development-card">
+
+                    <div class="development-age">
+                        0–12
+                        <span>months</span>
+                    </div>
+
+                    <h3>
+                        Early Care
+                    </h3>
+
+                    <p>
+                        Focus on consistent feeding, sleep
+                        and everyday comfort routines.
+                    </p>
+
+                </div>
+
+
+                <div class="development-line"></div>
+
+
+                <div class="development-card">
+
+                    <div class="development-age">
+                        1–3
+                        <span>years</span>
+                    </div>
+
+                    <h3>
+                        Toddler Years
+                    </h3>
+
+                    <p>
+                        Build structured routines around
+                        meals, rest, play and family time.
+                    </p>
+
+                </div>
+
+
+                <div class="development-line"></div>
+
+
+                <div class="development-card">
+
+                    <div class="development-age">
+                        3+
+                        <span>years</span>
+                    </div>
+
+                    <h3>
+                        Growing Independence
+                    </h3>
+
+                    <p>
+                        Encourage simple routines while
+                        adjusting care as your child grows.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         WELLNESS NOTE
+    =========================================== -->
+
+    <section class="wellness-information-section">
+
+        <div class="container">
+
+            <div class="wellness-information-box">
+
+
+                <div class="wellness-information-icon">
+                    i
+                </div>
+
+
+                <div>
+
+                    <span>
+                        WELLNESS INFORMATION
+                    </span>
+
+                    <h3>
+                        General family guidance
+                    </h3>
+
+                    <p>
+                        BabySphere provides general parenting and
+                        wellness information. For concerns about your
+                        child's health, development, feeding or symptoms,
+                        contact an appropriate healthcare professional.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CTA
+    =========================================== -->
+
+    <section class="wellness-cta-section">
+
+        <div class="container">
+
+            <div class="wellness-cta">
+
+
+                <div>
+
+                    <span>
+                        NEED MORE SUPPORT?
+                    </span>
+
+                    <h2>
+                        Every family needs guidance sometimes.
+                    </h2>
+
+                    <p>
+                        Tell BabySphere what you need help with
+                        and receive a recommended next step.
+                    </p>
+
+                </div>
+
+
+                <div class="wellness-cta-actions">
+
+                    <a asp-controller="Home"
+                       asp-action="ParentSupport"
+                       class="wellness-cta-primary">
+
+                        Get Parent Support
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a asp-controller="Home"
+                       asp-action="Babysitters"
+                       class="wellness-cta-secondary">
+
+                        Find Babysitters
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
 
 </div>
-
-<a asp-controller="Home" asp-action="ParentSupport" class="btn btn-primary">
-    Create Parent Profile
-</a>

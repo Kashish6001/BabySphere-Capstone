@@ -1,51 +1,621 @@
 ﻿@model BabySphere.Models.BabyProduct
 
 @{
-    ViewData["Title"] = "Product Details";
+    ViewData["Title"] = Model.Name;
 }
 
-<h1>Product Details</h1>
+<div class="product-details-page">
 
-<div class="card p-4 shadow-sm">
-    <div class="row">
-        <div class="col-md-5">
-            <img src="@Model.ImageUrl" class="img-fluid rounded" />
+    <!-- ==========================================
+         BREADCRUMB
+    =========================================== -->
+
+    <section class="product-details-breadcrumb">
+
+        <div class="container">
+
+            <div class="product-breadcrumb">
+
+                <a asp-controller="Home"
+                   asp-action="Index">
+                    Home
+                </a>
+
+                <span>›</span>
+
+                <a asp-controller="Home"
+                   asp-action="Products">
+                    Baby Products
+                </a>
+
+                <span>›</span>
+
+                <span>
+                    @Model.Name
+                </span>
+
+            </div>
+
         </div>
 
-        <div class="col-md-7">
-            <h3>@Model.Name</h3>
-
-            <p>
-                <strong>Category:</strong> @Model.Category
-            </p>
-
-            <p>
-                <strong>Price:</strong> $@Model.Price
-            </p>
-
-            <p>
-                <strong>Rating:</strong> &#9733; @Model.Rating / 5
-            </p>
-
-            <p>
-                <strong>Available Stock:</strong> @Model.Quantity
-            </p>
+    </section>
 
 
-            <p>
-                <strong>Description:</strong> @Model.Description
-            </p>
+    <!-- ==========================================
+         PRODUCT DETAILS
+    =========================================== -->
 
-            <a asp-controller="Home"
-               asp-action="Products"
-               class="btn btn-secondary">
-                Back to Products
-            </a>
+    <section class="product-details-main">
 
-            <button class="btn btn-success"
-                    onclick="alert('Product added to cart!')">
-                Add to Cart
-            </button>
+        <div class="container">
+
+            <div class="product-details-layout">
+
+
+                <!-- PRODUCT IMAGE -->
+
+                <div class="details-image-column">
+
+                    <div class="details-image-card">
+
+                        <div class="details-image-badges">
+
+                            @if (Model.Quantity > 0)
+                            {
+                                <span class="details-stock-badge">
+                                    In Stock
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="details-stock-badge details-out-stock">
+                                    Out of Stock
+                                </span>
+                            }
+
+
+                            <span class="details-category-badge">
+                                @Model.Category
+                            </span>
+
+                        </div>
+
+
+                        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl"
+                                 alt="@Model.Name"
+                                 class="details-product-image" />
+                        }
+                        else
+                        {
+                            <div class="details-no-image">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.5">
+
+                                    <rect x="3"
+                                          y="4"
+                                          width="18"
+                                          height="16"
+                                          rx="2">
+                                    </rect>
+
+                                    <circle cx="9"
+                                            cy="10"
+                                            r="2">
+                                    </circle>
+
+                                    <path d="m4 18 5-5 4 4 2-2 5 4">
+                                    </path>
+
+                                </svg>
+
+                                <span>
+                                    No image available
+                                </span>
+
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="details-image-note">
+
+                        <div>
+                            ✓
+                        </div>
+
+                        <span>
+                            Product information provided through BabySphere
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRODUCT INFORMATION -->
+
+                <div class="details-info-column">
+
+                    <span class="details-category-label">
+                        @Model.Category
+                    </span>
+
+
+                    <h1>
+                        @Model.Name
+                    </h1>
+
+
+                    <div class="details-rating-row">
+
+                        <div class="details-stars">
+                            ★★★★★
+                        </div>
+
+                        <strong>
+                            @Model.Rating.ToString("0.0")
+                        </strong>
+
+                        <span>
+                            / 5
+                        </span>
+
+                    </div>
+
+
+                    <div class="details-price">
+                        $@Model.Price.ToString("0.00")
+                    </div>
+
+
+                    <p class="details-description">
+                        @Model.Description
+                    </p>
+
+
+                    <div class="details-divider"></div>
+
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div class="details-information-grid">
+
+                        <div class="details-information-item">
+
+                            <span>
+                                CATEGORY
+                            </span>
+
+                            <strong>
+                                @Model.Category
+                            </strong>
+
+                        </div>
+
+
+                        <div class="details-information-item">
+
+                            <span>
+                                AVAILABILITY
+                            </span>
+
+                            @if (Model.Quantity > 0)
+                            {
+                                <strong class="details-available">
+                                    @Model.Quantity available
+                                </strong>
+                            }
+                            else
+                            {
+                                <strong class="details-unavailable">
+                                    Out of stock
+                                </strong>
+                            }
+
+                        </div>
+
+
+                        <div class="details-information-item">
+
+                            <span>
+                                RATING
+                            </span>
+
+                            <strong>
+                                @Model.Rating.ToString("0.0") / 5
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUY AREA -->
+
+                    <div class="details-purchase-box">
+
+                        <div>
+
+                            <span class="purchase-label">
+                                PRODUCT PRICE
+                            </span>
+
+                            <strong>
+                                $@Model.Price.ToString("0.00")
+                            </strong>
+
+                        </div>
+
+
+                        @if (Model.Quantity > 0)
+                        {
+                            <button type="button"
+                                    class="details-add-cart-btn"
+                                    id="addToCartButton">
+
+                                <span>
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.8">
+
+                                        <path d="M4 5h2l2 10h9l2-7H7">
+                                        </path>
+
+                                        <circle cx="10"
+                                                cy="19"
+                                                r="1.5">
+                                        </circle>
+
+                                        <circle cx="17"
+                                                cy="19"
+                                                r="1.5">
+                                        </circle>
+
+                                    </svg>
+
+                                    Add to Cart
+
+                                </span>
+
+                                <span class="details-button-arrow">
+                                    →
+                                </span>
+
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button"
+                                    class="details-add-cart-btn details-disabled-btn"
+                                    disabled>
+
+                                Currently Unavailable
+
+                            </button>
+                        }
+
+                    </div>
+
+
+                    <!-- SUCCESS MESSAGE -->
+
+                    <div id="cartSuccessMessage"
+                         class="cart-success-message">
+
+                        <div class="cart-success-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Added to your cart
+                            </strong>
+
+                            <span>
+                                @Model.Name has been added successfully.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BENEFITS -->
+
+                    <div class="details-benefits">
+
+                        <div>
+
+                            <div class="details-benefit-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M12 3 20 7v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7l8-4Z">
+                                    </path>
+
+                                    <path d="m9 12 2 2 4-4">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                <strong>BabySphere Selection</strong>
+                                Product information in one place
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="details-benefit-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M4 4h16v13H8l-4 3V4Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                <strong>Need help?</strong>
+                                Parent support is available
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a asp-controller="Home"
+                       asp-action="Products"
+                       class="details-back-link">
+
+                        ← Back to all products
+
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PRODUCT INFORMATION
+    =========================================== -->
+
+    <section class="details-about-section">
+
+        <div class="container">
+
+            <div class="details-about-layout">
+
+
+                <div>
+
+                    <span class="details-section-label">
+                        PRODUCT INFORMATION
+                    </span>
+
+                    <h2>
+                        About this product
+                    </h2>
+
+                    <p>
+                        @Model.Description
+                    </p>
+
+                </div>
+
+
+                <div class="details-specification-card">
+
+                    <div class="details-spec-row">
+
+                        <span>
+                            Product
+                        </span>
+
+                        <strong>
+                            @Model.Name
+                        </strong>
+
+                    </div>
+
+
+                    <div class="details-spec-row">
+
+                        <span>
+                            Category
+                        </span>
+
+                        <strong>
+                            @Model.Category
+                        </strong>
+
+                    </div>
+
+
+                    <div class="details-spec-row">
+
+                        <span>
+                            Price
+                        </span>
+
+                        <strong>
+                            $@Model.Price.ToString("0.00")
+                        </strong>
+
+                    </div>
+
+
+                    <div class="details-spec-row">
+
+                        <span>
+                            Rating
+                        </span>
+
+                        <strong>
+                            ★ @Model.Rating.ToString("0.0") / 5
+                        </strong>
+
+                    </div>
+
+
+                    <div class="details-spec-row">
+
+                        <span>
+                            Availability
+                        </span>
+
+                        <strong>
+                            @Model.Quantity units
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         HELP CTA
+    =========================================== -->
+
+    <section class="details-help-section">
+
+        <div class="container">
+
+            <div class="details-help-box">
+
+
+                <div class="details-help-icon">
+                    ?
+                </div>
+
+
+                <div>
+
+                    <span>
+                        NEED PRODUCT GUIDANCE?
+                    </span>
+
+                    <h2>
+                        Not sure if this is right for your family?
+                    </h2>
+
+                    <p>
+                        Visit Parent Support and choose Product Guidance
+                        to receive a recommended next step.
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="Home"
+                   asp-action="ParentSupport"
+                   class="details-help-button">
+
+                    Get Parent Support
+                    <span>→</span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
 </div>
+
+
+@section Scripts
+{
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const button =
+                    document.getElementById(
+                        "addToCartButton"
+                    );
+
+                const message =
+                    document.getElementById(
+                        "cartSuccessMessage"
+                    );
+
+
+                if (button && message) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            message.style.display =
+                                "flex";
+
+                            button.innerHTML =
+                                "<span>✓ Added to Cart</span>";
+
+                            button.classList.add(
+                                "details-cart-added"
+                            );
+
+
+                            setTimeout(
+                                function () {
+
+                                    message.style.display =
+                                        "none";
+
+                                },
+                                4500
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+}

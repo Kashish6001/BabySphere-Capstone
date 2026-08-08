@@ -7,88 +7,842 @@
         ViewBag.UserName as string ?? "Parent";
 }
 
-<div class="container mt-4">
+<div class="parent-dashboard-page">
 
-    <h1>Parent Dashboard</h1>
+    <!-- ==========================================
+         DASHBOARD HERO
+    =========================================== -->
 
-    <div class="alert alert-success">
-        Welcome, @displayName!
-    </div>
+    <section class="parent-dashboard-hero">
 
-    <p>
-        You are successfully logged in with the Parent role.
-    </p>
+        <div class="container">
 
-    <div class="card p-4 shadow-sm mb-4">
+            <div class="parent-dashboard-hero-layout">
 
-        <h3>Parent Services</h3>
+                <div class="parent-dashboard-welcome">
 
-        <p>
-            Use the options below to access BabySphere services.
-        </p>
+                    <div class="parent-dashboard-eyebrow">
 
-        <div class="d-flex gap-2 flex-wrap">
+                        <span class="parent-dashboard-dot"></span>
 
-            <a asp-controller="Home"
-               asp-action="ParentSupport"
-               class="btn btn-primary">
-                Submit Support Request
-            </a>
+                        PARENT ACCOUNT
 
-            <a asp-controller="Home"
-               asp-action="SupportHistory"
-               class="btn btn-success">
-                View Support History
-            </a>
+                    </div>
 
-            <a asp-controller="Home"
-               asp-action="Babysitters"
-               class="btn btn-outline-primary">
-                Browse Babysitters
-            </a>
+                    <h1>
+                        Welcome back,
+                        <span>@displayName.</span>
+                    </h1>
 
-            <a asp-controller="Home"
-               asp-action="Products"
-               class="btn btn-outline-secondary">
-                View Products
-            </a>
+                    <p>
+                        Your BabySphere dashboard gives you one place
+                        to access childcare, parenting support,
+                        baby products and family wellness resources.
+                    </p>
+
+
+                    <div class="parent-dashboard-actions">
+
+                        <a asp-controller="Home"
+                           asp-action="Babysitters"
+                           class="parent-dashboard-primary-btn">
+
+                            Find a Babysitter
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a asp-controller="Home"
+                           asp-action="ParentSupport"
+                           class="parent-dashboard-secondary-btn">
+
+                            Get Parent Support
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNT CARD -->
+
+                <div class="parent-account-card">
+
+                    <div class="parent-account-top">
+
+                        <div class="parent-account-avatar">
+
+                            @if (!string.IsNullOrWhiteSpace(displayName))
+                            {
+                                @displayName.Substring(0, 1).ToUpper()
+                            }
+                            else
+                            {
+                                @:P
+                            }
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="parent-account-label">
+                                SIGNED IN AS
+                            </span>
+
+                            <h3>
+                                @displayName
+                            </h3>
+
+                            <p>
+                                Parent Account
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="parent-account-status">
+
+                        <div class="parent-account-status-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Account active
+                            </strong>
+
+                            <span>
+                                Parent dashboard access enabled
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="parent-account-links">
+
+                        <a asp-controller="Home"
+                           asp-action="SupportHistory">
+
+                            <span>
+                                Support History
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a asp-controller="Home"
+                           asp-action="ChildHealth">
+
+                            <span>
+                                Child Wellness
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
-    </div>
 
-    @if (!string.IsNullOrEmpty(Model?.TicketNumber))
-    {
-        <div class="card p-4 shadow-sm mb-4">
+    </section>
 
-            <h3>Support Request Submitted</h3>
 
-            <p>
-                <strong>Ticket Number:</strong>
-                @Model.TicketNumber
-            </p>
+    <!-- ==========================================
+         QUICK ACTIONS
+    =========================================== -->
 
-            <p>
-                <strong>Status:</strong>
-                @Model.Status
-            </p>
+    <section class="parent-services-section">
 
-            <p>
-                <strong>Support Category:</strong>
-                @Model.SupportCategory
-            </p>
+        <div class="container">
 
-            <p>
-                <strong>Recommendation:</strong>
-                @Model.Recommendation
-            </p>
+            <div class="parent-section-heading">
+
+                <div>
+
+                    <span>
+                        YOUR BABYSPHERE
+                    </span>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+
+                </div>
+
+                <p>
+                    Quick access to the services parents
+                    use most often.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- BABYSITTERS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a asp-controller="Home"
+                       asp-action="Babysitters"
+                       class="parent-service-card">
+
+                        <div class="parent-service-top">
+
+                            <div class="parent-service-icon sitter-parent-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <circle cx="12"
+                                            cy="8"
+                                            r="4">
+                                    </circle>
+
+                                    <path d="M5 21c0-4 3.1-7 7-7s7 3 7 7">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                01
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Find Babysitters
+                        </h3>
+
+                        <p>
+                            Browse caregivers by experience,
+                            rating and hourly rate.
+                        </p>
+
+                        <div class="parent-service-link">
+
+                            Browse caregivers
+
+                            <span>→</span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- SUPPORT -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a asp-controller="Home"
+                       asp-action="ParentSupport"
+                       class="parent-service-card">
+
+                        <div class="parent-service-top">
+
+                            <div class="parent-service-icon support-parent-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M4 4h16v13H8l-4 3V4Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                02
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Parent Support
+                        </h3>
+
+                        <p>
+                            Request help with babysitting,
+                            feeding, sleep or product guidance.
+                        </p>
+
+                        <div class="parent-service-link">
+
+                            Request support
+
+                            <span>→</span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a asp-controller="Home"
+                       asp-action="Products"
+                       class="parent-service-card">
+
+                        <div class="parent-service-top">
+
+                            <div class="parent-service-icon products-parent-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M6 8h12l-1 12H7L6 8Z">
+                                    </path>
+
+                                    <path d="M9 8V6a3 3 0 0 1 6 0v2">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                03
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Baby Products
+                        </h3>
+
+                        <p>
+                            Explore useful baby essentials
+                            for everyday family life.
+                        </p>
+
+                        <div class="parent-service-link">
+
+                            Explore products
+
+                            <span>→</span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- WELLNESS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a asp-controller="Home"
+                       asp-action="ChildHealth"
+                       class="parent-service-card">
+
+                        <div class="parent-service-top">
+
+                            <div class="parent-service-icon wellness-parent-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+                            <span>
+                                04
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Child Wellness
+                        </h3>
+
+                        <p>
+                            Explore sleep, feeding,
+                            development and safety resources.
+                        </p>
+
+                        <div class="parent-service-link">
+
+                            View wellness
+
+                            <span>→</span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
 
         </div>
-    }
 
-    <a asp-controller="Admin"
-       asp-action="Logout"
-       class="btn btn-danger">
-        Logout
-    </a>
+    </section>
+
+
+    <!-- ==========================================
+         SUPPORT STATUS
+    =========================================== -->
+
+    <section class="parent-dashboard-main">
+
+        <div class="container">
+
+            <div class="parent-dashboard-main-layout">
+
+
+                <!-- SUPPORT REQUEST -->
+
+                <div class="parent-support-dashboard-card">
+
+                    <div class="parent-dashboard-card-header">
+
+                        <div>
+
+                            <span>
+                                PARENT SUPPORT
+                            </span>
+
+                            <h2>
+                                Support Request
+                            </h2>
+
+                        </div>
+
+
+                        <div class="parent-dashboard-card-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.7">
+
+                                <path d="M4 4h16v13H8l-4 3V4Z">
+                                </path>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+
+                    @if (!string.IsNullOrEmpty(Model?.TicketNumber))
+                    {
+                        <div class="parent-ticket-success">
+
+                            <div class="parent-ticket-success-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Request submitted successfully
+                                </strong>
+
+                                <span>
+                                    Your BabySphere support request
+                                    has been created.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parent-ticket-number-box">
+
+                            <div>
+
+                                <span>
+                                    TICKET NUMBER
+                                </span>
+
+                                <strong>
+                                    @Model.TicketNumber
+                                </strong>
+
+                            </div>
+
+
+                            <div class="parent-ticket-status">
+
+                                @Model.Status
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parent-ticket-details">
+
+                            <div class="parent-ticket-row">
+
+                                <span>
+                                    Support Category
+                                </span>
+
+                                <strong>
+                                    @Model.SupportCategory
+                                </strong>
+
+                            </div>
+
+
+                            <div class="parent-ticket-row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <strong class="parent-status-text">
+                                    @Model.Status
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="parent-recommendation-box">
+
+                            <div class="parent-recommendation-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
+
+                                    <path d="M9 18h6"></path>
+
+                                    <path d="M10 22h4"></path>
+
+                                    <path d="M8 14c-1.3-1.1-2-2.6-2-4.3A6 6 0 0 1 18 9.7c0 1.7-.7 3.2-2 4.3-.7.6-1 1.2-1 2H9c0-.8-.3-1.4-1-2Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    RECOMMENDED NEXT STEP
+                                </span>
+
+                                <p>
+                                    @Model.Recommendation
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <a asp-controller="Home"
+                           asp-action="SupportHistory"
+                           class="parent-history-button">
+
+                            View Support History
+
+                            <span>→</span>
+
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="parent-no-support">
+
+                            <div class="parent-no-support-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.6">
+
+                                    <path d="M4 4h16v13H8l-4 3V4Z">
+                                    </path>
+
+                                </svg>
+
+                            </div>
+
+
+                            <h3>
+                                No new support request
+                            </h3>
+
+                            <p>
+                                Need guidance with babysitting,
+                                feeding, sleep or baby products?
+                                Create a BabySphere support request.
+                            </p>
+
+
+                            <a asp-controller="Home"
+                               asp-action="ParentSupport">
+
+                                Submit Support Request
+
+                                <span>→</span>
+
+                            </a>
+
+                        </div>
+                    }
+
+                </div>
+
+
+
+                <!-- RIGHT SIDE -->
+
+                <div class="parent-dashboard-side">
+
+
+                    <!-- NEXT STEPS -->
+
+                    <div class="parent-side-card">
+
+                        <div class="parent-side-card-header">
+
+                            <span>
+                                QUICK START
+                            </span>
+
+                            <h3>
+                                Recommended for you
+                            </h3>
+
+                        </div>
+
+
+                        <a asp-controller="Home"
+                           asp-action="Babysitters"
+                           class="parent-next-step">
+
+                            <div class="parent-next-number">
+                                01
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Browse babysitters
+                                </strong>
+
+                                <span>
+                                    Compare experience and rates
+                                </span>
+
+                            </div>
+
+                            <span class="parent-next-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a asp-controller="Home"
+                           asp-action="ChildHealth"
+                           class="parent-next-step">
+
+                            <div class="parent-next-number">
+                                02
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Explore wellness
+                                </strong>
+
+                                <span>
+                                    Review family care resources
+                                </span>
+
+                            </div>
+
+                            <span class="parent-next-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a asp-controller="Home"
+                           asp-action="Products"
+                           class="parent-next-step">
+
+                            <div class="parent-next-number">
+                                03
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Browse products
+                                </strong>
+
+                                <span>
+                                    Explore baby essentials
+                                </span>
+
+                            </div>
+
+                            <span class="parent-next-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- HELP CARD -->
+
+                    <div class="parent-help-card">
+
+                        <div class="parent-help-icon">
+                            ?
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                NEED HELP?
+                            </span>
+
+                            <h3>
+                                We're here for your family.
+                            </h3>
+
+                            <p>
+                                Visit Parent Support or contact
+                                BabySphere if you need assistance.
+                            </p>
+
+
+                            <a asp-controller="Home"
+                               asp-action="Contact">
+
+                                Contact BabySphere →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         ACCOUNT FOOTER
+    =========================================== -->
+
+    <section class="parent-account-section">
+
+        <div class="container">
+
+            <div class="parent-account-footer">
+
+                <div>
+
+                    <span>
+                        ACCOUNT SESSION
+                    </span>
+
+                    <h3>
+                        Finished using BabySphere?
+                    </h3>
+
+                    <p>
+                        Sign out when you're finished,
+                        especially when using a shared device.
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="Admin"
+                   asp-action="Logout"
+                   class="parent-logout-button">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <path d="M10 17l5-5-5-5"></path>
+
+                        <path d="M15 12H3"></path>
+
+                        <path d="M14 4h6v16h-6"></path>
+
+                    </svg>
+
+                    Sign Out
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </div>

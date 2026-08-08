@@ -2,7 +2,7 @@
 using BabySphere.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 namespace BabySphere.Controllers
@@ -16,10 +16,20 @@ namespace BabySphere.Controllers
             _context = context;
         }
 
+
+        // =========================================================
+        // HOME
+        // =========================================================
+
         public IActionResult Index()
         {
             return View();
         }
+
+
+        // =========================================================
+        // BABYSITTERS
+        // =========================================================
 
         [HttpGet]
         public IActionResult Babysitters(
@@ -74,6 +84,7 @@ namespace BabySphere.Controllers
             return View(sitters);
         }
 
+
         public IActionResult BabysitterDetails(int id)
         {
             var babysitter = _context.Babysitters
@@ -87,6 +98,11 @@ namespace BabySphere.Controllers
             return View(babysitter);
         }
 
+
+        // =========================================================
+        // BOOKING
+        // =========================================================
+
         [HttpGet]
         public IActionResult Booking(string name)
         {
@@ -99,9 +115,11 @@ namespace BabySphere.Controllers
 
             return View(booking);
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ConfirmBooking(BabySphere.Models.Booking newBooking)
+        public IActionResult ConfirmBooking(Booking newBooking)
         {
             newBooking.Status = "Pending";
 
@@ -123,7 +141,10 @@ namespace BabySphere.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View("Booking", newBooking);
+                return View(
+                    "Booking",
+                    newBooking
+                );
             }
 
             _context.Bookings.Add(newBooking);
@@ -135,14 +156,17 @@ namespace BabySphere.Controllers
             );
         }
 
-                newBooking.BabysitterName;
-                newBooking.BabysitterName;
+
+        // =========================================================
+        // PARENT SUPPORT
+        // =========================================================
 
         [HttpGet]
         public IActionResult ParentSupport()
         {
             return View(new ParentProfile());
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -154,9 +178,10 @@ namespace BabySphere.Controllers
             }
 
             newProfile.TicketNumber =
-                "BS-" + System.Random.Shared.Next(1000, 9999);
+                "BS-" + Random.Shared.Next(1000, 9999);
 
             newProfile.Status = "Pending";
+
 
             if (newProfile.SupportCategory == "Babysitting Help")
             {
@@ -184,17 +209,25 @@ namespace BabySphere.Controllers
                     "Our parent support team can review your request and guide you with the next step.";
             }
 
+
             _context.ParentProfiles.Add(newProfile);
             _context.SaveChanges();
 
+
             ViewBag.UserName =
                 HttpContext.Session.GetString("UserName");
+
 
             return View(
                 "ParentDashboard",
                 newProfile
             );
         }
+
+
+        // =========================================================
+        // PARENT DASHBOARD
+        // =========================================================
 
         public IActionResult ParentDashboard()
         {
@@ -215,6 +248,11 @@ namespace BabySphere.Controllers
             return View(new ParentProfile());
         }
 
+
+        // =========================================================
+        // BABYSITTER DASHBOARD
+        // =========================================================
+
         public IActionResult BabysitterDashboard()
         {
             var userRole =
@@ -233,6 +271,7 @@ namespace BabySphere.Controllers
 
             return View();
         }
+
 
         public IActionResult BabysitterProfile()
         {
@@ -253,6 +292,7 @@ namespace BabySphere.Controllers
             return View();
         }
 
+
         public IActionResult BabysitterAvailability()
         {
             var userRole =
@@ -272,8 +312,18 @@ namespace BabySphere.Controllers
             return View();
         }
 
+
+        // =========================================================
+        // BABYSITTER BOOKINGS
+        // =========================================================
+
         [HttpGet]
-            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
+        public IActionResult BabysitterBookings()
+        {
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Babysitter"
+            )
             {
                 return RedirectToAction(
                     "Login",
@@ -286,9 +336,15 @@ namespace BabySphere.Controllers
                 ?? string.Empty;
 
             var bookings = _context.Bookings
-                .Where(b => b.BabysitterName == babysitterName)
-                .OrderByDescending(b => b.BookingDate)
-                .ThenBy(b => b.StartTime)
+                .Where(
+                    b => b.BabysitterName == babysitterName
+                )
+                .OrderByDescending(
+                    b => b.BookingDate
+                )
+                .ThenBy(
+                    b => b.StartTime
+                )
                 .ToList();
 
             ViewBag.UserName = babysitterName;
@@ -296,11 +352,15 @@ namespace BabySphere.Controllers
             return View(bookings);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AcceptBooking(int id)
         {
-            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Babysitter"
+            )
             {
                 return RedirectToAction(
                     "Login",
@@ -312,28 +372,37 @@ namespace BabySphere.Controllers
                 HttpContext.Session.GetString("UserName")
                 ?? string.Empty;
 
-            var booking = _context.Bookings.FirstOrDefault(
-                b => b.Id == id &&
-                     b.BabysitterName == babysitterName
-            );
+            var booking = _context.Bookings
+                .FirstOrDefault(
+                    b =>
+                        b.Id == id &&
+                        b.BabysitterName == babysitterName
+                );
 
-            if (booking != null &&
-                booking.Status == "Pending")
+            if (
+                booking != null &&
+                booking.Status == "Pending"
+            )
             {
                 booking.Status = "Accepted";
+
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("BabysitterBookings");
+            return RedirectToAction(
+                "BabysitterBookings"
+            );
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult RejectBooking(int id)
         {
-            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
-            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
-            if (HttpContext.Session.GetString("UserRole") != "Babysitter")
+            if (
+                HttpContext.Session.GetString("UserRole")
+                != "Babysitter"
+            )
             {
                 return RedirectToAction(
                     "Login",
@@ -345,32 +414,49 @@ namespace BabySphere.Controllers
                 HttpContext.Session.GetString("UserName")
                 ?? string.Empty;
 
-            var booking = _context.Bookings.FirstOrDefault(
-                b => b.Id == id &&
-                     b.BabysitterName == babysitterName
-            );
+            var booking = _context.Bookings
+                .FirstOrDefault(
+                    b =>
+                        b.Id == id &&
+                        b.BabysitterName == babysitterName
+                );
 
-            if (booking != null &&
-                booking.Status == "Pending")
+            if (
+                booking != null &&
+                booking.Status == "Pending"
+            )
             {
                 booking.Status = "Rejected";
+
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("BabysitterBookings");
+            return RedirectToAction(
+                "BabysitterBookings"
+            );
         }
+
+
+        // =========================================================
+        // PRODUCTS
+        // =========================================================
 
         public IActionResult Products()
         {
-            var products = _context.BabyProducts.ToList();
+            var products =
+                _context.BabyProducts.ToList();
 
             return View(products);
         }
 
+
         public IActionResult ProductDetails(int id)
         {
-            var product = _context.BabyProducts
-                .FirstOrDefault(x => x.Id == id);
+            var product =
+                _context.BabyProducts
+                    .FirstOrDefault(
+                        x => x.Id == id
+                    );
 
             if (product == null)
             {
@@ -380,24 +466,37 @@ namespace BabySphere.Controllers
             return View(product);
         }
 
+
+        // =========================================================
+        // SUPPORT HISTORY
+        // =========================================================
+
         public IActionResult SupportHistory()
         {
-            var history = _context.ParentProfiles.ToList();
+            var history =
+                _context.ParentProfiles.ToList();
 
             return View(history);
         }
+
+
+        // =========================================================
+        // CHILD WELLNESS
+        // =========================================================
 
         public IActionResult ChildHealth()
         {
             return View();
         }
 
+
+        // =========================================================
+        // CONTACT
+        // =========================================================
+
         public IActionResult Contact()
         {
             return View();
         }
-
-        
-        
     }
 }

@@ -7,17 +7,18 @@ namespace BabySphere.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string ParentName { get; set; }
+        [Required(ErrorMessage = "Please enter your name.")]
+        public string ParentName { get; set; } = string.Empty;
 
-        [Required]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Please enter your email address.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        public string Email { get; set; } = string.Empty;
 
-        [Required]
-        public string SupportType { get; set; }
+        [Required(ErrorMessage = "Please select a support type.")]
+        public string SupportType { get; set; } = string.Empty;
 
-        [Required]
-        public string Message { get; set; }
+        [Required(ErrorMessage = "Please describe how we can help.")]
+        public string Message { get; set; } = string.Empty;
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
