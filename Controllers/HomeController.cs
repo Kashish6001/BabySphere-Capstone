@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Text.Json;
 
 namespace BabySphere.Controllers
 {
@@ -466,6 +467,169 @@ namespace BabySphere.Controllers
             return View(product);
         }
 
+        private List<CartItem> GetCart()
+        {
+            var cartJson = HttpContext.Session.GetString("Cart");
+
+            if (string.IsNullOrEmpty(cartJson))
+            {
+                return new List<CartItem>();
+            }
+
+            return JsonSerializer.Deserialize<List<CartItem>>(cartJson)
+                   ?? new List<CartItem>();
+        }
+
+
+        private void SaveCart(List<CartItem> cart)
+        {
+            var cartJson = JsonSerializer.Serialize(cart);
+
+            HttpContext.Session.SetString("Cart", cartJson);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddToCart(int id)
+        {
+            var product = _context.BabyProducts
+                .FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            if (product.Quantity <= 0)
+            {
+                return RedirectToAction(
+                    "ProductDetails",
+                    new { id = id }
+                );
+            }
+
+            var cart = GetCart();
+
+            var existingItem =
+                cart.FirstOrDefault(
+                    x => x.ProductId == id
+                );
+
+            if (existingItem != null)
+            {
+                if (existingItem.Quantity < product.Quantity)
+                {
+                    existingItem.Quantity++;
+                }
+            }
+            else
+            {
+                cart.Add(
+                    new CartItem
+                    {
+                        ProductId = product.Id,
+                        Name = product.Name,
+                        Price = product.Price,
+                        ImageUrl = product.ImageUrl,
+                        Quantity = 1
+                    }
+                );
+            }
+
+            SaveCart(cart);
+
+            TempData["CartMessage"] = "Added to cart successfully!";
+
+            return RedirectToAction(
+                "ProductDetails",
+                new { id = id }
+            );
+        }
+
+
+        public IActionResult Cart()
+        {
+            var cart = GetCart();
+
+            return View(cart);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RemoveFromCart(int id)
+        {
+            var cart = GetCart();
+
+            var item =
+                cart.FirstOrDefault(
+                    x => x.ProductId == id
+                );
+
+            if (item != null)
+            {
+                cart.Remove(item);
+                SaveCart(cart);
+            }
+
+            return RedirectToAction("Cart");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult IncreaseCartQuantity(int id)
+        {
+            var cart = GetCart();
+
+            var item = cart.FirstOrDefault(
+                x => x.ProductId == id
+            );
+
+            if (item != null)
+            {
+                var product = _context.BabyProducts
+                    .FirstOrDefault(p => p.Id == id);
+
+                if (product != null &&
+                    item.Quantity < product.Quantity)
+                {
+                    item.Quantity++;
+
+                    SaveCart(cart);
+                }
+            }
+
+            return RedirectToAction("Cart");
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DecreaseCartQuantity(int id)
+        {
+            var cart = GetCart();
+
+            var item = cart.FirstOrDefault(
+                x => x.ProductId == id
+            );
+
+            if (item != null)
+            {
+                if (item.Quantity > 1)
+                {
+                    item.Quantity--;
+                }
+                else
+                {
+                    cart.Remove(item);
+                }
+
+                SaveCart(cart);
+            }
+
+            return RedirectToAction("Cart");
+        }
+
 
         // =========================================================
         // SUPPORT HISTORY
@@ -498,5 +662,7 @@ namespace BabySphere.Controllers
         {
             return View();
         }
+
+        
     }
 }

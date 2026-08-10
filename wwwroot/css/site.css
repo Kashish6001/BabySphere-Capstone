@@ -9641,3 +9641,25 @@ select.contact-control {
         display: none;
     }
 }
+
+.cart-bounce {
+    animation: cartBounce 0.8s ease;
+}
+
+@keyframes cartBounce {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.25);
+    }
+
+    60% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -236,6 +236,17 @@
 
                     </div>
 
+                    
+                        @if (TempData["CartMessage"] != null)
+                        {
+                            <div class="alert alert-success mt-3"
+                                 id="cartAddedMessage">
+
+                                ✓ @TempData["CartMessage"]
+
+                            </div>
+                        }
+
 
                     <!-- BUY AREA -->
 
@@ -256,41 +267,30 @@
 
                         @if (Model.Quantity > 0)
                         {
-                            <button type="button"
-                                    class="details-add-cart-btn"
-                                    id="addToCartButton">
+                            <form asp-controller="Home"
+                                  asp-action="AddToCart"
+                                  method="post">
 
-                                <span>
+                                @Html.AntiForgeryToken()
 
-                                    <svg viewBox="0 0 24 24"
-                                         fill="none"
-                                         stroke="currentColor"
-                                         stroke-width="1.8">
+                                <input type="hidden"
+                                       name="id"
+                                       value="@Model.Id" />
 
-                                        <path d="M4 5h2l2 10h9l2-7H7">
-                                        </path>
+                                <button type="submit"
+                                        class="details-add-cart-btn">
 
-                                        <circle cx="10"
-                                                cy="19"
-                                                r="1.5">
-                                        </circle>
+                                    <span>
+                                        🛒 Add to Cart
+                                    </span>
 
-                                        <circle cx="17"
-                                                cy="19"
-                                                r="1.5">
-                                        </circle>
+                                    <span class="details-button-arrow">
+                                        →
+                                    </span>
 
-                                    </svg>
+                                </button>
 
-                                    Add to Cart
-
-                                </span>
-
-                                <span class="details-button-arrow">
-                                    →
-                                </span>
-
-                            </button>
+                            </form>
                         }
                         else
                         {
@@ -306,28 +306,7 @@
                     </div>
 
 
-                    <!-- SUCCESS MESSAGE -->
-
-                    <div id="cartSuccessMessage"
-                         class="cart-success-message">
-
-                        <div class="cart-success-icon">
-                            ✓
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Added to your cart
-                            </strong>
-
-                            <span>
-                                @Model.Name has been added successfully.
-                            </span>
-
-                        </div>
-
-                    </div>
+                   
 
 
                     <!-- BENEFITS -->
@@ -562,60 +541,32 @@
 
 </div>
 
-
 @section Scripts
 {
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+            const message =
+                document.getElementById("cartAddedMessage");
 
-                const button =
-                    document.getElementById(
-                        "addToCartButton"
-                    );
+            const cartLink =
+                document.getElementById("cartNavLink");
 
-                const message =
-                    document.getElementById(
-                        "cartSuccessMessage"
-                    );
+            if (message) {
 
+                if (cartLink) {
+                    cartLink.classList.add("cart-bounce");
 
-                if (button && message) {
-
-                    button.addEventListener(
-                        "click",
-                        function () {
-
-                            message.style.display =
-                                "flex";
-
-                            button.innerHTML =
-                                "<span>✓ Added to Cart</span>";
-
-                            button.classList.add(
-                                "details-cart-added"
-                            );
-
-
-                            setTimeout(
-                                function () {
-
-                                    message.style.display =
-                                        "none";
-
-                                },
-                                4500
-                            );
-
-                        }
-                    );
-
+                    setTimeout(function () {
+                        cartLink.classList.remove("cart-bounce");
+                    }, 800);
                 }
 
+                setTimeout(function () {
+                    message.style.display = "none";
+                }, 3000);
             }
-        );
-
+        });
     </script>
 }
+
