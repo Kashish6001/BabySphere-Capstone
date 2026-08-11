@@ -237,15 +237,25 @@
                     </div>
 
                     
-                        @if (TempData["CartMessage"] != null)
-                        {
-                            <div class="alert alert-success mt-3"
-                                 id="cartAddedMessage">
+                    @if (TempData["CartMessage"] != null)
+                    {
+                        <div class="alert alert-success mt-3 d-flex justify-content-between align-items-center"
+                             id="cartAddedMessage">
 
+                            <span>
                                 ✓ @TempData["CartMessage"]
+                            </span>
 
-                            </div>
-                        }
+                            <a asp-controller="Home"
+                               asp-action="Cart"
+                               class="btn btn-sm btn-success">
+
+                                🛒 View Cart
+
+                            </a>
+
+                        </div>
+                    }
 
 
                     <!-- BUY AREA -->
