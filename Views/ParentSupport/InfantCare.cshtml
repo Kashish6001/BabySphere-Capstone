@@ -1,0 +1,490 @@
+﻿@{
+    ViewData["Title"] = "Infant Care";
+}
+
+<style>
+    .parent-resource-page {
+        font-family: inherit;
+        color: #14213d;
+        background: #ffffff;
+        min-height: 100vh;
+    }
+
+    /* HERO */
+    .resource-hero {
+        background: linear-gradient(110deg, #e8fbfa 0%, #ffffff 55%, #fff4f2 100%);
+        padding: 70px 20px 65px;
+        border-bottom: 1px solid #edf1f3;
+    }
+
+    .resource-hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .resource-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border: 1px solid #dceeed;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.85);
+        color: #079b97;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .resource-eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        background: #0fa29e;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .resource-hero h1 {
+        margin: 0;
+        color: #14213d;
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+    }
+
+        .resource-hero h1 span {
+            color: #079b97;
+        }
+
+    .resource-hero p {
+        max-width: 650px;
+        margin: 18px auto 0;
+        color: #6b7b93;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    /* CONTENT */
+    .resource-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 65px 20px 80px;
+    }
+
+    .resource-section-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+        .resource-section-heading .label {
+            color: #079b97;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .resource-section-heading h2 {
+            margin: 0;
+            color: #14213d;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .resource-section-heading p {
+            color: #718096;
+            margin: 12px auto 0;
+            max-width: 600px;
+        }
+
+    /* RESOURCE CARDS */
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .resource-card {
+        background: #ffffff;
+        border: 1px solid #e4ebee;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(20, 33, 61, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 35px rgba(20, 33, 61, 0.09);
+        }
+
+    .resource-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+    }
+
+    .resource-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: #e6f8f7;
+        font-size: 25px;
+    }
+
+    .resource-number {
+        color: #b8c2ce;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .resource-card h3 {
+        color: #14213d;
+        font-size: 22px;
+        font-weight: 750;
+        margin-bottom: 10px;
+    }
+
+    .resource-card p {
+        color: #687a92;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 22px;
+    }
+
+    .resource-card-footer {
+        border-top: 1px solid #edf1f3;
+        padding-top: 17px;
+        color: #079b97;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* INFORMATION NOTE */
+    .resource-note {
+        margin-top: 40px;
+        padding: 22px 25px;
+        border: 1px solid #dceeed;
+        border-radius: 16px;
+        background: #f5fbfb;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .resource-note-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 11px;
+        background: #dff5f3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #079b97;
+        font-weight: 800;
+    }
+
+    .resource-note strong {
+        display: block;
+        color: #14213d;
+        margin-bottom: 4px;
+    }
+
+    .resource-note p {
+        margin: 0;
+        color: #6d7e94;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* BACK BUTTON */
+    .resource-back-wrapper {
+        text-align: center;
+        margin-top: 45px;
+    }
+
+    .resource-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 22px;
+        border-radius: 10px;
+        background: #079b97;
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 8px 18px rgba(7, 155, 151, 0.18);
+        transition: all 0.2s ease;
+    }
+
+        .resource-back-btn:hover {
+            background: #078b87;
+            transform: translateY(-2px);
+            color: #ffffff !important;
+        }
+
+    /* MOBILE */
+    @@media (max-width: 768px) {
+
+        .resource-hero {
+            padding: 50px 18px;
+        }
+
+            .resource-hero h1 {
+                font-size: 36px;
+            }
+
+            .resource-hero p {
+                font-size: 15px;
+            }
+
+        .resource-content {
+            padding: 50px 18px 65px;
+        }
+
+        .resource-section-heading h2 {
+            font-size: 27px;
+        }
+
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .resource-card {
+            padding: 23px;
+        }
+    }
+</style>
+
+
+<div class="parent-resource-page">
+
+    <!-- HERO -->
+    <section class="resource-hero">
+
+        <div class="resource-hero-inner">
+
+            <div class="resource-eyebrow">
+                <span class="resource-eyebrow-dot"></span>
+                PARENTING RESOURCES
+            </div>
+
+            <h1>
+                👶 Infant Care
+                <span>made simpler.</span>
+            </h1>
+
+            <p>
+                Helpful information for caring for newborns and infants,
+                covering feeding, hygiene, safety and everyday newborn care.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENT -->
+    <section class="resource-content">
+
+        <div class="resource-section-heading">
+
+            <div class="label">
+                INFANT CARE
+            </div>
+
+            <h2>
+                Caring for your little one
+            </h2>
+
+            <p>
+                Explore practical information to help parents
+                feel more confident with everyday infant care.
+            </p>
+
+        </div>
+
+
+        <div class="resource-grid">
+
+            <!-- FEEDING -->
+            <div class="resource-card">
+
+                <div class="resource-card-top">
+
+                    <div class="resource-icon">
+                        🍼
+                    </div>
+
+                    <span class="resource-number">
+                        01
+                    </span>
+
+                </div>
+
+                <h3>
+                    Feeding
+                </h3>
+
+                <p>
+                    Learn about feeding routines, bottle feeding,
+                    breastfeeding, and recognizing your baby's
+                    hunger cues.
+                </p>
+
+                <div class="resource-card-footer">
+                    Feeding & nutrition →
+                </div>
+
+            </div>
+
+
+            <!-- HYGIENE -->
+            <div class="resource-card">
+
+                <div class="resource-card-top">
+
+                    <div class="resource-icon">
+                        🛁
+                    </div>
+
+                    <span class="resource-number">
+                        02
+                    </span>
+
+                </div>
+
+                <h3>
+                    Baby Hygiene
+                </h3>
+
+                <p>
+                    Learn basic hygiene practices including bathing,
+                    diaper changes, and keeping your baby comfortable
+                    and clean.
+                </p>
+
+                <div class="resource-card-footer">
+                    Baby care & hygiene →
+                </div>
+
+            </div>
+
+
+            <!-- SAFETY -->
+            <div class="resource-card">
+
+                <div class="resource-card-top">
+
+                    <div class="resource-icon">
+                        🛡️
+                    </div>
+
+                    <span class="resource-number">
+                        03
+                    </span>
+
+                </div>
+
+                <h3>
+                    Infant Safety
+                </h3>
+
+                <p>
+                    Learn about basic safety practices around the home
+                    and ways parents can create a safer environment
+                    for infants.
+                </p>
+
+                <div class="resource-card-footer">
+                    Safety basics →
+                </div>
+
+            </div>
+
+
+            <!-- NEWBORN CARE -->
+            <div class="resource-card">
+
+                <div class="resource-card-top">
+
+                    <div class="resource-icon">
+                        💡
+                    </div>
+
+                    <span class="resource-number">
+                        04
+                    </span>
+
+                </div>
+
+                <h3>
+                    Newborn Care Tips
+                </h3>
+
+                <p>
+                    Explore everyday newborn care routines and
+                    helpful information for new parents.
+                </p>
+
+                <div class="resource-card-footer">
+                    Newborn essentials →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFORMATION NOTE -->
+        <div class="resource-note">
+
+            <div class="resource-note-icon">
+                i
+            </div>
+
+            <div>
+
+                <strong>
+                    Helpful reminder
+                </strong>
+
+                <p>
+                    These resources provide general parenting information
+                    and are not a substitute for professional medical advice.
+                    Contact a healthcare professional when you have concerns
+                    about your baby's health.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+        <div class="resource-back-wrapper">
+
+            <a asp-controller="Home"
+               asp-action="ParentSupport"
+               class="resource-back-btn">
+
+                ← Back to Parent Support
+
+            </a>
+
+        </div>
+
+    </section>
+
+</div>

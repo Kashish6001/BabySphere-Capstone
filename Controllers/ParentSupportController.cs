@@ -8,5 +8,25 @@ namespace BabySphere.Controllers
         {
             return View();
         }
+
+        public IActionResult InfantCare()
+        {
+            return View();
+        }
+
+        public IActionResult Nutrition()
+        {
+            return View();
+        }
+
+        public IActionResult Development()
+        {
+            return View();
+        }
+
+        public IActionResult Sleep()
+        {
+            return View();
+        }
     }
 }

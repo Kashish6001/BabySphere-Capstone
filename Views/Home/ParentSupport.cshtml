@@ -4,6 +4,31 @@
     ViewData["Title"] = "Parent Support";
 }
 
+<style>
+    .support-resource-link {
+        display: block;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .support-resource-link:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .support-resource-link .support-resource-card {
+        height: 100%;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .support-resource-link:hover .support-resource-card {
+        transform: translateY(-4px);
+    }
+</style>
+
+
 <div class="parent-support-page">
 
 
@@ -16,7 +41,6 @@
         <div class="container">
 
             <div class="support-hero-content">
-
 
                 <div class="support-hero-text">
 
@@ -71,7 +95,6 @@
 
                     <div class="support-visual-card">
 
-
                         <div class="support-heart">
 
                             <svg viewBox="0 0 24 24"
@@ -121,7 +144,6 @@
 
                 </div>
 
-
             </div>
 
         </div>
@@ -164,209 +186,248 @@
             <div class="row g-4">
 
 
-                <!-- INFANT CARE -->
+                <!-- ======================================
+                     INFANT CARE
+                ======================================= -->
 
                 <div class="col-md-6 col-lg-3">
 
-                    <div class="support-resource-card">
+                    <a asp-controller="ParentSupport"
+                       asp-action="InfantCare"
+                       class="support-resource-link">
+
+                        <div class="support-resource-card">
 
 
-                        <div class="support-resource-icon infant-resource">
+                            <div class="support-resource-icon infant-resource">
 
-                            <svg viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="1.7">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
 
-                                <circle cx="12"
-                                        cy="8"
-                                        r="4">
-                                </circle>
+                                    <circle cx="12"
+                                            cy="8"
+                                            r="4">
+                                    </circle>
 
-                                <path d="M6 21c0-4 2.7-7 6-7s6 3 6 7">
-                                </path>
+                                    <path d="M6 21c0-4 2.7-7 6-7s6 3 6 7">
+                                    </path>
 
-                            </svg>
+                                </svg>
+
+                            </div>
+
+
+                            <span class="resource-number">
+                                01
+                            </span>
+
+
+                            <h3>
+                                Infant Care
+                            </h3>
+
+
+                            <p>
+                                Learn newborn care basics,
+                                everyday safety practices and
+                                healthy family routines.
+                            </p>
+
+
+                            <div class="resource-bottom">
+                                Baby & newborn care
+                            </div>
+
 
                         </div>
 
-
-                        <span class="resource-number">
-                            01
-                        </span>
-
-
-                        <h3>
-                            Infant Care
-                        </h3>
-
-
-                        <p>
-                            Learn newborn care basics,
-                            everyday safety practices and
-                            healthy family routines.
-                        </p>
-
-
-                        <div class="resource-bottom">
-                            Baby & newborn care
-                        </div>
-
-                    </div>
+                    </a>
 
                 </div>
 
 
 
-                <!-- NUTRITION -->
+                <!-- ======================================
+                     NUTRITION
+                ======================================= -->
 
                 <div class="col-md-6 col-lg-3">
 
-                    <div class="support-resource-card">
+                    <a asp-controller="ParentSupport"
+                       asp-action="Nutrition"
+                       class="support-resource-link">
+
+                        <div class="support-resource-card">
 
 
-                        <div class="support-resource-icon nutrition-resource">
+                            <div class="support-resource-icon nutrition-resource">
 
-                            <svg viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="1.7">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
 
-                                <path d="M12 21V9"></path>
+                                    <path d="M12 21V9"></path>
 
-                                <path d="M12 12C8 12 5 9 5 5c4 0 7 2 7 7Z">
-                                </path>
+                                    <path d="M12 12C8 12 5 9 5 5c4 0 7 2 7 7Z">
+                                    </path>
 
-                                <path d="M12 15c4 0 7-3 7-7-4 0-7 2-7 7Z">
-                                </path>
+                                    <path d="M12 15c4 0 7-3 7-7-4 0-7 2-7 7Z">
+                                    </path>
 
-                            </svg>
+                                </svg>
+
+                            </div>
+
+
+                            <span class="resource-number">
+                                02
+                            </span>
+
+
+                            <h3>
+                                Nutrition
+                            </h3>
+
+
+                            <p>
+                                Explore feeding information and
+                                healthy nutrition guidance for
+                                growing children.
+                            </p>
+
+
+                            <div class="resource-bottom">
+                                Feeding & nutrition
+                            </div>
+
 
                         </div>
 
-
-                        <span class="resource-number">
-                            02
-                        </span>
-
-
-                        <h3>
-                            Nutrition
-                        </h3>
-
-
-                        <p>
-                            Explore feeding information and
-                            healthy nutrition guidance for
-                            growing children.
-                        </p>
-
-
-                        <div class="resource-bottom">
-                            Feeding & nutrition
-                        </div>
-
-                    </div>
+                    </a>
 
                 </div>
 
 
 
-                <!-- DEVELOPMENT -->
+                <!-- ======================================
+                     DEVELOPMENT
+                ======================================= -->
 
                 <div class="col-md-6 col-lg-3">
 
-                    <div class="support-resource-card">
+                    <a asp-controller="ParentSupport"
+                       asp-action="Development"
+                       class="support-resource-link">
+
+                        <div class="support-resource-card">
 
 
-                        <div class="support-resource-icon development-resource">
+                            <div class="support-resource-icon development-resource">
 
-                            <svg viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="1.7">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
 
-                                <path d="M4 19V10"></path>
-                                <path d="M10 19V5"></path>
-                                <path d="M16 19v-7"></path>
-                                <path d="M22 19H2"></path>
+                                    <path d="M4 19V10"></path>
 
-                            </svg>
+                                    <path d="M10 19V5"></path>
+
+                                    <path d="M16 19v-7"></path>
+
+                                    <path d="M22 19H2"></path>
+
+                                </svg>
+
+                            </div>
+
+
+                            <span class="resource-number">
+                                03
+                            </span>
+
+
+                            <h3>
+                                Development
+                            </h3>
+
+
+                            <p>
+                                Learn about developmental
+                                milestones and your child's
+                                growth over time.
+                            </p>
+
+
+                            <div class="resource-bottom">
+                                Growth & milestones
+                            </div>
+
 
                         </div>
 
-
-                        <span class="resource-number">
-                            03
-                        </span>
-
-
-                        <h3>
-                            Development
-                        </h3>
-
-
-                        <p>
-                            Learn about developmental
-                            milestones and your child's
-                            growth over time.
-                        </p>
-
-
-                        <div class="resource-bottom">
-                            Growth & milestones
-                        </div>
-
-                    </div>
+                    </a>
 
                 </div>
 
 
 
-                <!-- SLEEP -->
+                <!-- ======================================
+                     SLEEP
+                ======================================= -->
 
                 <div class="col-md-6 col-lg-3">
 
-                    <div class="support-resource-card">
+                    <a asp-controller="ParentSupport"
+                       asp-action="Sleep"
+                       class="support-resource-link">
+
+                        <div class="support-resource-card">
 
 
-                        <div class="support-resource-icon sleep-resource">
+                            <div class="support-resource-icon sleep-resource">
 
-                            <svg viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="1.7">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7">
 
-                                <path d="M20 15.5A8 8 0 0 1 8.5 4 8 8 0 1 0 20 15.5Z">
-                                </path>
+                                    <path d="M20 15.5A8 8 0 0 1 8.5 4 8 8 0 1 0 20 15.5Z">
+                                    </path>
 
-                            </svg>
+                                </svg>
+
+                            </div>
+
+
+                            <span class="resource-number">
+                                04
+                            </span>
+
+
+                            <h3>
+                                Sleep
+                            </h3>
+
+
+                            <p>
+                                Discover information about
+                                healthy sleep habits and
+                                consistent family routines.
+                            </p>
+
+
+                            <div class="resource-bottom">
+                                Sleep & routines
+                            </div>
+
 
                         </div>
 
-
-                        <span class="resource-number">
-                            04
-                        </span>
-
-
-                        <h3>
-                            Sleep
-                        </h3>
-
-
-                        <p>
-                            Discover information about
-                            healthy sleep habits and
-                            consistent family routines.
-                        </p>
-
-
-                        <div class="resource-bottom">
-                            Sleep & routines
-                        </div>
-
-                    </div>
+                    </a>
 
                 </div>
 
