@@ -4,6 +4,7 @@ using BabySphere.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BabySphere.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260811101903_changes")]
+    partial class changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,98 +258,6 @@ namespace BabySphere.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Babysitters");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Experience = 4,
-                            HourlyRate = 22.00m,
-                            Name = "Emily Johnson",
-                            Rating = 4.7999999999999998,
-                            Skills = "Infant Care, Feeding, Bedtime Routine"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Experience = 3,
-                            HourlyRate = 20.00m,
-                            Name = "Sarah Williams",
-                            Rating = 4.5999999999999996,
-                            Skills = "Toddler Care, Activities, Meal Preparation"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Experience = 5,
-                            HourlyRate = 25.00m,
-                            Name = "Michael Brown",
-                            Rating = 4.9000000000000004,
-                            Skills = "Child Safety, Homework Help, Outdoor Activities"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Experience = 2,
-                            HourlyRate = 18.00m,
-                            Name = "Jessica Miller",
-                            Rating = 4.4000000000000004,
-                            Skills = "Infant Care, Diaper Changing, Playtime"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Experience = 6,
-                            HourlyRate = 28.00m,
-                            Name = "Daniel Wilson",
-                            Rating = 4.7000000000000002,
-                            Skills = "Special Needs Care, Homework Help, Meal Preparation"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Experience = 1,
-                            HourlyRate = 17.00m,
-                            Name = "Olivia Davis",
-                            Rating = 4.2000000000000002,
-                            Skills = "Toddler Care, Playtime, Storytelling"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Experience = 7,
-                            HourlyRate = 30.00m,
-                            Name = "James Anderson",
-                            Rating = 4.9000000000000004,
-                            Skills = "Infant Care, Child Safety, First Aid"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Experience = 4,
-                            HourlyRate = 23.00m,
-                            Name = "Sophia Taylor",
-                            Rating = 4.5,
-                            Skills = "Homework Help, Arts and Crafts, Activities"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Experience = 3,
-                            HourlyRate = 21.00m,
-                            Name = "Emma Thompson",
-                            Rating = 4.7000000000000002,
-                            Skills = "Feeding, Infant Care, Bedtime Routine"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Experience = 5,
-                            HourlyRate = 26.00m,
-                            Name = "David Clark",
-                            Rating = 4.5999999999999996,
-                            Skills = "Outdoor Activities, Homework Help, Meal Preparation"
-                        });
                 });
 
             modelBuilder.Entity("BabySphere.Models.Booking", b =>

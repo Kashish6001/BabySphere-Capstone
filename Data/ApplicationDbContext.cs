@@ -63,6 +63,99 @@ namespace BabySphere.Data
     }
 );
 
+            modelBuilder.Entity<Babysitter>().HasData(
+    new Babysitter
+    {
+        Id = 1,
+        Name = "Emily Johnson",
+        Experience = 4,
+        HourlyRate = 22.00m,
+        Rating = 4.8,
+        Skills = "Infant Care, Feeding, Bedtime Routine"
+    },
+    new Babysitter
+    {
+        Id = 2,
+        Name = "Sarah Williams",
+        Experience = 3,
+        HourlyRate = 20.00m,
+        Rating = 4.6,
+        Skills = "Toddler Care, Activities, Meal Preparation"
+    },
+    new Babysitter
+    {
+        Id = 3,
+        Name = "Michael Brown",
+        Experience = 5,
+        HourlyRate = 25.00m,
+        Rating = 4.9,
+        Skills = "Child Safety, Homework Help, Outdoor Activities"
+    },
+    new Babysitter
+    {
+        Id = 4,
+        Name = "Jessica Miller",
+        Experience = 2,
+        HourlyRate = 18.00m,
+        Rating = 4.4,
+        Skills = "Infant Care, Diaper Changing, Playtime"
+    },
+    new Babysitter
+    {
+        Id = 5,
+        Name = "Daniel Wilson",
+        Experience = 6,
+        HourlyRate = 28.00m,
+        Rating = 4.7,
+        Skills = "Special Needs Care, Homework Help, Meal Preparation"
+    },
+    new Babysitter
+    {
+        Id = 6,
+        Name = "Olivia Davis",
+        Experience = 1,
+        HourlyRate = 17.00m,
+        Rating = 4.2,
+        Skills = "Toddler Care, Playtime, Storytelling"
+    },
+    new Babysitter
+    {
+        Id = 7,
+        Name = "James Anderson",
+        Experience = 7,
+        HourlyRate = 30.00m,
+        Rating = 4.9,
+        Skills = "Infant Care, Child Safety, First Aid"
+    },
+    new Babysitter
+    {
+        Id = 8,
+        Name = "Sophia Taylor",
+        Experience = 4,
+        HourlyRate = 23.00m,
+        Rating = 4.5,
+        Skills = "Homework Help, Arts and Crafts, Activities"
+    },
+    new Babysitter
+    {
+        Id = 9,
+        Name = "Emma Thompson",
+        Experience = 3,
+        HourlyRate = 21.00m,
+        Rating = 4.7,
+        Skills = "Feeding, Infant Care, Bedtime Routine"
+    },
+    new Babysitter
+    {
+        Id = 10,
+        Name = "David Clark",
+        Experience = 5,
+        HourlyRate = 26.00m,
+        Rating = 4.6,
+        Skills = "Outdoor Activities, Homework Help, Meal Preparation"
+    }
+);
+
             modelBuilder.Entity<BabyProduct>().HasData(
                 new BabyProduct
                 {

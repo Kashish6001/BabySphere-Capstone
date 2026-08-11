@@ -450,7 +450,6 @@ namespace BabySphere.Controllers
             return View(products);
         }
 
-
         public IActionResult ProductDetails(int id)
         {
             var product =
